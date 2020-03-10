@@ -1,4 +1,4 @@
-baseurl = "https://christian-herrera.github.io/"
+baseurl = "/"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 
