@@ -1,45 +1,21 @@
-baseurl = "/"
-languageCode = "en-us"
-theme = "hello-friend-ng"
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
-[params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04 -0700"
+name = "vncnt-hugo"
+license = "MIT"
+licenselink = "https://github.com/fncnt/vncnt-hugo/blob/master/LICENSE"
+description = "A simple theme for your personal landing page."
+homepage = "https://github.com/fncnt/vncnt-hugo/"
+tags = ["minimal", "landingpage", "responsive", "fontawesome", "personal"]
+features = ["responsive", "dark mode", "lightweight"]
+min_version = "0.41"
 
-  # Set disableReadOtherPosts to true in order to hide the links to other posts.
-  disableReadOtherPosts = false
+[author]
+  name = "Vincent von Schelm"
+  homepage = "https://vncnt.eu/"
 
-  # Metadata mostly used in document's head
-  description = "My new homepage or blog"
-  keywords = "homepage, blog"
-  images = [""]
-
-  # Directory name of your blog content (default is `content/posts`)
-  contentTypeName = "posts"
-
-  # Default theme "light" or "dark"
-  defaultTheme = "dark"
-
-[languages]
-  [languages.en]
-    title = "Hello Friend NG"
-    subtitle = "A simple theme for Hugo"
-    keywords = ""
-    copyright = ""
-    readOtherPosts = "Read other posts"
-
-    [languages.en.params.logo]
-      logoText = "hello friend ng"
-      logoHomeLink = "/"
-    # or
-    #
-    # path = "/img/your-example-logo.svg"
-    # alt = "Your example logo alt text"
-
-  # And you can even create generic menu
-  [[menu.main]]
-    identifier = "blog"
-    name       = "Blog"
-    url        = "/posts"
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""

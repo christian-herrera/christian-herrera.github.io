@@ -1,17 +1,5 @@
-{{ define "main" }}
-    <main aria-role="main">
-        <div>
-            <h1>{{ .Site.Title }}</h1>
-
-            {{- with .Site.Params.homeSubtitle }}
-                <p>{{.}}</p>
-            {{- end }}
-
-            {{- with .Site.Params.social }}
-                <div>
-                    {{ partial "social-icons.html" . }}
-                </div>
-            {{- end }}
-        </div>
-    </main>
-{{ end }}
+<!DOCTYPE HTML>
+{{if .Site.Language}}<html lang="{{.Site.Language}}">{{else}}<html lang="en">{{end}}
+{{ partial "head" . }}<body>
+{{ partial "body" . }}</body>
+</html>
