@@ -1,75 +1,38 @@
-# Particle Jekyll Theme
+# pulp
+![logo](https://user-images.githubusercontent.com/17229643/55247565-50245180-528b-11e9-9947-aa3c54ea05bb.png)  
 
-![](./particle.jpg)
+Pulp is a [Hugo](https://gohugo.io/) theme for getting a simple, easy-to-read blog site.
 
-This is a simple and minimalist template for Jekyll designed for developers that want to show of their portfolio.
+## Screenshots
+![screenshot-top](https://user-images.githubusercontent.com/17229643/72672672-bd16fc80-3a01-11ea-9056-7439db39ed75.png)
 
-The Theme features:
+![screenshot-list](https://user-images.githubusercontent.com/17229643/72672673-c607ce00-3a01-11ea-8356-d3cfc4ead65e.png)
 
-- Gulp
-- SASS
-- Sweet Scroll
-- Particle.js
-- BrowserSync
-- Font Awesome and Devicon icons
-- Google Analytics
-- Info Customization
+![screenshot-page](https://user-images.githubusercontent.com/17229643/72672675-cacc8200-3a01-11ea-914e-c80876d03b16.png)
+## Installation
 
-## Basic Setup
-
-1. [Install Jekyll](http://jekyllrb.com)
-2. Clone the particle theme: `git clone https://github.com/nrandecker/particle.git`
-3. Edit `_config.yml` to personalize your site.
-
-## Site and User Settings
-
-You have to fill some informations on `_config.yml` to customize your site.
+If your site is also under version control using git, the easiest way to install this theme is to add it as a submodule. If you have not created a git repo for your project yet, you need to run `git init` beforehand. Inside the folder of your Hugo site, run the following command.
 
 ```
-# Site settings
-description: A blog about lorem ipsum dolor sit amet
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://localhost:3000" # the base hostname & protocol for your site
-
-# User settings
-username: Lorem Ipsum
-user_description: Anon Developer at Lorem Ipsum Dolor
-user_title: Anon Developer
-email: anon@anon.com
-twitter_username: lorem_ipsum
-github_username:  lorem_ipsum
-gplus_username:  lorem_ipsum
+git submodule add https://github.com/koirand/pulp.git themes/pulp
 ```
 
-**Don't forget to change your url before you deploy your site!**
+Alternatively, you can clone the theme into your project.
 
-## Color and Particle Customization
-- Color Customization
-  - Edit the sass variables
-- Particle Customization
-  - Edit the json data in particle function in app.js
-  - Refer to [Particle.js](https://github.com/VincentGarreau/particles.js/) for help
+```
+git clone https://github.com/koirand/pulp.git themes/pulp
+```
 
-## Running the blog in local
+## Configuration
 
-In order to compile the assets and run Jekyll on local you need to follow those steps:
+Configure your config.toml with reference to exampleSite.
+Put your own avatar image in /static/img/avatar.jpg of your own site, and also favicon.ico. Hugo will automatically use that images instead of the standard one. It's not necessary to alter the theme.
 
-- Install [NodeJS](https://nodejs.org/)
-- Install [Jekyll](https://jekyllrb.com): `sudo gem install bundler jekyll`
-- Install [Yarn](https://yarnpkg.com/): `npm install -g yarn`
-- Install dependencies: `yarn`
-- Run: `gulp`
+## Update the theme
+You can update the theme by issuing the following command inside your project folder.
 
-## Questions
+```
+git submodule update --remote --rebase
+```
 
-Having any issues file a [GitHub Issue](https://github.com/nrandecker/particle/issues/new).
-
-## License
-
-This theme is free and open source software, distributed under the The MIT License. So feel free to use this Jekyll theme anyway you want.
-
-## Credits
-
-This theme was partially designed with the inspiration from these fine folks
-- [Willian Justen](https://github.com/willianjusten/will-jekyll-template)
-- [Vincent Garreau](https://github.com/VincentGarreau/particles.js/)
+If you have cloned the theme, you can run `git pull` inside the theme folder.
