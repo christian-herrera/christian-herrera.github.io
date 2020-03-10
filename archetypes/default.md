@@ -1,6 +1,8 @@
 ---
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
-date: {{ dateFormat "2006-01-02T15:04:05Z07:00" .Date }}
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
 draft: true
-images: []
+comments: false
+images:
 ---
+
