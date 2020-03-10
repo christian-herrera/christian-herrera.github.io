@@ -1,5 +1,5 @@
 baseurl = "https://christian-herrera.github.io"
-title = "Site Title"
+title = "Christian Herrera"
 theme = "pulp"
 canonifyurls = true
 hasCJKLanguage = true
@@ -8,7 +8,7 @@ hasCJKLanguage = true
 # googleAnalytics = "{your tracking code}"
 
 [params]
-    author = "Your Name"
+    author = "Christian Herrera"
     avatar = "avatar.jpg"
     favicon = "favicon.ico"
     description = """
