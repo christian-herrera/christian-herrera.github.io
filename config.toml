@@ -1,4 +1,4 @@
-baseURL = "https://example.com/"
+baseURL = "https://christian-herrera.github.io/"
 # include content marked as draft
 buildDrafts = false
 # include content with publishdate in the future
