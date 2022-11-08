@@ -1,6 +1,23 @@
-#Habilito el Soporte SSH para GPG y luego Reinicio el Agente
-echo enable-ssh-support >> $HOME/.gnupg/gpg-agent.conf
-gpg-connect-agent /bye
+1)  Instalacion de GIT
+      https://git-scm.com/download/win
 
-unset SSH_AGENT_PID
-eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
+2)  Inicializo GPG, importo la clave publica del Yubikey
+      gpg -k
+      gpg --card-status
+      gpg --edit-key
+        fetch
+        q
+      gpg --key-edit 100B834A0CB84B533AD9C68F286292E04464CB12
+      trust
+      q
+ 
+3)  Permito las conexiones SSH
+      echo enable-ssh-support >> $HOME/.gnupg/gpg-agent.conf
+      gpg-connect-agent /bye
+
+4)  Configuro para que utilize las claves GPG
+      eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+
+
