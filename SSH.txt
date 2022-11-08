@@ -1,1 +1,6 @@
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#Habilito el Soporte SSH para GPG y luego Reinicio el Agente
+echo enable-ssh-support >> $HOME/.gnupg/gpg-agent.conf
+gpg-connect-agent /bye
+
+unset SSH_AGENT_PID
+eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
