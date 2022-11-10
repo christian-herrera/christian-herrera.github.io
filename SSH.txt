@@ -7,17 +7,25 @@
       gpg --edit-key
         fetch
         q
-      gpg --key-edit 100B834A0CB84B533AD9C68F286292E04464CB12
+      gpg --key-edit C19605648A288D24F13285C2992DEE6EC349CA83
       trust
       q
  
-3)  Permito las conexiones SSH
-      echo enable-ssh-support >> $HOME/.gnupg/gpg-agent.conf
-      gpg-connect-agent /bye
-
-4)  Configuro para que utilize las claves GPG
-      eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
+3)  Configuro el Socket SSH
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+4)  Configuro la Clave GPG a utilizar y las funciones de GIT
+      git config --global user.signingkey C19605648A288D24F13285C2992DEE6EC349CA83
+      git config --global gpg.program gpg
+      git config --global commit.gpgsign true
+      
+      git config --global user.name "Nombre"
+      git config --global user.email "email@dominio.com"
+
+5)  Si esta todo configurado, utilizo:
+      git commit -S -m "Comentario"                                           >     Para crear commits firmados
+      git remote set-url origin git@github.com:username/your-repository.git   >     Para configurar el url del repositorio remoto utilizando SSH
+      
 
 
 
