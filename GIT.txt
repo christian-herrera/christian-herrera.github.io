@@ -35,7 +35,7 @@
 9)  Crear un Commit Firmado
 		git commit -S -m "Comentario"
 
-10)	Ubicarnos en la rama principal
+10) Ubicarnos en la rama principal
 		git branch -M main
 
 10) Hacer un Push para subir el commit
