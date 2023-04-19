@@ -1,0 +1,42 @@
+1)  Instalacion de GIT
+
+2)  Inicializo GPG, importo la clave publica
+		gpg -K
+		gpg --card-status
+		gpg --edit-key
+			fetch
+			q
+		gpg --key-edit C19605648A288D24F13285C2992DEE6EC349CA83
+		trust
+		q
+
+3)  Configuro el Socket SSH
+		export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+4)  Configuro las variables globales de Git
+		git config --global user.signingkey C19605648A288D24F13285C2992DEE6EC349CA83
+		git config --global gpg.program gpg
+		git config --global commit.gpgsign true
+	      
+		git config --global user.name "christian-herrera"
+		git config --global user.email "chris1496.rp@gmail.com"
+
+5)  Creo el Repositorio y obtengo el link
+
+6)  Creo una carpeta y me posiciono con la ventana de Git en la misma
+
+7)  Inicio el GIT y lo enlazo con el repositorio en la nube
+		git clone git@github.com:christian-herrera/<REPO>.git
+		git remote add origin git@github.com:christian-herrera/<REPO>.git
+
+8)  Agregar los archivos
+		git add .
+
+9)  Crear un Commit Firmado
+		git commit -S -m "Comentario"
+
+10)	Ubicarnos en la rama principal
+		git branch -M main
+
+10) Hacer un Push para subir el commit
+		git push -u origin main
