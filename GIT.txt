@@ -6,7 +6,7 @@
 		gpg --edit-key
 			fetch
 			q
-		gpg --key-edit C19605648A288D24F13285C2992DEE6EC349CA83
+		gpg --key-edit 87F44023A98DE42AF19274E8AD175429B6768C5C
 		trust
 		q
 
@@ -14,7 +14,7 @@
 		export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 4)  Configuro las variables globales de Git
-		git config --global user.signingkey C19605648A288D24F13285C2992DEE6EC349CA83
+		git config --global user.signingkey 87F44023A98DE42AF19274E8AD175429B6768C5C
 		git config --global gpg.program gpg
 		git config --global commit.gpgsign true
 	      
