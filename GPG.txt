@@ -1,0 +1,32 @@
+Listar las Claves actuales
+Con la segunda opcion, podria usar directamente la ID del llavero.
+    ->  gpg --list-secret-keys --keyid-format=long
+    ->  gpg -K
+
+
+
+Encriptar un Archivo
+El ID-Receptor es el id mio, ya que me permite cifrar para mi.
+    ->  gpg --output Nombre.zip.gpg --encrypt --sign --recipient [ID-Receptor] Nombre.zip
+
+
+
+Adjuntar el CHECKSUM Firmado
+Se genera en un archivo el SHA256 y luego se firma
+    ->  certutil -hashfile Nombre.zip SHA256 > Nombre.sha256
+    ->  gpg --output Nombre.sha256.sig --armor --sign --recipient [ID-Receptor]
+
+
+
+Verificar el Remitente
+    ->  gpg --output Nombre.sha256 --decrypt Nombre.sha256.sig
+
+
+Desencriptar Archivo
+Simplemente devo redirigir la salida porque mostrara el texto en consola.
+    ->  gpg --output Nombre.zip --decrypt Nombre.zip.gpg
+
+
+Confirmar con el CHECKSUM
+Obtener el Checksum del archivo desencriptado y verificar que sea el mismo que el enviado firmado
+    ->  certutil -hashfile Nombre.zip SHA256
