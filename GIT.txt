@@ -40,3 +40,13 @@
 
 10) Hacer un Push para subir el commit
 		git push -u origin main
+
+
+
+=============================================================================================
+Automatizar el punto (3):
+a) 	Crear el archivo ~/.profile en un bash nuevo
+
+b) 	Colocar la linea (3)
+
+c)	Cerrar el bash y volver a abrirlo para corroborar que se puede hacer un commit firmado
