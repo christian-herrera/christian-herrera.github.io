@@ -121,3 +121,18 @@ git reset --hard [hash_commit]	    Deshace los commits posteriores y elimina tod
                                           |                   |                                         |             |                                             |                 |			
                                           |                   |                                         |             |                                             |                 |			
                                           |                   |                                         |             |                                             |                 |			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
