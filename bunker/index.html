@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Christian Herrera</title>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/assets/icons/icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper-disabled">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="/index.html" style="font-style: italic;">Christian Herrera</a></h1>
+					<nav id="nav">
+                        <!-- ======== TEMARIO ======== -->
+						<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li>
+								<a href="/bunker/index">Temario</a>
+								<ul>
+									<li><a href="/bunker/gnupg.html">OpenPGP</a></li>
+								</ul>
+							</li>
+							<li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
+						</ul>
+						<!-- ========================= -->
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Bunker de Notas</h2>
+							<p>En este apartado se encuentran las notas mas relevantes.</p>
+						</header>
+
+						<!-- Text -->
+							<section>
+								<h2>Temario Completo</h2>
+								<ul>
+									<li><a href="/bunker/gnupg.html" style="font-weight: bold;">GnuPG</a></li>
+								</ul>
+							</section>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer"></footer>
+
+		</div>
+
+	
+
+		<!-- Scripts -->
+			<script>
+				fetch('/bunker/footer.html')
+					.then(response => {
+						response.text().then(data => {
+							document.getElementById('footer').innerHTML = data;
+						});
+					});
+			</script>
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main-complete.js"></script>
+
+			
+
+	</body>
+</html>
