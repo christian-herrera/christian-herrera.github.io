@@ -1,0 +1,3 @@
+#Este es el programa que muestra el popup para colocar la clave.
+#pinentry-program "C:/Program Files (x86)/Gpg4win/bin/pinentry-w32.exe"
+pinentry-program "C:/Program Files (x86)/Gpg4win/bin/pinentry.exe"

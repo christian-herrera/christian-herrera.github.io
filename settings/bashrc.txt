@@ -1,0 +1,73 @@
+export ringID="AD175429B6768C5C"
+export encID="98BC4D49828D431F"
+export signID="56AE45D7836C1B10"
+export authID="B457CB6274048A24"
+
+
+gpg-cifrar() {
+    local file="$1"
+    local detach_sign=false
+
+    # Colores
+    local COLOR_RESET="\033[0m"
+    local COLOR_RED="\033[31m"
+    local COLOR_GREEN="\033[32m"
+    local COLOR_YELLOW="\033[33m"
+    local COLOR_BLUE="\033[34m"
+
+    # Verificar si se pasó la opción --DetachSign
+    if [[ "$2" == "--DetachSign" ]]; then
+        detach_sign=true
+    fi
+
+    # Verificar si el archivo existe
+    if [[ ! -f "$file" ]]; then
+        echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] El archivo '$file' no existe."
+        return 1
+    fi
+
+    echo -e "\n[${COLOR_YELLOW}INFO${COLOR_RESET}] Cifrando archivo '$file'..."
+
+    if $detach_sign; then
+        echo -e "[${COLOR_YELLOW}INFO${COLOR_RESET}] Firmando de manera separada (detach)...\n"
+        sleep 1
+
+        # Cifrado y firma por separado
+        gpg --armor -o "${file}.gpg" --recipient "$encID" --encrypt "$file"
+        gpg --armor -o "${file}.gpg.asc" --detach-sign --local-user "$signID" "${file}.gpg"
+
+        if [[ -f "${file}.gpg" && -f "${file}.gpg.asc" ]]; then
+            echo -e "\n[${COLOR_GREEN} OK ${COLOR_RESET}] Archivo cifrado y firmado con éxito!"
+        else
+            echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] Algo salió mal durante el cifrado o firma."
+        fi
+    else
+        echo -e "[${COLOR_YELLOW}INFO${COLOR_RESET}] Firmando de manera adjunta (attach)...\n"
+        sleep 1
+
+        # Cifrado y firma en un mismo archivo
+        gpg --armor --recipient "$encID" --sign --local-user "$signID" --encrypt "$file"
+
+        if [[ -f "${file}.asc" ]]; then
+            echo -e "\n[${COLOR_GREEN} OK ${COLOR_RESET}] Archivo cifrado y firmado con éxito!"
+        else
+            echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] Algo salió mal durante el cifrado o firma."
+        fi
+    fi
+}
+
+
+
+gpg-kill-agent() {
+    # Finalizar todas las instancias de gpg-agent
+    if sudo pkill gpg-agent; then
+        echo -e "[\033[32m OK \033[0m] Todos los procesos gpg-agent han sido finalizados."
+    else
+        echo -e "[\033[33mINFO\033[0m] No se encontró el proceso gpg-agent en ejecución."
+    fi
+}
+
+
+# Variables para los IDs de cifrado y firma
+export encID="98BC4D49828D431F"  # Reemplaza con tu ID de cifrado
+export signID="56AE45D7836C1B10"   # Reemplaza con tu ID de firma

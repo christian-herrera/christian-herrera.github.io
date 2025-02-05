@@ -1,0 +1,686 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Christian Herrera</title>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/assets/icons/icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+                <header id="header">
+                    <h1 id="logo"><a href="/index.html" style="font-style: italic;">Christian Herrera</a></h1>
+                    <nav id="nav">
+                        <!-- ======== TEMARIO ======== -->
+						<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li>
+								<a href="/bunker/index">Contenido</a>
+								<ul>
+                                    <li><a href="#gnupg">GnuPG</a></li>
+                                    <li><a href="#github">GitHub</a></li>
+                                    <li><a href="#terminales">Terminales</a>
+                                        <ul>
+                                            <li><a href="#powershell">PowerShell</a></li>
+                                            <li><a href="#bash">Bash</a></li>
+                                        </ul>
+                                    </li>
+									<li><a href="#conexion-ssh">SSH</a>
+                                        <ul>
+                                            <li><a href="#ssh-windows">Windows</a></li>
+                                            <li><a href="#ssh-linux">Linux</a></li>
+                                            <li><a href="#ssh-banners">Banners</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#firmas-thunderbird">Firmas</a></li>
+                                   
+								</ul>
+							</li>
+							<li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
+						</ul>
+						<!-- ========================= -->
+                    </nav>
+                </header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Configuraciones Generales</h2>
+							<p>Para uso cotidiano</p>
+						</header>
+                        
+
+                        <!-- Text -->
+                            <section id="content">
+
+                                <!-- GnuPG -->
+                                <h2 id="gnupg">GnuPG</h2>
+                                <p>Ubicación: <code>%APPDATA%/gnupg/gpg.conf</code> o <code>~/.gnupg/gpg.conf</code></p>
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>gpg.conf</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gpg.conf.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gpg.conf.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>scdaemon.conf</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/scdaemon.conf.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/scdaemon.conf.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>gpg-agent.conf</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gpg-agent.conf.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gpg-agent.conf.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <br><br><hr>
+
+
+                                <!-- GitHub -->
+                                <h2 id="github">GitHub</h2>
+                                <p>En Windows se debe instalar <a target="_blank" href="https://git-scm.com/downloads">Git</a>.</p>
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>.gitconfig</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gitconfig.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gitconfig.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>.gitconfig (sign)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gitconfig.sign.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/gitconfig.sign.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <br><br><hr>
+
+
+                                <!-- Funciones para Terminales -->
+                                <h2 id="terminales">Funciones para Terminales</h2>
+                                <br>
+                                <h3 id="powershell">PowerShell</h3>
+                                <p>Editar con <code>code #PROFILE</code>. También se puede instalar <a target="_blank" href="https://ohmyposh.dev/">Oh-My-Posh</a></p>
+
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>profile.ps1</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/profile.ps1.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/profile.ps1.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>Snazzy Theme</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/snazzy.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/snazzy.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <br><br>
+
+                                <h3 id="bash">Terminal Bash</h3>
+                                <p>Editar con: <code>code ~/.bashrc</code> y luego recargar con: <code>source ~/.bashrc</code></p>
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>.bashrc</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/bashrc.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/bashrc.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                
+                                <br><br><hr>
+
+
+
+                                <!-- Conexiones SSH -->
+                                <h2 id="conexion-ssh">Conexiones SSH</h2>
+                                <p>Estas configuraciones son esenciales para el uso de la Yubikey.</p> 
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>ssh_config</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/ssh_config.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/ssh_config.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>ssh_config (Sign)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/ssh_config.sign.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/ssh_config.sign.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                                <br><br>
+
+                                <!-- Windows -->
+                                <h3 id="ssh-windows">Instalación en Windows</h3>
+                                <ol>
+                                    <li>
+                                        Instalar <a target="_blank" href="https://developers.yubico.com/yubico-piv-tool/Releases/">Yubico PIV Tool</a>, o bien <a target="_blank" href="https://github.com/OpenSC/OpenSC/releases">OpenSC</a>.
+                                    </li>
+                                    <li>
+                                        (<span style="font-style: italic;">Opcional</span>) Luego ubicar la carpeta donde se instaló y asignar ese path a las variables del sistema.
+                                    </li>
+                                    <li>
+                                        Se deberá configurar el archivo <code>.ssh/config</code> ubicado en la raíz del usuario <code>(C:\Users\<nombre>)</code>. Allí colocar la configuración (según el software elegido):
+                                        
+                                        <pre style="margin-bottom: 0;"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button> PKCS11Provider "C:\Program Files\Yubico\Yubico PIV Tool\bin\libykcs11.dll"
+PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"</code></pre>
+                                    </li>
+                                    <li>
+                                        Una vez configurado esto, probar la conexión ssh con algún servidor.
+                                    </li>
+                                </ol>
+                                
+                                <br>
+
+                                <!-- Linux -->
+                                <h3 id="ssh-linux">Instalación en Linux (Ubuntu, Mint, ...)</h3>
+                                <p>Instrucciones recopiladas de <a target="_blank" href="https://developers.yubico.com/yubico-piv-tool/">Yubico PIV Tool</a>:</p>
+                                
+                                <ol>
+                                    <li>
+                                        Instalar los siguientes paquetes
+                                        <pre style="margin-bottom: 0;"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>sudo apt install cmake libtool libssl-dev pkg-config check libpcsclite-dev gengetopt help2man zlib1g-dev</code></pre>
+                                    </li>
+                                    <li>
+                                        Luego descargar la ultima version de: <a target="_blank" href="https://developers.yubico.com/yubico-piv-tool/Releases/">Yubico PIV Tools Releases</a>
+                                    </li>
+                                    <li>
+                                        Descomprimir y compilar:
+                                        <pre style="margin-bottom: 0;"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>cd yubico-piv-tool
+mkdir build; cd build
+cmake ..
+make
+sudo make install</code></pre>
+                                    </li>
+                                    <li>
+                                        Si se logro instalar correctamente, mostrará un listado de las ubicaciones donde quedaron los archivos. Con esto se configura el archivo <code>~/.ssh/config</code> para que utilice la YubiKey:
+                                        <pre style="margin-bottom: 0;"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>PKCS11Provider /usr/local/lib/libykcs11.so</code></pre>
+                                    </li>
+                                    <li>
+                                        Se deberá recargar las librerías con: <code>sudo ldconfig</code> y finalmente probar la conexión <code>ssh</code> con algún servidor.
+                                    </li>
+                                </ol>
+
+                                <br>
+
+                                <!-- Banners -->
+                                <h3 id="ssh-banners">Banners</h3>
+                                <h4><span style="font-style: italic; color: darkolivegreen;">Mensajes de Bienvenida</span></h4>
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>chris_intro (Personal)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/chris_intro_personal.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/chris_intro_personal.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>chris_intro (Server)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/chris_intro_server.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/chris_intro_server.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <br>
+
+                                <h4><span style="font-style: italic; color: darkolivegreen;">Mensajes Post-Login</span></h4>
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>00-header (Server)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/00_header_server.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/00_header_server.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>00-header (Maquinas)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/00_header_maquinas.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/00_header_maquinas.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>20-system (Server)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/20_system_server.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/20_system_server.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>20-system (Maquinas)</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/20_system_maquinas.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/20_system_maquinas.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                                <br><br>
+
+                                
+                                <!-- Firmas para Thunderbird -->
+                                <h2 id="firmas-thunderbird">Firmas para Thunderbird</h2>
+
+                                <table class="table-css">
+                                    <thead>
+                                        <tr>
+                                            <td>Setting</td>
+                                            <td>Link</td>
+                                            <td>Copiado Rápido</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code>Firma Personal</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/firma_personal.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/firma_personal.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>Firma LEME</code>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/firma_leme.txt', this, 'download')">
+                                                    <span class="material-symbols-outlined icon-element">download</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="icon alt major icon-content" onclick="btnLinkOrCopy('/settings/firma_leme.txt', this, 'copy')">
+                                                    <span class="material-symbols-outlined icon-element"">content_copy</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                    
+
+                                <br><br>
+                            </h>
+                        </div>
+				</div>
+                
+			<!-- Footer -->
+				<footer id="footer"></footer>
+
+		</div>
+
+	
+
+		<!-- Scripts -->
+            <script>
+                // Inserta el Footer.
+                fetch('/bunker/footer.html')
+                    .then(response => {
+                        response.text().then(data => {
+                            document.getElementById('footer').innerHTML = data;
+                        });
+                    });
+
+                // Permite cargar en el portapapeles, el contenido completo de un
+                // bloque de codigo.
+                function copyCode(button) {
+                    const codeBlock = button.parentElement;
+                    const code = codeBlock.innerText.replace('Copiar', '').trim();
+                    navigator.clipboard.writeText(code).then(() => {
+                        button.textContent = 'Copiado';
+                        setTimeout(() => {
+                            button.textContent = 'Copiar';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Error al copiar: ', err);
+                    });
+                }
+
+
+                // Permite dos funcionalidades, descargar el archivo setting o bien
+                // copiarlo al portapapeles.
+                function btnLinkOrCopy(filePath, span, action) {
+                    fetch(filePath)
+                        .then(response => {
+                            if(!response.ok){
+                                throw new Error("No se encontró el archivo!");
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            // Animaciones'
+                            const icon = span.children[0];
+                            
+                            icon.textContent = 'check';
+                            icon.classList.add('icon-anim');
+                            span.classList.add('bg-anim');
+
+                            // Copia al portapapeles.
+                            if(action === 'copy'){
+                                navigator.clipboard.writeText(data)
+                                    .catch(err => {
+                                        console.error('Error al copiar: ', err);
+                                    });
+                            }
+
+                            setTimeout(() => {
+                                icon.classList.remove('icon-anim');
+
+                                setTimeout(() => {
+                                    
+                                    icon.classList.add('icon-anim');
+                                    span.classList.remove('bg-anim');
+
+                                    if (action === 'download') {
+                                        icon.textContent = 'download';
+
+                                        // Genero la descarga
+                                        var enlace = document.createElement('a');
+                                        var fileName = filePath.split('/').pop();
+                                        enlace.href = filePath;
+                                        enlace.download = fileName;
+                                        enlace.click();
+                                    } else if(action === 'copy') {
+                                        icon.textContent = 'content_copy';
+                                    }
+
+                                    setTimeout(() => {
+                                        icon.classList.remove('icon-anim');
+                                    }, 500);
+                                }, 2000);
+                            }, 300);
+                        })
+                        .catch(err => {
+                            console.error('Error al leer el archivo: ', err);
+                            alert('No se pudo encontrar el archivo!');
+                        });
+                }
+
+
+                // //  Permite descargar un archivo existente.
+                // function download(filePath, span) {
+                //     setTimeout(() => {
+                //         var enlace = document.createElement('a');
+                //         var fileName = filePath.split('/').pop();
+
+                //         enlace.href = filePath;
+                //         enlace.download = fileName;
+                //         enlace.click();
+                //     }, 2000);
+                // }
+
+
+                // // Carga en el portapapeles el contenido de un archivo especifico
+                // // y edita el contenido del botón que lo llamó.
+                // function copyHtmlFileContent(button, filePath, etiqueta) {
+                //     fetch(filePath)
+                //         .then(response => response.text())
+                //         .then(data => {
+                //             navigator.clipboard.writeText(data).then(() => {
+                //                 button.textContent = 'Copiado!';
+                //                 bk = button.style.backgroundColor;
+                //                 button.style.backgroundColor = 'green';
+                //                 setTimeout(() => {
+                //                     button.textContent = etiqueta;
+                //                     button.style.backgroundColor = bk;
+                //                 }, 2000);
+                //         }).catch(err => {
+                //                 console.error('Error al copiar: ', err);
+                //         });
+                //         }).catch(err => {
+                //             console.error('Error al leer el archivo: ', err);
+                //         });
+                // }
+            </script>
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main-complete.js"></script>
+
+            
+	</body>
+</html>

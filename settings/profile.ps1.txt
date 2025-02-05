@@ -1,0 +1,68 @@
+#===========> Oh-My-Posh <===========
+# Buscar el path con: `(Get-Command oh-my-posh).Source`
+$path_ohmyposh = "C:\Users\\AppData\Local\Programs\oh-my-posh"
+(@(& "$path_ohmyposh\bin\oh-my-posh.exe" init pwsh --config="$path_ohmyposh\themes\clean-detailed.omp.json" --print) -join "`n") | Invoke-Expression
+Import-Module Terminal-Icons
+
+
+# KeyID de las subclaves de la llave cargada en la YubiKey
+$ringID = "AD175429B6768C5C"
+$encID = "98BC4D49828D431F"
+$signID = "56AE45D7836C1B10"
+$authID = "B457CB6274048A24"
+
+
+# Función para cifrar archivos
+function gpg-cifrar {
+    param (
+        [string]$file = '',
+        [switch]$DetachSign
+    )
+
+    if (Test-Path $file) {
+        Write-Host "`n[INFO] " -ForegroundColor Yellow -NoNewline
+
+        if ($DetachSign) {
+            Write-Host "Cifrando archivo '$file' (sign detach)...`n`n"
+            sleep 1
+            
+            # Cifrado y Firma por separado
+            gpg --armor -o "$file.gpg" --recipient "$encID!" --encrypt "$file"
+            gpg --armor -o "$file.gpg.asc" --detach-sign --local-user "$signID!" "$file.gpg"
+
+            if ((Test-Path "$file.gpg") -And (Test-Path "$file.gpg.asc")){
+                Write-Host "`n[ OK ] " -ForegroundColor Green -NoNewline
+                Write-Host "Archivo cifrado y firmado con exito!"
+            }
+        } else {
+            Write-Host "Cifrando archivo '$file' (sign attach)...`n`n"
+            sleep 1
+
+            # Cifrado y Firma en un mismo archivo
+            gpg --armor --recipient "$encID!" --sign --local-user "$signID!" --encrypt "$file"      
+
+            if (Test-Path "$file.asc"){
+                Write-Host "`n[ OK ] " -ForegroundColor Green -NoNewline
+                Write-Host "Archivo cifrado y firmado con exito!"
+            }      
+        }
+    } else {
+        Write-Host "`n[ERROR]" -ForegroundColor Red -NoNewline
+        Write-Host " El archivo '$file' no existe."
+    }
+}
+
+
+function gpg-kill-agent {
+    # Buscar el proceso gpg-agent
+    $process = Get-Process -Name "gpg-agent" -ErrorAction SilentlyContinue
+
+    # Verificar si se encontró el proceso
+    if ($process) {
+        # Finalizar el proceso
+        Stop-Process -Id $process.Id -Force
+        Write-Host "El proceso gpg-agent ha sido finalizado."
+    } else {
+        Write-Host "No se encontró el proceso gpg-agent en ejecución."
+    }
+}

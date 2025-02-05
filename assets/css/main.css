@@ -4099,3 +4099,79 @@ input, select, textarea {
 					}
 
 	}
+
+
+
+
+/* Para los codigos, permite colocar el boton de copiar */
+.copy-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: #5b5b5b;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 3px;
+	font-size: 12px;
+	display: none;
+}
+
+pre:hover .copy-btn {
+	display: block;
+}
+
+pre {
+	position: relative;
+}
+
+
+/* Para los botones que permiten copiar o descargar codigos */
+.icon-content {
+    height: 2.1em !important; 
+    width: 2.1em !important; 
+    line-height: 2em !important;
+    margin-bottom: 0 !important;
+}
+
+.icon-element {
+	font-size: 1.2em !important;
+}
+
+.icon-content.bg-anim {
+	transition: background-color 0.6s ease;
+	background-color: rgba(0, 77, 0, 0.853);
+}
+
+.icon-element.icon-anim {
+    animation: zoom 0.3s ease;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+/* Para las tablas */
+.table-css td {
+	text-align: center;
+	padding: 0.5em 0.5em !important;
+}
+
+.table-css thead td {
+	font-weight: bold;
+	font-style: italic;
+	color: #bebebe;
+}
+
+
