@@ -1,3 +1,8 @@
+# Habilitar solo si se utilizará la funión OpenPGP de la Yubikey
+#SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"
+
+
+# Funciones para GPG
 export ringID="AD175429B6768C5C"
 export encID="98BC4D49828D431F"
 export signID="56AE45D7836C1B10"
