@@ -2,14 +2,14 @@
 #SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"
 
 
-# Funciones para GPG
+# Funciones para el Cifrado y Des-cifrado
 export ringID="AD175429B6768C5C"
 export encID="98BC4D49828D431F"
 export signID="56AE45D7836C1B10"
 export authID="B457CB6274048A24"
 
 
-gpg-cifrar() {
+gpg-asym() {
     local file="$1"
     local detach_sign=false
 
@@ -19,6 +19,20 @@ gpg-cifrar() {
     local COLOR_GREEN="\033[32m"
     local COLOR_YELLOW="\033[33m"
     local COLOR_BLUE="\033[34m"
+
+
+    # Función de ayuda
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo -e "\n ${COLOR_BLUE}Uso:${COLOR_RESET} gpg-asym <archivo> [--DetachSign]"
+        echo -e " ${COLOR_BLUE}Descripción:${COLOR_RESET} Cifra Asimetricamente y luego firma según la presencia del parametro DetachSign"
+        echo -e " ${COLOR_BLUE}Parámetros:${COLOR_RESET}"
+        echo -e "      <archivo>\t\tArchivo a cifrar y firmar."
+        echo -e "    [--DetachSign]\tEste parameetro indica que la firma se hará de manera separada."
+        echo -e "     -h, --help\t\tMuestra esta ayuda."
+        echo -e " ${COLOR_BLUE}Salida:${COLOR_RESET}: Genera un archivo cifrado con la extensión '.asc'. y otro con '.asc.sig'"
+        return 0
+    fi
+
 
     # Verificar si se pasó la opción --DetachSign
     if [[ "$2" == "--DetachSign" ]]; then
@@ -32,16 +46,15 @@ gpg-cifrar() {
     fi
 
     echo -e "\n[${COLOR_YELLOW}INFO${COLOR_RESET}] Cifrando archivo '$file'..."
-
     if $detach_sign; then
         echo -e "[${COLOR_YELLOW}INFO${COLOR_RESET}] Firmando de manera separada (detach)...\n"
         sleep 1
 
-        # Cifrado y firma por separado
-        gpg --armor -o "${file}.gpg" --recipient "$encID" --encrypt "$file"
-        gpg --armor -o "${file}.gpg.asc" --detach-sign --local-user "$signID" "${file}.gpg"
+        # ==> Cifrado y firma por separado
+        gpg --armor -o "${file}.asc" --recipient "$encID" --encrypt "$file"
+        gpg --armor -o "${file}.asc.sig" --detach-sign --local-user "$signID" "${file}.asc"
 
-        if [[ -f "${file}.gpg" && -f "${file}.gpg.asc" ]]; then
+        if [[ -f "${file}.asc" && -f "${file}.asc.sig" ]]; then
             echo -e "\n[${COLOR_GREEN} OK ${COLOR_RESET}] Archivo cifrado y firmado con éxito!"
         else
             echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] Algo salió mal durante el cifrado o firma."
@@ -50,8 +63,8 @@ gpg-cifrar() {
         echo -e "[${COLOR_YELLOW}INFO${COLOR_RESET}] Firmando de manera adjunta (attach)...\n"
         sleep 1
 
-        # Cifrado y firma en un mismo archivo
-        gpg --armor --recipient "$encID" --sign --local-user "$signID" --encrypt "$file"
+        # ==> Cifrado y firma en un mismo archivo
+        gpg --armor -o "${file}.asc" --recipient "$encID" --sign --local-user "$signID" --encrypt "$file"
 
         if [[ -f "${file}.asc" ]]; then
             echo -e "\n[${COLOR_GREEN} OK ${COLOR_RESET}] Archivo cifrado y firmado con éxito!"
@@ -64,6 +77,20 @@ gpg-cifrar() {
 
 
 gpg-kill-agent() {
+    # Colores
+    local COLOR_RESET="\033[0m"
+    local COLOR_RED="\033[31m"
+    local COLOR_GREEN="\033[32m"
+    local COLOR_YELLOW="\033[33m"
+    local COLOR_BLUE="\033[34m"
+
+    # Función de ayuda
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo -e "\n ${COLOR_BLUE}Uso:${COLOR_RESET} gpg-kill-agent"
+        echo -e " ${COLOR_BLUE}Descripción:${COLOR_RESET} Finaliza todos los procesos correspondientes a gpg-agent."
+        return 0
+    fi
+
     # Finalizar todas las instancias de gpg-agent
     if sudo pkill gpg-agent; then
         echo -e "[\033[32m OK \033[0m] Todos los procesos gpg-agent han sido finalizados."
@@ -73,6 +100,41 @@ gpg-kill-agent() {
 }
 
 
-# Variables para los IDs de cifrado y firma
-export encID="98BC4D49828D431F"  # Reemplaza con tu ID de cifrado
-export signID="56AE45D7836C1B10"   # Reemplaza con tu ID de firma
+gpg-sym () {
+    # Colores
+    local COLOR_RESET="\033[0m"
+    local COLOR_RED="\033[31m"
+    local COLOR_GREEN="\033[32m"
+    local COLOR_YELLOW="\033[33m"
+    local COLOR_BLUE="\033[34m"
+
+    # Función de ayuda
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo -e "\n ${COLOR_BLUE}Uso:${COLOR_RESET} gpg-sym <archivo>"
+        echo -e " ${COLOR_BLUE}Descripción:${COLOR_RESET} Cifra y firma un archivo usando GPG de forma simétrica."
+        echo -e " ${COLOR_BLUE}Parámetros:${COLOR_RESET}"
+        echo -e "    <archivo>\tArchivo a cifrar y firmar."
+        echo -e "    -h, --help\tMuestra esta ayuda."
+        echo -e " ${COLOR_BLUE}Salida:${COLOR_RESET}: Genera un archivo cifrado con la extensión '.asc'."
+        return 0
+    fi
+    
+
+    # Verifica que se pasó el archivo
+    if [[ ! -f "${1}" ]]; then
+        echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] Debes pasar un archivo a cifrar"
+        return 0;
+    fi
+
+    echo -e "[${COLOR_YELLOW}INFO${COLOR_RESET}] Cifrando y firmando archivo...\n"
+    sleep 1
+
+    # Cifra simetricamente
+    gpg -a -o "${1}.asc" -u "$signID" -s -c "$1"
+
+    if [[ -f "${1}.asc" ]]; then
+        echo -e "\n[${COLOR_GREEN} OK ${COLOR_RESET}] Archivo cifrado y firmado con éxito!"
+    else
+        echo -e "\n[${COLOR_RED}ERROR${COLOR_RESET}] Algo salió mal durante el cifrado o firma."
+    fi
+}
