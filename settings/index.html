@@ -23,7 +23,7 @@
                     <ul>
                         <li><a href="/index.html">Home</a></li>
                         <li>
-                            <a href="/bunker/index">Contenido</a>
+                            <a href="/settings">Contenido</a>
                             <ul>
                                 <li><a href="#gnupg">GnuPG</a></li>
                                 <li><a href="#github">GitHub</a></li>
@@ -51,6 +51,9 @@
                                 <li>
                                     <a href="#firmas-thunderbird">Firmas</a>
                                 </li>
+                                <li>
+                                    <a href="#auriculares">KZ Pr1 Pro</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -72,22 +75,22 @@
                     <section id="content">
                         <!-- GnuPG -->
                         <h2 id="gnupg">GnuPG</h2>
-                        <p>Configuraciones para ambos sistemas operativos.
+                        <p>Configuraciones para ambos sistemas operativos.</p>
+                        <ul>
+                            <li><span style="font-weight: bold">En Windows</span>: <code>%APPDATA%/gnupg/*</code></li>
                             <ul>
-                                <li><span style="font-weight: bold;">En Windows</span>: <code>%APPDATA%/gnupg/*</code></li>
-                                <ul>
-                                    <li>Instalar: <a href="https://www.gnupg.org/download/" target="_blank" rel="noopener noreferrer">Gpg4Win</a></li>
-                                    <li>Configurar los archivos.</li>
-                                </ul>
-                                <li><span style="font-weight: bold;">En Ubuntu</span>: <code>~/.gnupg/*</code></li>
-                                <ul>
-                                    <li>Instalar los paquetes: <code>gnupg pcscd pcsc-tools scdaemon</code></li>
-                                    <li>Configurar los archivos.</li>
-                                    <li>Reiniciar servicios: <code>systemctl --user restart gpg-agent</code> y <code>sudo systemctl restart pcscd</code></li>
-                                    <li>Obtener la ruta del Socket: <code>gpgconf --list-dirs agent-ssh-socket</code></li>
-                                    <li>Configurar la variable: <code>SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"</code> en <code>~/.bashrc</code></li>
-                                </ul>
+                                <li>Instalar: <a href="https://www.gnupg.org/download/" target="_blank" rel="noopener noreferrer">Gpg4Win</a></li>
+                                <li>Configurar los archivos.</li>
                             </ul>
+                            <li><span style="font-weight: bold">En Ubuntu</span>: <code>~/.gnupg/*</code></li>
+                            <ul>
+                                <li>Instalar los paquetes: <code>gnupg pcscd pcsc-tools scdaemon</code></li>
+                                <li>Configurar los archivos.</li>
+                                <li>Reiniciar servicios: <code>systemctl --user restart gpg-agent</code> y <code>sudo systemctl restart pcscd</code></li>
+                                <li>Obtener la ruta del Socket: <code>gpgconf --list-dirs agent-ssh-socket</code></li>
+                                <li>Configurar la variable: <code>SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"</code> en <code>~/.bashrc</code></li>
+                            </ul>
+                        </ul>
                         <table class="table-css">
                             <thead>
                                 <tr>
@@ -102,7 +105,7 @@
                                         <code>gpg.conf</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gpg.conf.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gpg.conf.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('gpg.conf.txt', this, false)">
@@ -110,7 +113,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gpg.conf.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gpg.conf.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -120,7 +123,7 @@
                                         <code>scdaemon.conf</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('scdaemon.conf.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('scdaemon.conf.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('scdaemon.conf.txt', this, false)">
@@ -128,7 +131,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('scdaemon.conf.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('scdaemon.conf.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -138,7 +141,7 @@
                                         <code>gpg-agent.conf</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gpg-agent.conf.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gpg-agent.conf.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('gpg-agent.conf.txt', this, false)">
@@ -146,7 +149,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gpg-agent.conf.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gpg-agent.conf.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -155,9 +158,7 @@
                         </table>
 
                         <br /><br />
-                        <hr>
-
- 
+                        <hr />
 
                         <!-- GitHub -->
                         <h2 id="github">GitHub</h2>
@@ -182,7 +183,7 @@
                                         <code>~/.gitconfig</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gitconfig.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gitconfig.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('gitconfig.txt', this, true)">
@@ -190,7 +191,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gitconfig.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gitconfig.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -200,12 +201,12 @@
                                         <code>.gitconfig (sign)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gitconfig.sign.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gitconfig.sign.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('gitconfig.sign.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('gitconfig.sign.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -239,7 +240,7 @@
                                         <code>profile.ps1</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('profile.ps1.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('profile.ps1.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('profile.ps1.txt', this, false)">
@@ -247,7 +248,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('profile.ps1.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('profile.ps1.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -257,7 +258,7 @@
                                         <code>Snazzy Theme</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('snazzy.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('snazzy.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('snazzy.txt', this, false)">
@@ -265,7 +266,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('snazzy.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('snazzy.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -294,19 +295,22 @@
                             <li>
                                 Ejecutar el comando que indican en la
                                 <a href="https://ohmyz.sh/#install" target="_blank" rel="noopener noreferrer">Web Oficial</a>:
-                                <pre
-                                    style="margin-bottom: 0"
-                                ><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
+
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Instalar los plugins:
                                 <a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md" target="_blank" rel="noopener noreferrer">ZSH-AutoSuggestions</a>
                                 y
                                 <a href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md" target="_blank" rel="noopener noreferrer">ZSH-Syntax-HighLighting</a>:
-                                <pre
-                                    style="margin-bottom: 0"
-                                ><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Habilitar los modulos en
@@ -319,9 +323,12 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                             <li>
                                 Instalar el tema
                                 <a href="https://github.com/romkatv/powerlevel10k" target="_blank" rel="noopener noreferrer">PowerLevel10K</a>.
-                                <pre
-                                    style="margin-bottom: 0"
-                                ><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME}/.oh-my-zsh/custom/themes/powerlevel10k"</code></pre>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre
+                                        style="margin-bottom: 0"
+                                    ><code>git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME}/.oh-my-zsh/custom/themes/powerlevel10k"</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Volver a editar el <code>.zshrc</code> y configurar:
@@ -343,7 +350,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                 <tr>
                                     <td><code>.bashrc</code> <code>.zshrc</code></td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('bashrc.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('bashrc.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('bashrc.txt', this, false)">
@@ -351,7 +358,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('bashrc.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('bashrc.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -366,8 +373,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                         <h2 id="conexion-ssh">Conexiones SSH</h2>
                         <p>Estas configuraciones son esenciales para el uso de la Yubikey.</p>
                         <ul>
-                            <li><span style="font-weight: bold;">En Windows:</span><code>%APPDATA%/.ssh/*</code> (Se utiliza la funcion PIV de la Yubikey)</li>
-                            <li><span style="font-weight: bold;">En Ubuntu:</span>: <code>~/.ssh/*</code> (Se utiliza la funcion OpenPGP de la Yubikey)</li>
+                            <li><span style="font-weight: bold">En Windows:</span><code>%APPDATA%/.ssh/*</code> (Se utiliza la funcion PIV de la Yubikey)</li>
+                            <li><span style="font-weight: bold">En Ubuntu:</span>: <code>~/.ssh/*</code> (Se utiliza la funcion OpenPGP de la Yubikey)</li>
                         </ul>
 
                         <table class="table-css">
@@ -384,7 +391,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                         <code>config</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('ssh_config.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_config.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('ssh_config.txt', this, true)">
@@ -392,7 +399,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('ssh_config.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_config.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -402,19 +409,22 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                         <code>config (Sign)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('ssh_config.sign.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_config.sign.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('ssh_config.sign.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_config.sign.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p>Las siguientes configuraciones son para implementar la conexion SSH utilizando la funcionalidad <span style="font-style: italic; font-weight: bold;">PIV</span> del YubiKey. En caso de estar en Linux y querer usar <span style="font-style: italic; font-weight: bold;">OpenPGP</span>, seguir las intrucciones de <a href="#gnupg">GnuPG</a></p>
+                        <p>
+                            Las siguientes configuraciones son para implementar la conexion SSH utilizando la funcionalidad <span style="font-style: italic; font-weight: bold">PIV</span> del YubiKey.
+                            En caso de estar en Linux y querer usar <span style="font-style: italic; font-weight: bold">OpenPGP</span>, seguir las intrucciones de <a href="#gnupg">GnuPG</a>
+                        </p>
 
                         <br /><br />
 
@@ -431,10 +441,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                 Se deberá configurar el archivo
                                 <code>.ssh\config</code> ubicado en la raíz del usuario <code>C:\Users\{nombre}</code>. Allí colocar la configuración (según el software elegido):
 
-                                <pre
-                                    style="margin-bottom: 0"
-                                ><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>PKCS11Provider "C:\Program Files\Yubico\Yubico PIV Tool\bin\libykcs11.dll"
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>PKCS11Provider "C:\Program Files\Yubico\Yubico PIV Tool\bin\libykcs11.dll"
 PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"</code></pre>
+                                </div>
                             </li>
                             <li>Una vez configurado esto, probar la conexión ssh con algún servidor.</li>
                         </ol>
@@ -461,9 +472,10 @@ PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"
                         <ol>
                             <li>
                                 Instalar los siguientes paquetes
-                                <pre
-                                    style="margin-bottom: 0"
-                                ><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>sudo apt install cmake libtool libssl-dev pkg-config check libpcsclite-dev gengetopt help2man zlib1g-dev</code></pre>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>sudo apt install cmake libtool libssl-dev pkg-config check libpcsclite-dev gengetopt help2man zlib1g-dev</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Luego descargar la ultima version de:
@@ -471,16 +483,22 @@ PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"
                             </li>
                             <li>
                                 Descomprimir y compilar:
-                                <pre style="margin-bottom: 0"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>cd yubico-piv-tool
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>cd yubico-piv-tool
 mkdir build; cd build
 cmake ..
 make
 sudo make install</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Si se logro instalar correctamente, mostrará un listado de las ubicaciones donde quedaron los archivos. Con esto se configura el archivo
                                 <code>~/.ssh/config</code> para que utilice la YubiKey:
-                                <pre style="margin-bottom: 0"><code><button class="copy-btn" onclick="copyCode(this)">Copiar</button>PKCS11Provider /usr/local/lib/libykcs11.so</code></pre>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre style="margin-bottom: 0"><code>PKCS11Provider /usr/local/lib/libykcs11.so</code></pre>
+                                </div>
                             </li>
                             <li>
                                 Se deberá recargar las librerías con:
@@ -490,8 +508,56 @@ sudo make install</code></pre>
 
                         <br />
 
-                        <!-- Banners -->
-                        <h3 id="ssh-banners">Banners</h3>
+                        <!-- SSH-Server -->
+                        <h3 id="ssh-banners">SSH-Server</h3>
+                        <p>Las siguientes configuraciones se deberán cargar en <code>/etc/ssh/sshd_config.d/chris.conf</code> luego de instalar el paquete <code>ssh-server</code></p>
+
+                        <table class="table-css">
+                            <thead>
+                                <tr>
+                                    <td>Setting</td>
+                                    <td>Link</td>
+                                    <td>Copiado Rápido</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <code>chris.conf</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.txt', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('ssh_server.txt', this, true)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.txt', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>chris.conf (Sign)</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.sign.txt', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.sign.txt', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br /><br />
+
                         <h4>
                             <span style="font-style: italic; color: darkolivegreen">Mensajes de Bienvenida</span>
                         </h4>
@@ -514,7 +580,7 @@ sudo make install</code></pre>
                                         <code>chris_intro (Personal)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('chris_intro_personal.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('chris_intro_personal.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('chris_intro_personal.txt', this, false)">
@@ -522,7 +588,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('chris_intro_personal.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('chris_intro_personal.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -532,7 +598,7 @@ sudo make install</code></pre>
                                         <code>chris_intro (Server)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('chris_intro_server.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('chris_intro_server.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('chris_intro_server.txt', this, false)">
@@ -540,7 +606,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('chris_intro_server.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('chris_intro_server.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -572,7 +638,7 @@ sudo make install</code></pre>
                                         <code>00-header (Server)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('00_header_server.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('00_header_server.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('00_header_server.txt', this, false)">
@@ -580,7 +646,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('00_header_server.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('00_header_server.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -590,7 +656,7 @@ sudo make install</code></pre>
                                         <code>00-header (Maquinas)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('00_header_maquinas.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('00_header_maquinas.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('00_header_maquinas.txt', this, false)">
@@ -598,7 +664,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('00_header_maquinas.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('00_header_maquinas.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -608,7 +674,7 @@ sudo make install</code></pre>
                                         <code>20-system (Server)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('20_system_server.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('20_system_server.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('20_system_server.txt', this, false)">
@@ -616,7 +682,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('20_system_server.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('20_system_server.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -626,7 +692,7 @@ sudo make install</code></pre>
                                         <code>20-system (Maquinas)</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('20_system_maquinas.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('20_system_maquinas.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('20_system_maquinas.txt', this, false)">
@@ -634,7 +700,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('20_system_maquinas.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('20_system_maquinas.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -661,7 +727,7 @@ sudo make install</code></pre>
                                         <code>Firma Personal</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('firma_personal.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('firma_personal.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('firma_personal.txt', this, false)">
@@ -669,7 +735,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('firma_personal.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('firma_personal.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -679,7 +745,7 @@ sudo make install</code></pre>
                                         <code>Firma LEME</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('firma_leme.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('firma_leme.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('firma_leme.txt', this, false)">
@@ -687,7 +753,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('firma_leme.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('firma_leme.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -699,7 +765,7 @@ sudo make install</code></pre>
                         <hr />
 
                         <!-- Auriculares KZ Pr1 Pro -->
-                        <h2 id="kz-pr1-pro">Auriculares KZ Pr1 Pro</h2>
+                        <h2 id="auriculares">Auriculares KZ Pr1 Pro</h2>
                         <p></p>
                         <table class="table-css">
                             <thead>
@@ -715,7 +781,7 @@ sudo make install</code></pre>
                                         <span style="font-size: 1.1em; color: #ff95a7; font-style: italic">Ecualización con 9 Filtros</span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('kz_pr1_pro_9eq.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('kz_pr1_pro_9eq.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
 
@@ -724,7 +790,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('kz_pr1_pro_9eq.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('kz_pr1_pro_9eq.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -734,7 +800,7 @@ sudo make install</code></pre>
                                         <span style="font-size: 1.1em; color: #ff95a7; font-style: italic">Ecualización con 12 Filtros</span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('kz_pr1_pro_12eq.txt', this, 'download')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('kz_pr1_pro_12eq.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopy('kz_pr1_pro_12eq.txt', this, false)">
@@ -742,7 +808,7 @@ sudo make install</code></pre>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="btnLinkOrCopy('kz_pr1_pro_12eq.txt', this, 'copy')">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('kz_pr1_pro_12eq.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -759,155 +825,129 @@ sudo make install</code></pre>
 
         <!-- Scripts -->
         <script>
-            // Inserta el Footer.
+            /**
+             * Insercion del footer
+             */
             fetch("/bunker/footer.html").then((response) => {
                 response.text().then((data) => {
                     document.getElementById("footer").innerHTML = data;
                 });
             });
 
-            // Permite cargar en el portapapeles, el contenido completo de un
-            // bloque de codigo.
-            function copyCode(button) {
-                const codeBlock = button.parentElement;
-                const code = codeBlock.innerText.replace("Copiar", "").trim();
-                navigator.clipboard
-                    .writeText(code)
-                    .then(() => {
-                        button.textContent = "Copiado";
-                        setTimeout(() => {
-                            button.textContent = "Copiar";
-                        }, 2000);
-                    })
-                    .catch((err) => {
-                        console.error("Error al copiar: ", err);
-                    });
+            /**
+             * Delay utilizando promesas
+             *
+             * @param {int} ms - Tiempo en milisegundos
+             */
+            const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+            /**
+             *  Permite copiar el contenido del padre del button que
+             *  llama a la funcion (un <code>)
+             *
+             * @param {HTMLButtonElement} button - El elemento "boton" que llama a la función
+             */
+            async function copyCode(button) {
+                const code = button.closest(".code-box").querySelector("code").textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+                    button.classList.add("pressed");
+                    await delay(2000);
+                    button.classList.remove("pressed");
+                } catch (err) {
+                    console.error("Error al copiar: ", err);
+                }
             }
 
-            // Permite copiar el comando para usar con Curl
-            function btnCurlCopy(fileName, span, isEncrypt) {
+            /**
+             *  Permite cargar al portapapeles la sintaxis del comando CURL
+             *
+             * @param {string} fileName - Nombre del archivo a usar
+             * @param {HTMLSpanElement} span - El elemento "span" que llama a la función
+             * @param {boolean} - isEncrypt - Su es true, agrega la sintaxis de gpg
+             */
+            async function btnCurlCopy(fileName, span, isEncrypt) {
                 // Armo el comando
                 let cmd = `curl -fsSL https://christianherrera.com.ar/settings/${fileName}`;
                 if (isEncrypt) {
                     cmd += " | gpg -d -";
                 }
 
-                // Animaciones
-                const icon = span.children[0];
-                icon.textContent = "check";
-                icon.classList.add("icon-anim");
-                span.classList.add("bg-anim");
+                try {
+                    // Copia al portapapeles.
+                    await navigator.clipboard.writeText(cmd);
 
-                // Copia al portapapeles.
-                navigator.clipboard.writeText(cmd).catch((err) => {
+                    // Animación de inicio
+                    const icon = span.children[0];
+                    icon.textContent = "check";
+                    icon.classList.add("icon-anim");
+                    span.classList.add("bg-anim");
+
+                    // Esperamos a que la animación termine antes de continuar.
+                    await new Promise((resolve) => icon.addEventListener("animationend", resolve, { once: true }));
+
+                    // Animación de fin
+                    icon.classList.remove("icon-anim");
+                    await delay(2000);
+
+                    icon.textContent = "keyboard_command_key";
+                    icon.classList.add("icon-anim");
+                    span.classList.remove("bg-anim");
+                } catch (err) {
                     console.error("Error al copiar: ", err);
-                });
+                }
+            }
 
-                // Termino la anaimacion
-                setTimeout(() => {
+            /**
+             * Permite descargar o copiar el contenido de un archivo.
+             *
+             * @param {string} fileName - Nombre del archivo (debe existir)
+             * @param {HTMLSpanElement} span - Elemento "span" que llama a la función
+             * @param {string} isDownload - True realiza la descarga, False permite copiar al portapapeles
+             */
+            async function downloadFile(fileName, span, isDownload = true) {
+                try {
+                    const response = await fetch(`/settings/${fileName}`);
+                    if (!response.ok) throw new Error("No se encontró el archivo!");
+
+                    const data = await response.text();
+                    const icon = span.children[0];
+
+                    // Animación (inicio)
+                    icon.textContent = "check";
+                    icon.classList.add("icon-anim");
+                    span.classList.add("bg-anim");
+
+                    if (!isDownload) {
+                        await navigator.clipboard.writeText(data);
+                    }
+
+                    await new Promise((resolve) => span.addEventListener("animationend", resolve, { once: true }));
                     icon.classList.remove("icon-anim");
 
-                    setTimeout(() => {
-                        icon.classList.add("icon-anim");
-                        span.classList.remove("bg-anim");
-                        icon.textContent = "keyboard_command_key";
+                    // 2s
+                    await delay(2000);
+                    icon.classList.add("icon-anim");
+                    span.classList.remove("bg-anim");
+                    icon.textContent = isDownload ? "download" : "content_copy";
 
-                        setTimeout(() => {
-                            icon.classList.remove("icon-anim");
-                        }, 500);
-                    }, 2000);
-                }, 300);
+                    if (isDownload) {
+                        const enlace = document.createElement("a");
+                        enlace.href = `/settings/${fileName}`;
+                        enlace.download = fileName;
+                        enlace.click();
+                    }
+
+                    // 500ms
+                    await delay(500);
+
+                    icon.classList.remove("icon-anim");
+                } catch (err) {
+                    console.error("Error:", err);
+                    alert("No se pudo encontrar el archivo o realizar la acción.");
+                }
             }
-
-            // Permite dos funcionalidades, descargar el archivo setting o bien
-            // copiarlo al portapapeles.
-            function btnLinkOrCopy(fileName, span, action) {
-                fetch(`/settings/${fileName}`)
-                    .then((response) => {
-                        if (!response.ok) {
-                            throw new Error("No se encontró el archivo!");
-                        }
-                        return response.text();
-                    })
-                    .then((data) => {
-                        // Animaciones'
-                        const icon = span.children[0];
-
-                        icon.textContent = "check";
-                        icon.classList.add("icon-anim");
-                        span.classList.add("bg-anim");
-
-                        // Copia al portapapeles.
-                        if (action === "copy") {
-                            navigator.clipboard.writeText(data).catch((err) => {
-                                console.error("Error al copiar: ", err);
-                            });
-                        }
-
-                        setTimeout(() => {
-                            icon.classList.remove("icon-anim");
-
-                            setTimeout(() => {
-                                icon.classList.add("icon-anim");
-                                span.classList.remove("bg-anim");
-
-                                if (action === "download") {
-                                    icon.textContent = "download";
-
-                                    // Genero la descarga
-                                    var enlace = document.createElement("a");
-                                    enlace.href = `/settings/${fileName}`;
-                                    enlace.download = fileName;
-                                    enlace.click();
-                                } else if (action === "copy") {
-                                    icon.textContent = "content_copy";
-                                }
-
-                                setTimeout(() => {
-                                    icon.classList.remove("icon-anim");
-                                }, 500);
-                            }, 2000);
-                        }, 300);
-                    })
-                    .catch((err) => {
-                        console.error("Error al leer el archivo: ", err);
-                        alert("No se pudo encontrar el archivo!");
-                    });
-            }
-
-            // //  Permite descargar un archivo existente.
-            // function download(filePath, span) {
-            //     setTimeout(() => {
-            //         var enlace = document.createElement('a');
-            //         var fileName = filePath.split('/').pop();
-
-            //         enlace.href = filePath;
-            //         enlace.download = fileName;
-            //         enlace.click();
-            //     }, 2000);
-            // }
-
-            // // Carga en el portapapeles el contenido de un archivo especifico
-            // // y edita el contenido del botón que lo llamó.
-            // function copyHtmlFileContent(button, filePath, etiqueta) {
-            //     fetch(filePath)
-            //         .then(response => response.text())
-            //         .then(data => {
-            //             navigator.clipboard.writeText(data).then(() => {
-            //                 button.textContent = 'Copiado!';
-            //                 bk = button.style.backgroundColor;
-            //                 button.style.backgroundColor = 'green';
-            //                 setTimeout(() => {
-            //                     button.textContent = etiqueta;
-            //                     button.style.backgroundColor = bk;
-            //                 }, 2000);
-            //         }).catch(err => {
-            //                 console.error('Error al copiar: ', err);
-            //         });
-            //         }).catch(err => {
-            //             console.error('Error al leer el archivo: ', err);
-            //         });
-            // }
         </script>
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/jquery.scrolly.min.js"></script>

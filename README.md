@@ -4,7 +4,7 @@
 <h1 align="center">Web Personal</h1>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/christian-herrera/christian-herrera.github.io)
-![Static Badge](https://img.shields.io/badge/version-v2.0.0-blue)
+![Static Badge](https://img.shields.io/badge/version-v2.0.1-blue)
 
 ![GitHub License](https://img.shields.io/github/license/christian-herrera/christian-herrera.github.io?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/christian-herrera/christian-herrera.github.io?style=for-the-badge)
