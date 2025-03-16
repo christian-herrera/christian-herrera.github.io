@@ -49,7 +49,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#firmas-thunderbird">Firmas</a>
+                                    <a href="#firmas-thunderbird">Firmas Thunderbird</a>
+                                </li>
+                                <li>
+                                    <a href="#firma-digital">Firma Digital</a>
                                 </li>
                                 <li>
                                     <a href="#auriculares">KZ Pr1 Pro</a>
@@ -506,7 +509,8 @@ sudo make install</code></pre>
                             </li>
                         </ol>
 
-                        <br />
+                        <br /><br />
+                        <hr />
 
                         <!-- SSH-Server -->
                         <h3 id="ssh-banners">SSH-Server</h3>
@@ -709,6 +713,7 @@ sudo make install</code></pre>
                         </table>
 
                         <br /><br />
+                        <hr />
 
                         <!-- Firmas para Thunderbird -->
                         <h2 id="firmas-thunderbird">Firmas para Thunderbird</h2>
@@ -760,6 +765,75 @@ sudo make install</code></pre>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <br /><br />
+                        <hr />
+
+                         <!-- Firmas Digitales -->
+                         <h2 id="firma-digital">Firmas Digitales</h2>
+
+                         <table class="table-css">
+                             <thead>
+                                 <tr>
+                                     <td>Modelo</td>
+                                     <td>Descarga</td>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>
+                                         <code>Trazo Blanco (Completo)</code>
+                                     </td>
+                                     <td>
+                                         <span class="icon alt major icon-content" onclick="downloadFile('trazo_blanco_completo.pdf.asc', this)">
+                                             <span class="material-symbols-outlined icon-element">download</span>
+                                         </span>
+                                         <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_blanco_completo.pdf.asc', this, true)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <code>Trazo Blanco (Solo Nombre)</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('trazo_blanco_solo_nombre.pdf.asc', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_blanco_solo_nombre.pdf.asc', this, true)">
+                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                       </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>Trazo Negro (Completo)</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('trazo_negro_completo.pdf.asc', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_negro_completo.pdf.asc', this, true)">
+                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                       </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>Trazo Negro (Solo Nombre)</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('trazo_negro_solo_nombre.pdf.asc', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_negro_solo_nombre.pdf.asc', this, true)">
+                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                       </span>
+                                    </td>
+                                </tr>
+                             </tbody>
+                         </table>
 
                         <br /><br />
                         <hr />
@@ -898,6 +972,48 @@ sudo make install</code></pre>
                     console.error("Error al copiar: ", err);
                 }
             }
+
+
+            /**
+             *  Permite cargar al portapapeles la sintaxis del comando CURL (Para archivos PDF)
+             *
+             * @param {string} fileName - Nombre del archivo a usar
+             * @param {HTMLSpanElement} span - El elemento "span" que llama a la función
+             * @param {boolean} - isEncrypt - Su es true, agrega la sintaxis de gpg
+             */
+             async function btnCurlCopyPDF(fileName, span, isEncrypt) {
+                // Armo el comando
+                let cmd = `curl -fsSL https://christianherrera.com.ar/settings/${fileName}`;
+                fileName = fileName.replace('.pdf.asc', '.pdf');
+                if (isEncrypt) {
+                    cmd += ` | gpg -o ${fileName} -d -`;
+                }
+
+                try {
+                    // Copia al portapapeles.
+                    await navigator.clipboard.writeText(cmd);
+
+                    // Animación de inicio
+                    const icon = span.children[0];
+                    icon.textContent = "check";
+                    icon.classList.add("icon-anim");
+                    span.classList.add("bg-anim");
+
+                    // Esperamos a que la animación termine antes de continuar.
+                    await new Promise((resolve) => icon.addEventListener("animationend", resolve, { once: true }));
+
+                    // Animación de fin
+                    icon.classList.remove("icon-anim");
+                    await delay(2000);
+
+                    icon.textContent = "keyboard_command_key";
+                    icon.classList.add("icon-anim");
+                    span.classList.remove("bg-anim");
+                } catch (err) {
+                    console.error("Error al copiar: ", err);
+                }
+            }
+
 
             /**
              * Permite descargar o copiar el contenido de un archivo.
