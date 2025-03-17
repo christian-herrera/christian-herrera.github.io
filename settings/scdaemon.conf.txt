@@ -1,5 +1,22 @@
+# <───────────────────────────────────────────────────────────────────────>
+# ==> WINDOWS (Usando OpenPGP)
+disable-ccid
+card-timeout 1
+# <───────────────────────────────────────────────────────────────────────>
+
+
+# <───────────────────────────────────────────────────────────────────────>
+# ==> WINDOWS (Usando PIV)
+disable-ccid
+card-timeout 1
+# <───────────────────────────────────────────────────────────────────────>
+
+
+# <───────────────────────────────────────────────────────────────────────>
+# ==> LINUX (Ubuntu usando OpenPGP)
 disable-ccid
 card-timeout 1
 
-# Habilitar en Linux. Buscar el path con: 'dpkg -L libpcsclite1'
-# pcsc-driver /usr/lib/x86_64-linux-gnu/libpcsclite.so.1
+# Buscar el path con: 'dpkg -L libpcsclite1'
+pcsc-driver /usr/lib/x86_64-linux-gnu/libpcsclite.so.1
+# <───────────────────────────────────────────────────────────────────────>

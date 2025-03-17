@@ -376,7 +376,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                         <h2 id="conexion-ssh">Conexiones SSH</h2>
                         <p>Estas configuraciones son esenciales para el uso de la Yubikey.</p>
                         <ul>
-                            <li><span style="font-weight: bold">En Windows:</span><code>%APPDATA%/.ssh/*</code> (Se utiliza la funcion PIV de la Yubikey)</li>
+                            <li><span style="font-weight: bold">En Windows:</span><code>%APPDATA%/.ssh/*</code> (Se puede usar PIV u OpenPGP)</li>
                             <li><span style="font-weight: bold">En Ubuntu:</span>: <code>~/.ssh/*</code> (Se utiliza la funcion OpenPGP de la Yubikey)</li>
                         </ul>
 
@@ -425,14 +425,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                             </tbody>
                         </table>
                         <p>
-                            Las siguientes configuraciones son para implementar la conexion SSH utilizando la funcionalidad <span style="font-style: italic; font-weight: bold">PIV</span> del YubiKey.
-                            En caso de estar en Linux y querer usar <span style="font-style: italic; font-weight: bold">OpenPGP</span>, seguir las intrucciones de <a href="#gnupg">GnuPG</a>
+                            Las siguientes configuraciones son para implementar la conexion SSH utilizando la funcionalidad <span style="font-style: italic; font-weight: bold">PIV</span> u
+                            <span style="font-style: italic; font-weight: bold">OpenPGP</span> del YubiKey en Windows. En caso de estar en Linux y querer usar
+                            <span style="font-style: italic; font-weight: bold">OpenPGP</span>, seguir las intrucciones de <a href="#gnupg">GnuPG</a>
                         </p>
 
                         <br /><br />
 
                         <!-- Windows -->
                         <h3 id="ssh-windows">Instalación en Windows</h3>
+                        <h4>Opcion 1: Yubico PIV Tool, o bien OpenSC</h4>
                         <ol>
                             <li>
                                 Instalar
@@ -453,7 +455,24 @@ PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"
                             <li>Una vez configurado esto, probar la conexión ssh con algún servidor.</li>
                         </ol>
 
-                        <br />
+                        <br /><br />
+
+                        <h4>Opcion 2: OpenPGP</h4>
+                        <p>Se utiliza el software <span style="font-style: italic; font-weight: bold">Gpg4Win</span> para usar el <code>gpg-agent</code> como agente de autenticación de SSH.</p>
+                        <p>
+                            Los pasos a seguir son sencillos, instalar: <a href="https://www.gnupg.org/download/" target="_blank" rel="noopener noreferrer">Gpg4Win</a> y luego elegir la configuracion
+                            de los archivos correspondientes a Windows (OpenPGP)
+                        </p>
+                        <p>Algunos comandos útiles a la hora de trabajar con <code>gpg-agent</code> son:</p>
+
+                         <ol>
+                             <li><code>gpgconf --kill gpg-agent</code>: Detiene el agente.</li>
+                             <li><code>gpgconf --launch gpg-agent</code>: Inicia un agente (recarga las configuraciones también)</li>
+                             <li><code>ssh-add -L</code>: Si todo funciona, muestra las claves SSH que se pueden usar (aquellas que lee del YubiKey)</li>
+                             <li><code>gpg-connect-agent "scd serialno" /bye</code>: Consulta el numero de serie de la YubiKey. Esto prueba la comunicacion del agente con la misma.</li>
+                        </ol>
+
+                        <br /><br />
 
                         <!-- Linux -->
                         <h3 id="ssh-linux">Instalación en Linux (Ubuntu, Mint, ...)</h3>
@@ -769,31 +788,31 @@ sudo make install</code></pre>
                         <br /><br />
                         <hr />
 
-                         <!-- Firmas Digitales -->
-                         <h2 id="firma-digital">Firmas Digitales</h2>
+                        <!-- Firmas Digitales -->
+                        <h2 id="firma-digital">Firmas Digitales</h2>
 
-                         <table class="table-css">
-                             <thead>
-                                 <tr>
-                                     <td>Modelo</td>
-                                     <td>Descarga</td>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr>
-                                     <td>
-                                         <code>Trazo Blanco (Completo)</code>
-                                     </td>
-                                     <td>
-                                         <span class="icon alt major icon-content" onclick="downloadFile('trazo_blanco_completo.pdf.asc', this)">
-                                             <span class="material-symbols-outlined icon-element">download</span>
-                                         </span>
-                                         <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_blanco_completo.pdf.asc', this, true)">
+                        <table class="table-css">
+                            <thead>
+                                <tr>
+                                    <td>Modelo</td>
+                                    <td>Descarga</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <code>Trazo Blanco (Completo)</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('trazo_blanco_completo.pdf.asc', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_blanco_completo.pdf.asc', this, true)">
                                             <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
                                         </span>
-                                     </td>
-                                 </tr>
-                                 <tr>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <code>Trazo Blanco (Solo Nombre)</code>
                                     </td>
@@ -802,8 +821,8 @@ sudo make install</code></pre>
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_blanco_solo_nombre.pdf.asc', this, true)">
-                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
-                                       </span>
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -815,8 +834,8 @@ sudo make install</code></pre>
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_negro_completo.pdf.asc', this, true)">
-                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
-                                       </span>
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -828,12 +847,12 @@ sudo make install</code></pre>
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
                                         <span class="icon alt major icon-content" onclick="btnCurlCopyPDF('trazo_negro_solo_nombre.pdf.asc', this, true)">
-                                           <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
-                                       </span>
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
                                     </td>
                                 </tr>
-                             </tbody>
-                         </table>
+                            </tbody>
+                        </table>
 
                         <br /><br />
                         <hr />
@@ -973,7 +992,6 @@ sudo make install</code></pre>
                 }
             }
 
-
             /**
              *  Permite cargar al portapapeles la sintaxis del comando CURL (Para archivos PDF)
              *
@@ -981,10 +999,10 @@ sudo make install</code></pre>
              * @param {HTMLSpanElement} span - El elemento "span" que llama a la función
              * @param {boolean} - isEncrypt - Su es true, agrega la sintaxis de gpg
              */
-             async function btnCurlCopyPDF(fileName, span, isEncrypt) {
+            async function btnCurlCopyPDF(fileName, span, isEncrypt) {
                 // Armo el comando
                 let cmd = `curl -fsSL https://christianherrera.com.ar/settings/${fileName}`;
-                fileName = fileName.replace('.pdf.asc', '.pdf');
+                fileName = fileName.replace(".pdf.asc", ".pdf");
                 if (isEncrypt) {
                     cmd += ` | gpg -o ${fileName} -d -`;
                 }
@@ -1013,7 +1031,6 @@ sudo make install</code></pre>
                     console.error("Error al copiar: ", err);
                 }
             }
-
 
             /**
              * Permite descargar o copiar el contenido de un archivo.

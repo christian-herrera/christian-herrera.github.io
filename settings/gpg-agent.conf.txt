@@ -1,4 +1,36 @@
+# <───────────────────────────────────────────────────────────────────────>
+# ==> WINDOWS
+
 # Este es el programa que muestra el popup para colocar la clave.
 # Configurar alguno unicamente en Windows si es que se requiere.
-#pinentry-program "C:/Program Files (x86)/Gpg4win/bin/pinentry-w32.exe"
-#pinentry-program "C:/Program Files (x86)/Gpg4win/bin/pinentry.exe"
+#pinentry-program "D:/Program Files (x86)/Gpg4win/bin/pinentry-w32.exe"
+pinentry-program "D:/Program Files (x86)/Gpg4win/bin/pinentry.exe"
+
+# Permite que gpg-agent actúe como agente para autenticacion SSH
+enable-ssh-support
+
+# Permite que gpg-agent gestione claves para PuTTY
+enable-putty-support
+
+# Habilita la compatibilidad con OpenSSH
+enable-win32-openssh-support
+
+# Configura el gpg-agent para que utilice el socket estandar
+use-standard-socket
+
+# Establece el tiempo de vida del caché por defecto para las claves
+default-cache-ttl 600
+
+# Establece el tiempo máximo de caché
+max-cache-ttl 7200
+# <───────────────────────────────────────────────────────────────────────>
+
+
+# <───────────────────────────────────────────────────────────────────────>
+# ==> LINUX
+# Establece el tiempo de vida del caché por defecto para las claves
+default-cache-ttl 600
+
+# Establece el tiempo máximo de caché
+max-cache-ttl 7200
+# <───────────────────────────────────────────────────────────────────────>
