@@ -1,0 +1,51 @@
+.img-center-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-center-container img {
+    width: 80%;
+}
+.img-center-container img.w30 {
+    width: 30%;
+}
+.img-center-container img.w40 {
+    width: 40%;
+}
+.img-center-container img.w50 {
+    width: 50%;
+}
+.img-center-container img.w60 {
+    width: 60%;
+}
+.img-center-container img.w80 {
+    width: 80%;
+}
+.img-center-container img.w100 {
+    width: 100%;
+}
+
+@media screen and (max-width: 999px) {
+    .img-center-container img {
+        width: 80%;
+    }
+    .img-center-container img.mw30 {
+        width: 30%;
+    }
+    .img-center-container img.mw40 {
+        width: 40%;
+    }
+    .img-center-container img.mw50 {
+        width: 50%;
+    }
+    .img-center-container img.mw60 {
+        width: 60%;
+    }
+    .img-center-container img.mw80 {
+        width: 80%;
+    }
+    .img-center-container img.mw100 {
+        width: 100%;
+    }
+}

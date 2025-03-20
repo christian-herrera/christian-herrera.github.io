@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Christian Herrera</title>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/assets/icons/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bunker.css" />
+        <link rel="stylesheet" href="/assets/css/prism.css" />
+        <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload landing">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1 id="logo"><a href="/index.html" style="font-style: italic">Christian Herrera</a></h1>
+                <nav id="nav">
+                    <!-- ======== TEMARIO ======== -->
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li>
+                            <a href="/bunker/index">Temario</a>
+                            <ul>
+                                <li><a href="/bunker/gnupg.html">OpenPGP</a></li>
+                                <li><a href="/bunker/github.html">GitHub</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
+                    </ul>
+                    <!-- ========================= -->
+                </nav>
+            </header>
+
+            <!-- Main -->
+            <div id="main" class="wrapper style1">
+                <div class="container">
+                    <header class="major">
+                        <h2>GitHub</h2>
+                        <p>Notas sobre el uso diario de GitHub</p>
+                    </header>
+
+                    <!-- Text -->
+                    <section id="content">
+                        <!-- Definiciones Básicas -->
+                        <h2>Que es un Repositorio?</h2>
+                        <p>Git organiza los archivos en tres áreas principales que forman el flujo de trabajo para el control de versiones:</p>
+
+                        <div class="img-center-container">
+                            <img src="images/areas-git-2.png" alt="areas de github" srcset="" class="img-center w30 mw80" />
+                        </div>
+                        <br />
+                        <h3>🛠️ Working Area (Directorio de Trabajo)</h3>
+                        <p>
+                            Es donde trabajas con los archivos de tu proyecto. Aquí puedes crear, modificar o eliminar archivos. Git detecta estos cambios, pero no los guarda automáticamente en el
+                            historial de versiones hasta que los añadas a la siguiente área.
+                        </p>
+                        <h3>📦 Staging Area (Área de preparación)</h3>
+                        <p>
+                            Es un área intermedia donde Git almacena los archivos que han sido seleccionados ( ) para ser incluidos en el próximo commit. Solo los archivos que están en esta área se
+                            guardarán en el historial cuando hagas un <code>commit</code>.
+                        </p>
+                        <h3>📂 .git Directory (Repositorio)</h3>
+                        <p>
+                            Es la base de datos interna de Git donde se almacenan los commits, ramas, etiquetas y el historial del proyecto. Todo lo que se confirma ( <code>commit</code> ) en el
+                            repositorio se guarda aquí de forma segura.
+                        </p>
+                    </section>
+
+                    <hr />
+
+                    
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer"></footer>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            /**
+             * Insercion del footer
+             */
+            fetch("/bunker/footer.html").then((response) => {
+                response.text().then((data) => {
+                    document.getElementById("footer").innerHTML = data;
+                });
+            });
+
+            /**
+             * Delay utilizando promesas
+             *
+             * @param {int} ms - Tiempo en milisegundos
+             */
+            const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+            /**
+             *  Permite copiar el contenido del padre del button que
+             *  llama a la funcion (un <code>)
+             *
+             * @param {HTMLButtonElement} button - El elemento "boton" que llama a la función
+             */
+            async function copyCode(button) {
+                const code = button.closest(".code-box").querySelector("code").textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+                    button.classList.add("pressed");
+                    await delay(2000);
+                    button.classList.remove("pressed");
+                } catch (err) {
+                    console.error("Error al copiar: ", err);
+                }
+            }
+        </script>
+        <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/jquery.scrolly.min.js"></script>
+        <script src="/assets/js/jquery.dropotron.min.js"></script>
+        <script src="/assets/js/jquery.scrollex.min.js"></script>
+        <script src="/assets/js/browser.min.js"></script>
+        <script src="/assets/js/breakpoints.min.js"></script>
+        <script src="/assets/js/util.js"></script>
+        <script src="/assets/js/main-complete.js"></script>
+    </body>
+</html>

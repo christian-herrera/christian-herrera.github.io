@@ -1,82 +1,85 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Christian Herrera</title>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/assets/icons/icon.png">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload landing">
-		<div id="page-wrapper">
+    <head>
+        <title>Christian Herrera</title>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/assets/icons/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload landing">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1 id="logo"><a href="/index.html" style="font-style: italic">Christian Herrera</a></h1>
+                <nav id="nav">
+                    <!-- ======== TEMARIO ======== -->
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li>
+                            <a href="/bunker/index">Temario</a>
+                            <ul>
+                                <li><a href="/bunker/gnupg.html">OpenPGP</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
+                    </ul>
+                    <!-- ========================= -->
+                </nav>
+            </header>
 
-			<!-- Header -->
-                <header id="header">
-                    <h1 id="logo"><a href="/index.html" style="font-style: italic;">Christian Herrera</a></h1>
-                    <nav id="nav">
-                        <!-- ======== TEMARIO ======== -->
-						<ul>
-							<li><a href="/index.html">Home</a></li>
-							<li>
-								<a href="/bunker/index">Temario</a>
-								<ul>
-									<li><a href="/bunker/gnupg.html">OpenPGP</a></li>
-								</ul>
-							</li>
-							<li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
-						</ul>
-						<!-- ========================= -->
-                    </nav>
-                </header>
+            <!-- Main -->
+            <div id="main" class="wrapper style1">
+                <div class="container">
+                    <header class="major">
+                        <h2>GnuPG</h2>
+                        <p>Notas sobre el Cifrado Simétrico/Asimétrico</p>
+                    </header>
 
-			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major">
-							<h2>GnuPG</h2>
-							<p>Notas sobre el Cifrado Simétrico/Asimétrico</p>
-						</header>
-                        
-
-                        <!-- Text -->
-                            <section id="content">
-
-                                <!-- Importar y Exportar -->
-                                <h2>Importar/Exportar</h2>
-                                <p>En primer lugar se debe crear un anillo de llaves, para eso se utiliza el comando <code>gpg --full-generate-key</code>. Al ejecutar el mismo nos pregunta varias cosas, usaremos:</p>
-                                <ul>
-                                    <li>Crearemos una llave con subclaves RSA (Opción 1)</li>
-                                    <li>El tamaño será de 4096 bits.</li>
-                                    <li>Por ahora, la clave no expira nunca.</li>
-                                    <li>Brindar los datos personales (nombre, apellido, etc)</li>
-                                    <li>Aceptar si los datos son correctos (opción <code>v</code>)</li>
-                                </ul>
-                                Luego de generar las claves, cuando se ejecuta <code>gpg -k</code> una respuesta como la siguiente:
-                                <pre><code>pub   rsa4096/F42AC9B2410A5840 2025-02-01 [SC]
+                    <!-- Text -->
+                    <section id="content">
+                        <!-- Importar y Exportar -->
+                        <h2>Importar/Exportar</h2>
+                        <p>
+                            En primer lugar se debe crear un anillo de llaves, para eso se utiliza el comando <code>gpg --full-generate-key</code>. Al ejecutar el mismo nos pregunta varias cosas,
+                            usaremos:
+                        </p>
+                        <ul>
+                            <li>Crearemos una llave con subclaves RSA (Opción 1)</li>
+                            <li>El tamaño será de 4096 bits.</li>
+                            <li>Por ahora, la clave no expira nunca.</li>
+                            <li>Brindar los datos personales (nombre, apellido, etc)</li>
+                            <li>Aceptar si los datos son correctos (opción <code>v</code>)</li>
+                        </ul>
+                        Luego de generar las claves, cuando se ejecuta <code>gpg -k</code> una respuesta como la siguiente:
+                        <pre><code>pub   rsa4096/F42AC9B2410A5840 2025-02-01 [SC]
 Huella de clave = 5B0C 282E AF92 20BB 0B4C  1962 F42A C9B2 410A 5840
-uid              [  absoluta ] Prueba <portfolio@christianherrera.com.ar>
+uid              [  absoluta ] Prueba &lt;portfolio@christianherrera.com.ar&gt;
 sub   rsa4096/1AAB18B9EEDCFC7E 2025-02-01 [E]</code></pre>
-                                <p>En este punto, tenemos los siguientes datos:</p>
-                                <ul>
-                                    <li>Un anillo, para el cual se tiene el id <code>F42AC9B2410A5840</code></li>
-                                    <li>Una <b>subclave</b> que tiene el id <code>1AAB18B9EEDCFC7E</code> y que sirve unicamente para <b>encriptar</b>.</li>
-                                </ul>
-                                <p>Ahora, usaremos <code>gpg ---expert -edit-key F42AC9B2410A5840</code> para crear una subclave de firma. Seguimos los pasos:</p>
-                                <ul>
-                                    <li><code>addkey</code> para agregar una nueva subclave.</li>
-                                    <li>Seleccionamos la opción <code>(4) RSA (Sign only)</code>.</li>
-                                    <li>Le decimos que usaremos 4096 bits.</li>
-                                    <li>Finalmente, que no caduca y creamos la subclave.</li>
-                                </ul>
-                                <p>Ahora, se nos agregó una nueva subclave, si volvemos a ejecutar <code>gpg -k</code> obtendremos:</p>
-                                <pre><code>pub   rsa4096/F42AC9B2410A5840 2025-02-01 [SC]
+                        <p>En este punto, tenemos los siguientes datos:</p>
+                        <ul>
+                            <li>Un anillo, para el cual se tiene el id <code>F42AC9B2410A5840</code></li>
+                            <li>Una <b>subclave</b> que tiene el id <code>1AAB18B9EEDCFC7E</code> y que sirve unicamente para <b>encriptar</b>.</li>
+                        </ul>
+                        <p>Ahora, usaremos <code>gpg ---expert -edit-key F42AC9B2410A5840</code> para crear una subclave de firma. Seguimos los pasos:</p>
+                        <ul>
+                            <li><code>addkey</code> para agregar una nueva subclave.</li>
+                            <li>Seleccionamos la opción <code>(4) RSA (Sign only)</code>.</li>
+                            <li>Le decimos que usaremos 4096 bits.</li>
+                            <li>Finalmente, que no caduca y creamos la subclave.</li>
+                        </ul>
+                        <p>Ahora, se nos agregó una nueva subclave, si volvemos a ejecutar <code>gpg -k</code> obtendremos:</p>
+                        <pre><code>pub   rsa4096/F42AC9B2410A5840 2025-02-01 [SC]
 Huella de clave = 5B0C 282E AF92 20BB 0B4C  1962 F42A C9B2 410A 5840
-uid              [  absoluta ] Prueba <portfolio@christianherrera.com.ar>
+uid              [  absoluta ] Prueba &lt;portfolio@christianherrera.com.ar&gt;
 sub   rsa4096/1AAB18B9EEDCFC7E 2025-02-01 [E]
 sub   rsa4096/75F7C78D67D6081B 2025-02-01 [S]</code></pre>
-                                <p>Ahora si estamos en condiciones de exportar las subclaves, y por supuesto, el anillo. Primero nos posicionamos en un path conocido donde quedaran las llaves y luego ejecutamos:</p>
-                                <pre><code># Llaves Privadas . . .
+                        <p>
+                            Ahora si estamos en condiciones de exportar las subclaves, y por supuesto, el anillo. Primero nos posicionamos en un path conocido donde quedaran las llaves y luego
+                            ejecutamos:
+                        </p>
+                        <pre><code># Llaves Privadas . . .
 gpg --armor --export-secret-key F42AC9B2410A5840 > ring_secret.asc
 gpg --armor --export-secret-subkey F42AC9B2410A5840 > subAll_secret.asc
 gpg --armor --export-secret-key 1AAB18B9EEDCFC7E! > subE_secret.asc
@@ -86,101 +89,122 @@ gpg --armor --export-secret-key 75F7C78D67D6081B! > subS_secret.asc
 gpg --armor --export F42AC9B2410A5840 > ring_public.asc
 gpg --armor --export 1AAB18B9EEDCFC7E! > subE_public.asc
 gpg --armor --export 75F7C78D67D6081B! > subS_public.asc</code></pre>
-                                <p>Hasta aquí, ya tenemos la copia de seguridad del anillo con las subclaves. Estos archivos son los que se deberán guardar en algún lugar seguro.</p>
-                                <blockquote>Una buena practica es dejar unicamente la subclave que se requiere, y el resto de las subclaves eliminarlas con <code>gpg --delete-secret-key [ID]!</code></blockquote>
+                        <p>Hasta aquí, ya tenemos la copia de seguridad del anillo con las subclaves. Estos archivos son los que se deberán guardar en algún lugar seguro.</p>
+                        <blockquote>
+                            Una buena practica es dejar unicamente la subclave que se requiere, y el resto de las subclaves eliminarlas con <code>gpg --delete-secret-key [ID]!</code>
+                        </blockquote>
 
+                        <!-- Firma -->
+                        <br />
+                        <hr />
+                        <h2>Firma de Archivos</h2>
+                        Para los siguientes archivos, se usara el ID <code>75F7C78D67D6081B</code> para firmar el archivo <code>file.txt</code> con sus diversas variantes.
+                        <p>Todas las firmas se pueden chequear con el comando <code>gpg -d file.txt.asc</code> o bien <code>gpg --decrypt file.txt.asc</code>.</p>
+                        <blockquote>
+                            Cuando se pasa el archivo con una firma adjunta, GPG extrae el contenido original y luego verifica la firma adjunta, finalmente se imprimen los dos resultados. En cambio,
+                            si se le pesa un archivo de firma separada, lo que se obtiene es simplemente la comprobación de la firma.
+                        </blockquote>
 
-                                <!-- Firma -->
-                                <br><hr>
-                                <h2>Firma de Archivos</h2>
-                                Para los siguientes archivos, se usara el ID <code>75F7C78D67D6081B</code> para firmar el archivo <code>file.txt</code> con sus diversas variantes.
-                                <p>Todas las firmas se pueden chequear con el comando <code>gpg -d file.txt.asc</code> o bien <code>gpg --decrypt file.txt.asc</code>.</p>
-                                <blockquote>Cuando se pasa el archivo con una firma adjunta, GPG extrae el contenido original y luego verifica la firma adjunta, finalmente se imprimen los dos resultados. En cambio, si se le pesa un archivo de firma separada, lo que se obtiene es simplemente la comprobación de la firma.</blockquote>
-
-                                <h3>📎 Firma Adjunta (Contenido Empaquetado)</h3>
-                                <p>Este método es util cuando el contenido que se quiere firmar no debe quedar visible.</p>
-                                <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
+                        <h3>📎 Firma Adjunta (Contenido Empaquetado)</h3>
+                        <p>Este método es util cuando el contenido que se quiere firmar no debe quedar visible.</p>
+                        <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --sign file.txt</code></pre>
 
-                                <br>
-                                <h3>🖇️ Firma Adjunta (Contenido Legible)</h3>
-                                <p>Este método es util cuando el contenido (por ejemplo un mensaje) tiene que quedar visible y con el agregado de la firma, todo en un mismo archivo.</p>
-                                <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
+                        <br />
+                        <h3>🖇️ Firma Adjunta (Contenido Legible)</h3>
+                        <p>Este método es util cuando el contenido (por ejemplo un mensaje) tiene que quedar visible y con el agregado de la firma, todo en un mismo archivo.</p>
+                        <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --clearsign file.txt</code></pre>
 
-                                <br>
-                                <h3>⛓️‍💥 Firma Separada</h3>
-                                <p>Este método permite generar un archivo nuevo donde se encuentra la firma correspondiente, dejando el archivo a firmar intacto.</p>
-                                <pre><code>gpg -a -u 75F7C78D67D6081B! -b file.txt
+                        <br />
+                        <h3>⛓️‍💥 Firma Separada</h3>
+                        <p>Este método permite generar un archivo nuevo donde se encuentra la firma correspondiente, dejando el archivo a firmar intacto.</p>
+                        <pre><code>gpg -a -u 75F7C78D67D6081B! -b file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --detach-sign file.txt</code></pre>
-                                <p>Para corroborar una <b>firma separada</b>,también se puede utilizar el comando: <code>gpg --verify file.txt.asc file.txt</code> el cual esta pensado para pasarle los dos archivos, el que contiene la firma y seguido el que contiene el mensaje.</p>
-                                
-                                <!-- Cifrado Simétrico -->
-                                <br><hr>
-                                <h2>Cifrado Simétrico</h2>
-                                <p>El cifrado simétrico permite cifrar con una clave un archivo o mensaje. No requiere de un par de llaves privadas/publicas. El uso es sencillo:</p>
-                                <pre><code>gpg -a -c file.txt
+                        <p>
+                            Para corroborar una <b>firma separada</b>,también se puede utilizar el comando: <code>gpg --verify file.txt.asc file.txt</code> el cual esta pensado para pasarle los dos
+                            archivos, el que contiene la firma y seguido el que contiene el mensaje.
+                        </p>
+
+                        <!-- Cifrado Simétrico -->
+                        <br />
+                        <hr />
+                        <h2>Cifrado Simétrico</h2>
+                        <p>El cifrado simétrico permite cifrar con una clave un archivo o mensaje. No requiere de un par de llaves privadas/publicas. El uso es sencillo:</p>
+                        <pre><code>gpg -a -c file.txt
 gpg --armor --symmetric file.txt</code></pre>
-                                <p>Para obtener el archivo de vuelta, simplemente se utiliza <code>gpg -d file.txt.asc</code>, o su version mas larga <code>gpg --decrypt file.txt.asc</code></p>
+                        <p>Para obtener el archivo de vuelta, simplemente se utiliza <code>gpg -d file.txt.asc</code>, o su version mas larga <code>gpg --decrypt file.txt.asc</code></p>
 
-                                <!-- Cifrado Asimétrico -->
-                                <br><hr>
-                                <h2>Cifrado Asimétrico</h2>
-                                <p>El cifrado asimétrico utiliza una llave publica para cifrar un archivo o mensaje y requiere la correspondiente clave privada para descifrarlo. Los comandos mas utilizados son:</p>
-                                <pre><code>gpg --armor --encrypt --recipient 1AAB18B9EEDCFC7E! file.txt
+                        <!-- Cifrado Asimétrico -->
+                        <br />
+                        <hr />
+                        <h2>Cifrado Asimétrico</h2>
+                        <p>
+                            El cifrado asimétrico utiliza una llave publica para cifrar un archivo o mensaje y requiere la correspondiente clave privada para descifrarlo. Los comandos mas utilizados
+                            son:
+                        </p>
+                        <pre><code>gpg --armor --encrypt --recipient 1AAB18B9EEDCFC7E! file.txt
 gpg -a -e -r 1AAB18B9EEDCFC7E! file.txt</code></pre>
-                                <p>Para obtener el archivo original, debo tener importada en la maquina la llave correspondiente, luego simplemente uso <code>gpg -d file.txt.asc</code></p>
+                        <p>Para obtener el archivo original, debo tener importada en la maquina la llave correspondiente, luego simplemente uso <code>gpg -d file.txt.asc</code></p>
 
-                                <br>
-                                <h3>🔏 Cifrar y Firmar (todo junto)</h3>
-                                <p>Se puede agregar una firma al documento que se cifra asimetricamente, para esto se puede agregar lo visto anteriormente:</p>
-                                <pre><code>gpg --armor --recipient 1AAB18B9EEDCFC7E! --local-user 75F7C78D67D6081B! --sign --encrypt file.txt
+                        <br />
+                        <h3>🔏 Cifrar y Firmar (todo junto)</h3>
+                        <p>Se puede agregar una firma al documento que se cifra asimetricamente, para esto se puede agregar lo visto anteriormente:</p>
+                        <pre><code>gpg --armor --recipient 1AAB18B9EEDCFC7E! --local-user 75F7C78D67D6081B! --sign --encrypt file.txt
 gpg -a -r 1AAB18B9EEDCFC7E! -u 75F7C78D67D6081B! -s -e file.txt</code></pre>
 
-                                <br>
-                                <h3>🔐 Primero Cifrar y luego Firmar</h3>
-                                <p>Esta forma permite cifrar el archivo y asi obtener por ejemplo <code>file.txt.asc</code> y luego este resultado, firmarlo para dejar en claro quien fue el remitente, el archivo de firma podrá dejarse separado para no cargar con mas datos al archivo cifrado, por ejemplo <code>file.txt.sign</code></p>
-                                <pre><code>gpg --output file.txt.asc --armor --recipient 1AAB18B9EEDCFC7E! --encrypt file.txt
+                        <br />
+                        <h3>🔐 Primero Cifrar y luego Firmar</h3>
+                        <p>
+                            Esta forma permite cifrar el archivo y asi obtener por ejemplo <code>file.txt.asc</code> y luego este resultado, firmarlo para dejar en claro quien fue el remitente, el
+                            archivo de firma podrá dejarse separado para no cargar con mas datos al archivo cifrado, por ejemplo <code>file.txt.sign</code>
+                        </p>
+                        <pre><code>gpg --output file.txt.asc --armor --recipient 1AAB18B9EEDCFC7E! --encrypt file.txt
 gpg --output file.txt.sign --armor --local-user 75F7C78D67D6081B! --detach-sign file.txt.asc</code></pre>
-                                <p>Y para verificar la firma creada, simplemente usar <code>gpg --verify file.txt.sign file.txt.asc</code>. En caso de querer des-cifrar el archivo, usar <code>gpg --decrypt file.txt.asc</code>.</p>
+                        <p>
+                            Y para verificar la firma creada, simplemente usar <code>gpg --verify file.txt.sign file.txt.asc</code>. En caso de querer des-cifrar el archivo, usar
+                            <code>gpg --decrypt file.txt.asc</code>.
+                        </p>
 
-                                <!-- Envíame algo... -->
-                                <br><hr>
-                                <h2>Envíame algo...</h2>
-                                <p>Mis subclaves publicas son las del link <a href="/PubKey.txt" target="_blank">PubKey.txt</a>, usando el link y guardando en una carpeta se pueden importar haciendo uso de <code>gpg --import PubKey.txt</code>. Hecho esto aparecerá en el listado cuando se ejecute <code>gpg -k</code>.</p>
-                                <p>Teniendo mis subclaves ya instaladas, prueba enviarme algo por correo al <a href="mailto:christian.herrera@ing.unlp.edu.ar">email</a> y asi te puedo responder en base al mensaje que has cifrado/firmado. Recuerda que la ID de mi subclave de encriptado es <code>98BC4D49828D431F</code> y deberás usarlo con el símbolo <code>!</code> para forzar el uso de la subclave y no del anillo.</p>
-                                <p>Si quieres firmarlo con tu subclave, deberás enviarme la  correspondiente subclave publica asi puedo verificarlo!, o puedes subirla a algún servidor de claves.</p>
+                        <!-- Envíame algo... -->
+                        <br />
+                        <hr />
+                        <h2>Envíame algo...</h2>
+                        <p>
+                            Mis subclaves publicas son las del link <a href="/PubKey.txt" target="_blank">PubKey.txt</a>, usando el link y guardando en una carpeta se pueden importar haciendo uso de
+                            <code>gpg --import PubKey.txt</code>. Hecho esto aparecerá en el listado cuando se ejecute <code>gpg -k</code>.
+                        </p>
+                        <p>
+                            Teniendo mis subclaves ya instaladas, prueba enviarme algo por correo al <a href="mailto:christian.herrera@ing.unlp.edu.ar">email</a> y asi te puedo responder en base al
+                            mensaje que has cifrado/firmado. Recuerda que la ID de mi subclave de encriptado es <code>98BC4D49828D431F</code> y deberás usarlo con el símbolo <code>!</code> para forzar
+                            el uso de la subclave y no del anillo.
+                        </p>
+                        <p>Si quieres firmarlo con tu subclave, deberás enviarme la correspondiente subclave publica asi puedo verificarlo!, o puedes subirla a algún servidor de claves.</p>
 
-                                <br><br>
-                            </h>
-                        </div>
-				</div>
-                
-			<!-- Footer -->
-				<footer id="footer"></footer>
+                        <br /><br />
+                    </section>
+                </div>
+            </div>
 
-		</div>
+            <!-- Footer -->
+            <footer id="footer"></footer>
+        </div>
 
-	
-
-		<!-- Scripts -->
-            <script>
-                fetch('/bunker/footer.html')
-                    .then(response => {
-                        response.text().then(data => {
-                            document.getElementById('footer').innerHTML = data;
-                        });
-                    });
-            </script>
-			<script src="/assets/js/jquery.min.js"></script>
-			<script src="/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/assets/js/jquery.dropotron.min.js"></script>
-			<script src="/assets/js/jquery.scrollex.min.js"></script>
-			<script src="/assets/js/browser.min.js"></script>
-			<script src="/assets/js/breakpoints.min.js"></script>
-			<script src="/assets/js/util.js"></script>
-			<script src="/assets/js/main-complete.js"></script>
-
-            
-	</body>
+        <!-- Scripts -->
+        <script>
+            fetch("/bunker/footer.html").then((response) => {
+                response.text().then((data) => {
+                    document.getElementById("footer").innerHTML = data;
+                });
+            });
+        </script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/jquery.scrolly.min.js"></script>
+        <script src="/assets/js/jquery.dropotron.min.js"></script>
+        <script src="/assets/js/jquery.scrollex.min.js"></script>
+        <script src="/assets/js/browser.min.js"></script>
+        <script src="/assets/js/breakpoints.min.js"></script>
+        <script src="/assets/js/util.js"></script>
+        <script src="/assets/js/main-complete.js"></script>
+    </body>
 </html>
