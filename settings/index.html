@@ -463,7 +463,10 @@ PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"
                             Los pasos a seguir son sencillos, instalar: <a href="https://www.gnupg.org/download/" target="_blank" rel="noopener noreferrer">Gpg4Win</a> y luego elegir la configuracion
                             de los archivos correspondientes a Windows (OpenPGP)
                         </p>
-                        <p><span style="font-style: italic; font-weight: bold">Importante:</span> Se debe colocar la linea: <code>gpgconf --launch gpg-agent</code> en el archivo <code>$PROFILE</code> de Windows.</p>
+                        <ul>
+                            <li><span style="font-style: italic; font-weight: bold">Nota 1:</span> Se debe colocar la linea: <code>gpgconf --launch gpg-agent</code> en el archivo <code>$PROFILE</code> de Windows.</li>
+                            <li><span style="font-style: italic; font-weight: bold">Nota 2:</span> La variable <span style="font-style: italic; font-weight: 300;">SSH_AUTH_SOCK</span> no debe estar definida para que gpg-agent funcione correctamente.<br>Para eliminarla, se utiliza: <code>Remove-Item Env:\SSH_AUTH_SOCK</code></li>
+                        </ul>
                         <p>Algunos comandos útiles a la hora de trabajar con <code>gpg-agent</code> son:</p>
 
                          <ol>
