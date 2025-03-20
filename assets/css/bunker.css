@@ -1,7 +1,35 @@
+/* =============> SPAN para textos */
+span.text-italic {
+    font-style: italic;
+}
+
+span.text-bold {
+    font-weight: bold;
+}
+
+span.text-underline {
+    text-decoration: underline;
+}
+
+span.text-fontall {
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+
+/* =============> Para modificar la plantilla */
+p.min-margin {
+    margin: 0.3em 0;
+}
+
+
+/* =============> Para centrado de imagenes */
 .img-center-container {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-bottom: 2em;
 }
 
 .img-center-container img {

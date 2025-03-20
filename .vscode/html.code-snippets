@@ -16,6 +16,26 @@
 	// 	"description": "Log output to console"
 	// }
 
+	"Imagen": {
+		"scope": "html",
+		"prefix": "img",
+		"body": [
+			"<div class=\"img-center-container\">",
+			"	<img src=\"images/${1:path}\" alt=\"Imagen no disponible!\" srcset=\"\" class=\"img-center w${2:width} mw${3:width mobile}\" />",
+			"</div>",
+			"$0"
+		],
+		"description": "Inserta una imagen"
+	},
+
+	"Codigo Inline": {
+		"scope": "html",
+		"prefix": "code",
+		"body": [
+			"<code>${1:Código}</code> $0"
+		],
+		"description": "Inserta el HTML para un bloque de código inline"
+	},
 
 	"Bloque de Código": {
 		"scope": "html",
@@ -28,5 +48,41 @@
 			"$0"
 		],
 		"description": "Inserta el HTML para un bloque de código"
+	},
+
+	"Italic": {
+		"scope": "html",
+		"prefix": ".italic",
+		"body": [
+			"<span class=\"text-italic\">${1:text}</span> $0"
+		],
+		"description": "Texto en Italic"
+	},
+
+	"Bold": {
+		"scope": "html",
+		"prefix": ".bold",
+		"body": [
+			"<span class=\"text-bold\">${1:text}</span> $0"
+		],
+		"description": "Texto en Negrita"
+	},
+
+	"Underline": {
+		"scope": "html",
+		"prefix": ".underline",
+		"body": [
+			"<span class=\"text-underline\">${1:text}</span> $0"
+		],
+		"description": "Texto Subrayado"
+	},
+
+	"Italic + Bold": {
+		"scope": "html",
+		"prefix": ".fontall",
+		"body": [
+			"<span class=\"text-fontall\">${1:text}</span> $0"
+		],
+		"description": "Texto con Italix, Negrita"
 	}
 }
