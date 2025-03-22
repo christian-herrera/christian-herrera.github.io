@@ -57,6 +57,9 @@
                                 <li>
                                     <a href="#auriculares">KZ Pr1 Pro</a>
                                 </li>
+                                <li>
+                                    <a href="#prusaslicer">PrusaSlicer</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -464,16 +467,22 @@ PKCS11Provider "C:\Program Files\OpenSC Project\OpenSC\pkcs11\opensc-pkcs11.dll"
                             de los archivos correspondientes a Windows (OpenPGP)
                         </p>
                         <ul>
-                            <li><span style="font-style: italic; font-weight: bold">Nota 1:</span> Se debe colocar la linea: <code>gpgconf --launch gpg-agent</code> en el archivo <code>$PROFILE</code> de Windows.</li>
-                            <li><span style="font-style: italic; font-weight: bold">Nota 2:</span> La variable <span style="font-style: italic; font-weight: 300;">SSH_AUTH_SOCK</span> no debe estar definida para que gpg-agent funcione correctamente.<br>Para eliminarla, se utiliza: <code>Remove-Item Env:\SSH_AUTH_SOCK</code></li>
+                            <li>
+                                <span style="font-style: italic; font-weight: bold">Nota 1:</span> Se debe colocar la linea: <code>gpgconf --launch gpg-agent</code> en el archivo
+                                <code>$PROFILE</code> de Windows.
+                            </li>
+                            <li>
+                                <span style="font-style: italic; font-weight: bold">Nota 2:</span> La variable <span style="font-style: italic; font-weight: 300">SSH_AUTH_SOCK</span> no debe estar
+                                definida para que gpg-agent funcione correctamente.<br />Para eliminarla, se utiliza: <code>Remove-Item Env:\SSH_AUTH_SOCK</code>
+                            </li>
                         </ul>
                         <p>Algunos comandos útiles a la hora de trabajar con <code>gpg-agent</code> son:</p>
 
-                         <ol>
-                             <li><code>gpgconf --kill gpg-agent</code>: Detiene el agente.</li>
-                             <li><code>gpgconf --launch gpg-agent</code>: Inicia un agente (recarga las configuraciones también)</li>
-                             <li><code>ssh-add -L</code>: Si todo funciona, muestra las claves SSH que se pueden usar (aquellas que lee del YubiKey)</li>
-                             <li><code>gpg-connect-agent "scd serialno" /bye</code>: Consulta el numero de serie de la YubiKey. Esto prueba la comunicacion del agente con la misma.</li>
+                        <ol>
+                            <li><code>gpgconf --kill gpg-agent</code>: Detiene el agente.</li>
+                            <li><code>gpgconf --launch gpg-agent</code>: Inicia un agente (recarga las configuraciones también)</li>
+                            <li><code>ssh-add -L</code>: Si todo funciona, muestra las claves SSH que se pueden usar (aquellas que lee del YubiKey)</li>
+                            <li><code>gpg-connect-agent "scd serialno" /bye</code>: Consulta el numero de serie de la YubiKey. Esto prueba la comunicacion del agente con la misma.</li>
                         </ol>
 
                         <br /><br />
@@ -906,6 +915,101 @@ sudo make install</code></pre>
                                     </td>
                                     <td>
                                         <span class="icon alt major icon-content" onclick="downloadFile('kz_pr1_pro_12eq.txt', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br />
+                        <hr />
+                        <br />
+
+                        <!-- Prusa Slicer -->
+                        <h2 id="prusaslicer">PrusaSlicer</h2>
+                        <p>
+                            Ante una nueva instalación de <a href="https://www.prusa3d.com/es/pagina/prusaslicer_424/" target="_blank" rel="noopener noreferrer">PrusaSlicer</a>, simplemente cargar el
+                            archivo <code>Conjunto de Ajustes.ini</code> usando las siguiente opción del menú: <code>Archivo > Importar Conjunto de Ajustes</code>
+                        </p>
+                        <table class="table-css">
+                            <thead>
+                                <tr>
+                                    <td>Setting</td>
+                                    <td>Link</td>
+                                    <td>Copiado Rápido</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <code>Configuraciones.ini</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_config.ini', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('prusaslicer_config.ini', this, false)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_config.ini', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>Paquete de Conf. (Con Impresoras Fisicas).ini</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('prusaslicer_paquete_config', this, false)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>Conjunto de Ajustes.ini</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_conjunto_ajustes.ini', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('prusaslicer_conjunto_ajustes.ini', this, false)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_conjunto_ajustes.ini', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>auto0.gcode</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('auto0.g', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('auto0.g', this, false)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('auto0.g', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
