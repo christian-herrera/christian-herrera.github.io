@@ -26,6 +26,29 @@
                                 <li><a href="/bunker/github.html">GitHub</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">Contenido</a>
+                            <ul>
+                                <li>
+                                    <a href="#def-generales">Def. Generales</a>
+                                    <ul>
+                                        <li><a href="#que-es-un-repo">Que es un Repositorio?</a></li>
+                                        <li><a href="#ciclo-de-vida">Ciclo de vida</a></li>
+                                        <li><a href="#gitignore">Archivo: gitignore</a></li>
+                                        <li><a href="#def-ramas">Ramas</a></li>
+                                        <li><a href="#def-conflictos">Conflictos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#conf-credenciales">Conf. Credenciales</a></li>
+                                <li>
+                                    <a href="#">Comandos Esenciales</a>
+                                    <ul>
+                                        <li><a href="#trabajando-con-commits">Trabajando con Commits</a></li>
+                                        <li><a href="#trabajando-con-ramas">Trabajando con Ramas</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
                     </ul>
                     <!-- ========================= -->
@@ -41,9 +64,9 @@
                     </header>
 
                     <!-- Definiciones Generales -->
-                    <section id="content">
+                    <section id="def-generales">
                         <h2>Definiciones Generales</h2>
-                        <h3>Que es un Repositorio?</h3>
+                        <h3 id="que-es-un-repo">Que es un Repositorio?</h3>
                         <p>Git organiza los archivos en tres áreas principales que forman el flujo de trabajo para el control de versiones:</p>
 
                         <div class="img-center-container">
@@ -68,7 +91,7 @@
 
                         <br /><br />
 
-                        <h3>Ciclo de vida de un archivo en Git</h3>
+                        <h3 id="ciclo-de-vida">Ciclo de vida de un archivo en Git</h3>
                         <p>En resumen, el ciclo se puede ver de la siguiente forma:</p>
                         <div class="img-center-container">
                             <img src="images/life-file-git.png" alt="Imagen no disponible!" srcset="" class="img-center w60 mw80" />
@@ -87,7 +110,7 @@
                         </ul>
 
                         <br /><br />
-                        <h3>Archivo GitIgnore</h3>
+                        <h3 id="gitignore">Archivo GitIgnore</h3>
                         <p>
                             Un archivo importante es el <code>.gitignore</code>. Este mismo le indica a Git qué archivos o carpetas debe ignorar en el repositorio. Cada linea del archivo representa un
                             patrón de archivos o directorios que no serán rastreados por Git.
@@ -99,12 +122,88 @@
 .vscode/
 bin/</code></pre>
                         </div>
+
+                        <br /><br /><br />
+
+                        <h3 id="def-ramas">Ramas</h3>
+                        <h4 id="fast-forward">Avance Rápido</h4>
+                        Si no hay commits adicionales en la rama `main` desde la bifurcacion de <span class="text-italic">develop</span>, Git simplemente mueve el puntero de
+                        <span class="text-italic">main</span> hacia adelante. <br />Esto elimina cualquier rastro de la bifurcacion creada.
+
+                        <div class="img-center-container">
+                            <img src="images/fast-forward-1.svg" alt="Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <img src="images/fast-forward-2.svg" alt="Fast Forward (2)" srcset="" class="img-center w40 mw50" />
+                        </div>
+                        Para ejecutar este tipo de fusión, se utiliza: <code>git merge develop</code>
+
+                        <br /><br /><br />
+
+                        <h4 id="no-fast-forward">Avance Rápido con Commit de Confirmación</h4>
+                        Si <span class="text-italic">main</span> y <span class="font-italic">develop</span> han evolucionado por separado, Git permite crear un nuevo commit para colocar alli el
+                        resultado de la fusion. Gráficamente se vería de la siguiente forma:
+
+                        <div class="img-center-container">
+                            <img src="images/no-fast-forward-1.svg" alt="No Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <img src="images/no-fast-forward-2.svg" alt="No Fast Forward (2)" srcset="" class="img-center w40 mw50" />
+                        </div>
+                        Para ejecutar este tipo de fusión, se utiliza: <code>git merge --no-ff develop</code>
+
+                        <br /><br /><br />
+
+                        <h4 id="git-rebase">Git Rebase</h4>
+                        Reorganiza los commits de una rama sobre otra para un historial mas lineal.
+
+                        <div class="img-center-container">
+                            <img src="images/rebase-1.svg" alt="No Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <img src="images/rebase-2.svg" alt="No Fast Forward (2)" srcset="" class="img-center w40 mw50" />
+                        </div>
+
+                        Para ejecutar este tipo de fusión, se utiliza: <code>git rebase develop</code>
+
+                        <br /><br /><br />
+
+                        <h3 id="def-conflictos">Conflctos</h3>
+                        Un <span class="text-bold">conflicto</span> se dá cuando dos ramas han modificado la misma línea de un archivo o cuando una rama ha eliminado un archivo que otra rama ha
+                        modificado. En este caso, Git no puede decidir automáticamente qué cambios conservar y requiere intervención manual.
+
+                        <div class="img-center-container">
+                            <img src="images/conflicto-1.svg" alt="Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                        </div>
+                        Los conflictos surgen luego de realizar el <code>git merge develop</code>. Para visualizar los mismos se utiliza el comando <code>git status</code>. Se tienen los casos tipicos
+                        de conflictos:
+                        <ul>
+                            <li>
+                                <span class="text-bold">Modificación de Archivos:</span> El conflicto surge cuando el mismo archivo en los ultimos commit de cada rama difieren en las mismas lineas.
+                                <ul>
+                                    <li>Editar el archivo y elegir con que version quedarme, si la de <span class="text-italic">main</span> o la de <span class="text-italic">develop</span></li>
+                                    <li>Luego usar <code>git add .</code></li>
+                                    <li>Y finalmente usar <code>git commit</code> para crear el commit con la resolución del conflicto.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="text-bold">Archivos eliminados:</span> El conflicto surge cuando un archivo existente en el commit <span class="text-bold">C</span>, fue eliminado en el
+                                commit <span class="text-bold">E</span>.
+                                <ul>
+                                    <li>Si el archivo no es necesario, se puede eliminar con <code>git rm {archivo}</code></li>
+                                    <li>Si el archivo es necesario, se puede restaurar con <code>git add {archivo}</code></li>
+                                    <li>Finalmente, se realiza el <code>git commit</code> para crear el commit con la resolución del conflicto.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="text-bold">Conflicto en la estructura:</span> El conflicto surge de tener un archivo el commit <span class="text-bold">E</span> pero resulta que en la rama
+                                <span class="text-italic">main</span>, especificamente en el commit <span class="text-bold">C</span> se movió a una carpeta nueva.
+                                <ul>
+                                    <li>Si quiero dejarlo en la ubicacion original, utilizo <code>mv {path/actual} {path/original}</code></li>
+                                    <li>Si quiero dejarlo en la nueva ubicacion, utilizo <code>git rm {file}</code></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </section>
 
                     <hr />
 
                     <!-- Configuraciones Iniciales -->
-                    <section id="content">
+                    <section id="conf-credenciales">
                         <h2>Configurar Credenciales</h2>
                         <p class="min-margin">Git mantiene un archivo de configuración global llamado <code>.gitconfig</code>, este mismo se puede editar con:</p>
                         <div class="code-box">
@@ -112,21 +211,21 @@ bin/</code></pre>
                             <pre><code class="language-git">git config --global --edit</code></pre>
                         </div>
                         <p class="min-margin">En ese mismo archivo, se deben configurar dos variables: <span class="text-fontall">user.name</span> y <span class="text-fontall">user.email</span></p>
-                    </section>
-                    <div class="code-box">
-                        <button class="copy-btn" onclick="copyCode(this)"></button>
-                        <pre><code class="language-txt">[user]
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-txt">[user]
     name = usuario-de-git
     email = correo@dominio.com</code></pre>
-                    </div>
+                        </div>
+                    </section>
 
                     <hr />
 
                     <!-- Comandos Esenciales -->
-                    <section id="content">
-                        <h2>Trabajando con Commits</h2>
+                    <section>
+                        <h2 id="trabajando-con-commits">Trabajando con Commits</h2>
 
-                        <h3>Creación de Commits</h3>
+                        <h3>📌 Creación de Commits</h3>
                         <p class="min-margin">El <span class="text-bold">commits</span> es un snapshot de los cambios en el staging area. El comando para realizarlo es <code>commit</code>:</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)"></button>
@@ -146,17 +245,15 @@ git commit -a -m "Mensaje descriptivo"
 git -S -m "Mensaje descriptivo"</code></pre>
                         </div>
 
-                        <br />
-                        <br />
-                        <br />
+                        <br /><br /><br />
 
-                        <h4 id="emoji">Escritura de Mensajes de Commits Efectivos</h4>
+                        <h4>✏️ Escritura de Mensajes de Commits Efectivos</h4>
                         La estructura recomendada es la siguiente:
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)"></button>
                             <pre><code>&#60;emoji&#62; &#60;type&#62;[optional scope]: &#60;description&#62;
-[optional body]
-[optional footer(s)]</code></pre>
+    [optional body]
+    [optional footer(s)]</code></pre>
                         </div>
                         <p>
                             El campo <span class="text-bold">tipo</span> corresponde a alguno de los siguientes (Opcional: se pueden usar los iconos de la web
@@ -164,12 +261,14 @@ git -S -m "Mensaje descriptivo"</code></pre>
                         </p>
 
                         <ul>
+                            <li><span class="text-bold">init</span> <code>:tada:</code> (🎉) Inicialización de un repositorio.</li>
                             <li><span class="text-bold">feat</span> <code>:sparkles:</code> (✨) Agregar una nueva funcionalidad.</li>
+                            <li><span class="text-bold">feat</span> <code>:boom:</code> (💥) Se introducen cambios importantes.</li>
                             <li><span class="text-bold">fix</span> <code>:bug:</code> (🐛) Solucionar un error o bug.</li>
-                            <li><span class="text-bold">docs</span> <code>:books:</code> (📚) Cambios en la documentación.</li>
+                            <li><span class="text-bold">docs</span> <code>:memo:</code> (📝) Cambios en la documentación.</li>
                             <li><span class="text-bold">style</span> <code>:art:</code> (🎨) Mejorar el formato o estructura del código (sin afectar la lógica).</li>
                             <li><span class="text-bold">refactor</span> <code>:hammer:</code> (🔨) Refactorización sin cambios funcionales.</li>
-                            <li><span class="text-bold">perf</span> <code>:racehorse:</code> (🐎) Mejorar el rendimiento del código.</li>
+                            <li><span class="text-bold">perf</span> <code>:zap:</code> (⚡️) Mejorar el rendimiento del código.</li>
                             <li><span class="text-bold">test</span> <code>:white_check_mark:</code> (✅) Agregar o modificar pruebas.</li>
                             <li><span class="text-bold">chore</span> <code>:wrench:</code> (🔧) Modificar archivos de configuración.</li>
                             <li><span class="text-bold">chore</span> <code>:package:</code> (📦) Cambios en <code>package.json</code> u otros archivos de dependencias.</li>
@@ -179,15 +278,80 @@ git -S -m "Mensaje descriptivo"</code></pre>
                             <li><span class="text-bold">chore</span> <code>:rocket:</code> (🚀) Desplegar la aplicación.</li>
                             <li><span class="text-bold">merge</span> <code>:twisted_rightwards_arrows:</code> (🔀) Fusionar ramas en Git.</li>
                             <li><span class="text-bold">revert</span> <code>:rewind:</code> (⏪) Revertir un cambio anterior.</li>
+                            <li><span class="text-bold">work</span> <code>:construction:</code> (🚧) Trabajo en progreso.</li>
                         </ul>
+
+                        <br /><br />
+
+                        <h3>📌 Revertir Commits</h3>
+                        El comando git reset se utiliza para deshacer cambios en el historial de Git, moviendo el puntero de la rama actual a un commit anterior. También permite modificar el área de
+                        staging y el directorio de trabajo.<br /><span class="text-bold">Todos los comandos siguientes, mueven el puntero de la rama al commit especificado</span>
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git"># Los cambios se mantienen en el Staging Area
+git reset --soft {commit}
+
+# Los cambios los quita del Stagin Area
+git reset --mixed {commit}
+
+# 🚨 Elimina todos los cambios en el area de Staging y tambien EN EL DIRECTORIO DE TRABAJO 🚨
+git reset --hard {commit}</code></pre>
+                        </div>
+
+                        <br />
+                        <hr />
+                        <br />
+
+                        <h2 id="trabajando-con-ramas">Trabajando con Ramas</h2>
+                        El comando <span class="text-bold">git switch</span>  permite cambiar entre ramas de manera más sencilla que git checkout.
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git switch {nombre-rama}                        # Cambia de rama
+git switch -c {nombre-rama}                     # Crea una rama y cambia a ella
+
+# => Opciones con más parámetros
+git switch --detach {commit}                    # Me muevo al commit en el modo 'Detached HEAD'
+git switch --discart-changes {nombre-rama}      # Cambia a la rama descartando los cambios hechos
+git switch --merge {nombre-rama}                # Cambia arrastrando todos los cambios
+git switch -                                    # Cambia de vuelta a la ultima rama que estaba (parecido al `cd -`)</code></pre>
+                        </div>
+
+                        <br><br>
+
+                        El comando <span class="text-bold">git checkout</span>  se utiliza para cambiar de ramas, restaurar archivos y crear nuevas ramas. Es uno de los comandos más versátiles en Git, aunque algunas de sus funciones han sido reemplazadas por git switch y git restore en versiones más recientes de Git.
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git checkout {nombre-rama}          # Cambio a una rama existente
+git checkout -b {nombra-rama}       # Creo una rama y cambio a ella
+
+# => Opciones con más parámetros
+git checkout -- {archivo}           # Restaura el archivo a su ultimo commit
+git checkout {commit}               # Me muevo al commit en modo 'Detached HEAD'</code></pre>
+                        </div>
+
+
+                        <br><br>
+
+                        El comando <span class="text-bold">git branch</span>  se usa principalmente para crear, listar, eliminar y gestionar ramas en Git. No cambia el estado del área de trabajo, solo afecta a la configuración de las ramas.
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git branch             # Solo las locales
+git branch -a          # Todas
+git branch -r          # Solo las remotas
+git branch -v          # Todas, mostrando su ultimo commit
+
+# => Opciones con más parámetros
+git branch {nombre}                     # Crea una rama local (pero no cambia a ella)
+git branch -d {nombre}                  # Elimina una rama local (si ya está fusionada)
+git branch -D {nombre}                  # Elimina una rama local (de manera forzada)
+git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></pre>
+                        </div>
+
+                        <br /><br /><br />
                     </section>
 
                     <hr />
-
-                    <!--  -->
-                    <section id="content">
-                        <h2>Comandos Esenciales</h2>
-                    </section>
                 </div>
             </div>
 
