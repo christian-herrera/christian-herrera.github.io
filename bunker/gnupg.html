@@ -18,10 +18,21 @@
                     <ul>
                         <li><a href="/index.html">Home</a></li>
                         <li>
-                            <a href="/bunker/index">Temario</a>
+                            <a href="/bunker/index">Bunker</a>
                             <ul>
                                 <li><a href="/bunker/gnupg.html">OpenPGP</a></li>
                                 <li><a href="/bunker/github.html">GitHub</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Indice</a>
+                            <ul>
+                                <li><a href="#import-export">Importar-Exportar</a></li>
+                                <li><a href="#attached-sign">Firma: Attached Sign</a></li>
+                                <li><a href="#attached-sign-ascii">Firma: Attached Sign (ASCII)</a></li>
+                                <li><a href="#detached-sign">Firma: Detached Sign</a></li>
+                                <li><a href="#sym-cipher">Cifrado Simetrico</a></li>
+                                <li><a href="#asym-cipher">Cifrado Asimetrico</a></li>
                             </ul>
                         </li>
                         <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
@@ -41,7 +52,7 @@
                     <!-- Text -->
                     <section id="content">
                         <!-- Importar y Exportar -->
-                        <h2>Importar/Exportar</h2>
+                        <h2 id="import-export">Importar/Exportar</h2>
                         <p>
                             En primer lugar se debe crear un anillo de llaves, para eso se utiliza el comando <code>gpg --full-generate-key</code>. Al ejecutar el mismo nos pregunta varias cosas,
                             usaremos:
@@ -98,7 +109,7 @@ gpg --armor --export 75F7C78D67D6081B! > subS_public.asc</code></pre>
                         <!-- Firma -->
                         <br />
                         <hr />
-                        <h2>Firma de Archivos</h2>
+                        <h2 id="content-sign">Firma de Archivos</h2>
                         Para los siguientes archivos, se usara el ID <code>75F7C78D67D6081B</code> para firmar el archivo <code>file.txt</code> con sus diversas variantes.
                         <p>Todas las firmas se pueden chequear con el comando <code>gpg -d file.txt.asc</code> o bien <code>gpg --decrypt file.txt.asc</code>.</p>
                         <blockquote>
@@ -106,19 +117,19 @@ gpg --armor --export 75F7C78D67D6081B! > subS_public.asc</code></pre>
                             si se le pesa un archivo de firma separada, lo que se obtiene es simplemente la comprobación de la firma.
                         </blockquote>
 
-                        <h3>📎 Firma Adjunta (Contenido Empaquetado)</h3>
+                        <h3 id="attached-sign">📎 Firma Adjunta (Contenido Empaquetado)</h3>
                         <p>Este método es util cuando el contenido que se quiere firmar no debe quedar visible.</p>
                         <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --sign file.txt</code></pre>
 
                         <br />
-                        <h3>🖇️ Firma Adjunta (Contenido Legible)</h3>
+                        <h3 id="attached-sign-ascii">🖇️ Firma Adjunta (Contenido Legible)</h3>
                         <p>Este método es util cuando el contenido (por ejemplo un mensaje) tiene que quedar visible y con el agregado de la firma, todo en un mismo archivo.</p>
                         <pre><code>gpg -a -u 75F7C78D67D6081B! -s file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --clearsign file.txt</code></pre>
 
                         <br />
-                        <h3>⛓️‍💥 Firma Separada</h3>
+                        <h3 id="detached-sign">⛓️‍💥 Firma Separada</h3>
                         <p>Este método permite generar un archivo nuevo donde se encuentra la firma correspondiente, dejando el archivo a firmar intacto.</p>
                         <pre><code>gpg -a -u 75F7C78D67D6081B! -b file.txt
 gpg --armor --local-user 75F7C78D67D6081B! --detach-sign file.txt</code></pre>
@@ -130,7 +141,7 @@ gpg --armor --local-user 75F7C78D67D6081B! --detach-sign file.txt</code></pre>
                         <!-- Cifrado Simétrico -->
                         <br />
                         <hr />
-                        <h2>Cifrado Simétrico</h2>
+                        <h2 id="sym-cipher">Cifrado Simétrico</h2>
                         <p>El cifrado simétrico permite cifrar con una clave un archivo o mensaje. No requiere de un par de llaves privadas/publicas. El uso es sencillo:</p>
                         <pre><code>gpg -a -c file.txt
 gpg --armor --symmetric file.txt</code></pre>
@@ -139,7 +150,7 @@ gpg --armor --symmetric file.txt</code></pre>
                         <!-- Cifrado Asimétrico -->
                         <br />
                         <hr />
-                        <h2>Cifrado Asimétrico</h2>
+                        <h2 id="asym-cipher">Cifrado Asimétrico</h2>
                         <p>
                             El cifrado asimétrico utiliza una llave publica para cifrar un archivo o mensaje y requiere la correspondiente clave privada para descifrarlo. Los comandos mas utilizados
                             son:

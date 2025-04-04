@@ -20,14 +20,14 @@
                     <ul>
                         <li><a href="/index.html">Home</a></li>
                         <li>
-                            <a href="/bunker/index">Temario</a>
+                            <a href="/bunker/index">Bunker</a>
                             <ul>
                                 <li><a href="/bunker/gnupg.html">OpenPGP</a></li>
                                 <li><a href="/bunker/github.html">GitHub</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Contenido</a>
+                            <a href="#">Indice</a>
                             <ul>
                                 <li>
                                     <a href="#def-generales">Def. Generales</a>
@@ -97,7 +97,7 @@
                             <img src="images/life-file-git.png" alt="Imagen no disponible!" srcset="" class="img-center w60 mw80" />
                         </div>
                         <ul>
-                            <li><span class="text-fontall">untracked</span>: Git no está siguiendo el archivo. No forma parte del historial de commits</li>
+                            <li><span class="text-fontall">Untracked</span>: Git no está siguiendo el archivo. No forma parte del historial de commits</li>
                             <li>
                                 <span class="text-fontall">Unmodified</span>: El archivo esta siendo rastreado por Git y <span class="text-underline">no ha sido modificado</span> desde el ultimo
                                 commit. Es el estado base después de hacer un commit.
@@ -126,35 +126,113 @@ bin/</code></pre>
                         <br /><br /><br />
 
                         <h3 id="def-ramas">Ramas</h3>
-                        <h4 id="fast-forward">Avance Rápido</h4>
+                        <h4 id="fast-forward">📌 Avance Rápido</h4>
                         Si no hay commits adicionales en la rama `main` desde la bifurcacion de <span class="text-italic">develop</span>, Git simplemente mueve el puntero de
                         <span class="text-italic">main</span> hacia adelante. <br />Esto elimina cualquier rastro de la bifurcacion creada.
 
                         <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    commit id: "0-7a50c16"
+                                    commit id: "1-7b54261"
+                                    branch develop
+                                    commit id: "2-c2b3578"
+                                    commit id: "3-0b538ec"
+                                    commit id: "4-ce300ba"	
+                            -->
                             <img src="images/fast-forward-1.svg" alt="Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    branch develop
+                                    checkout main
+                                    commit id: "0-7a50c16"
+                                    commit id: "1-7b54261"
+                                    commit id: "2-c2b3578"
+                                    commit id: "3-0b538ec"
+                                    commit id: "4-ce300ba"
+                            -->
                             <img src="images/fast-forward-2.svg" alt="Fast Forward (2)" srcset="" class="img-center w40 mw50" />
                         </div>
                         Para ejecutar este tipo de fusión, se utiliza: <code>git merge develop</code>
 
                         <br /><br /><br />
 
-                        <h4 id="no-fast-forward">Avance Rápido con Commit de Confirmación</h4>
+                        <h4 id="no-fast-forward">📌 Avance Rápido con Commit de Confirmación</h4>
                         Si <span class="text-italic">main</span> y <span class="font-italic">develop</span> han evolucionado por separado, Git permite crear un nuevo commit para colocar alli el
                         resultado de la fusion. Gráficamente se vería de la siguiente forma:
 
                         <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    commit id: "0-7a50c16"
+                                    commit id: "1-7b54261"
+                                    branch develop
+                                    commit id: "2-c2b3578"
+                                    checkout main
+                                    commit id: "3-0b538ec"
+                                    checkout develop
+                                    commit id: "4-ce300ba"
+                                    commit id: "5-829ac39"	
+                            -->
                             <img src="images/no-fast-forward-1.svg" alt="No Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    commit id: "0-7a50c16"
+                                    commit id: "1-7b54261"
+                                    branch develop
+                                    commit id: "2-c2b3578"
+                                    checkout main
+                                    commit id: "3-0b538ec"
+                                    checkout develop
+                                    commit id: "4-ce300ba"
+                                    commit id: "5-829ac39"
+                                    checkout main
+                                    merge develop id: "6-0c5e96"
+                            -->
                             <img src="images/no-fast-forward-2.svg" alt="No Fast Forward (2)" srcset="" class="img-center w40 mw50" />
                         </div>
                         Para ejecutar este tipo de fusión, se utiliza: <code>git merge --no-ff develop</code>
 
                         <br /><br /><br />
 
-                        <h4 id="git-rebase">Git Rebase</h4>
+                        <h4 id="git-rebase">📌 Git Rebase</h4>
                         Reorganiza los commits de una rama sobre otra para un historial mas lineal.
 
                         <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    commit id: "A"
+                                    commit id: "B"
+                                    commit id: "C"
+                                    branch develop
+                                    commit id: "F"
+                                    checkout main
+                                    commit id: "D"
+                                    commit id: "E"
+                                    checkout develop
+                                    commit id: "G"
+                                    commit id: "H"
+                            -->
                             <img src="images/rebase-1.svg" alt="No Fast Forward (1)" srcset="" class="img-center w40 mw50" />
+                            <!--
+                                https://mermaid.live/
+                                gitGraph
+                                    commit id: "A"
+                                    commit id: "B"
+                                    commit id: "C"
+                                    checkout main
+                                    commit id: "D"
+                                    commit id: "E"
+                                    branch develop
+                                    commit id: "F*"
+                                    commit id: "G*"
+                                    commit id: "H*"
+                            -->
                             <img src="images/rebase-2.svg" alt="No Fast Forward (2)" srcset="" class="img-center w40 mw50" />
                         </div>
 
@@ -162,11 +240,25 @@ bin/</code></pre>
 
                         <br /><br /><br />
 
-                        <h3 id="def-conflictos">Conflctos</h3>
+                        <h3 id="def-conflictos">Conflictos</h3>
                         Un <span class="text-bold">conflicto</span> se dá cuando dos ramas han modificado la misma línea de un archivo o cuando una rama ha eliminado un archivo que otra rama ha
                         modificado. En este caso, Git no puede decidir automáticamente qué cambios conservar y requiere intervención manual.
 
                         <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                gitGraph:
+                                    commit id: "A"
+                                    commit id: "B"
+                                    branch feature
+                                    commit id: "D"
+                                    checkout main
+                                    commit id: "C"
+                                    checkout feature
+                                    commit id: "E"
+                                    checkout main
+                                    merge feature id: "⚠️ MERGE"
+                            -->
                             <img src="images/conflicto-1.svg" alt="Fast Forward (1)" srcset="" class="img-center w40 mw50" />
                         </div>
                         Los conflictos surgen luego de realizar el <code>git merge develop</code>. Para visualizar los mismos se utiliza el comando <code>git status</code>. Se tienen los casos tipicos
@@ -232,17 +324,10 @@ bin/</code></pre>
                             <pre><code class="language-git"># Expresión mas elemental
 git commit -m "Mensaje descriptivo"
 
-# Simula el commit (no lo realiza, sirve para verificar que se incluiría)
-git commit --dry-run
-
-# Reutiliza el mensaje del commit anterior (ideal para correcciones rápidas)
-git commit -C HEAD~1
-
-# Permite prescindir del 'git add' previo al commit.
-git commit -a -m "Mensaje descriptivo"
-
-# Firma el commit con una clave GPG (Requiere especificarla en .gitconfig)
-git -S -m "Mensaje descriptivo"</code></pre>
+git commit --dry-run                    # Simula el commit (no lo realiza, sirve para verificar que se incluiría)
+git commit -C HEAD~1                    # Reutiliza el mensaje del commit anterior (ideal para correcciones rápidas)
+git commit -a -m "Mensaje descriptivo"  # Permite prescindir del 'git add' previo al commit.
+git -S -m "Mensaje descriptivo"         # Firma el commit con una clave GPG (Requiere especificarla en .gitconfig)</code></pre>
                         </div>
 
                         <br /><br /><br />
@@ -257,7 +342,7 @@ git -S -m "Mensaje descriptivo"</code></pre>
                         </div>
                         <p>
                             El campo <span class="text-bold">tipo</span> corresponde a alguno de los siguientes (Opcional: se pueden usar los iconos de la web
-                            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
+                            <a href="https://gitmoji.dev/" target="_blank" rel="noopener noreferrer">GitMoji</a>):
                         </p>
 
                         <ul>
@@ -304,7 +389,7 @@ git reset --hard {commit}</code></pre>
                         <br />
 
                         <h2 id="trabajando-con-ramas">Trabajando con Ramas</h2>
-                        El comando <span class="text-bold">git switch</span>  permite cambiar entre ramas de manera más sencilla que git checkout.
+                        El comando <span class="text-bold">git switch</span> permite cambiar entre ramas de manera más sencilla que git checkout.
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)"></button>
                             <pre><code class="language-git">git switch {nombre-rama}                        # Cambia de rama
@@ -317,9 +402,10 @@ git switch --merge {nombre-rama}                # Cambia arrastrando todos los c
 git switch -                                    # Cambia de vuelta a la ultima rama que estaba (parecido al `cd -`)</code></pre>
                         </div>
 
-                        <br><br>
+                        <br /><br />
 
-                        El comando <span class="text-bold">git checkout</span>  se utiliza para cambiar de ramas, restaurar archivos y crear nuevas ramas. Es uno de los comandos más versátiles en Git, aunque algunas de sus funciones han sido reemplazadas por git switch y git restore en versiones más recientes de Git.
+                        El comando <span class="text-bold">git checkout</span> se utiliza para cambiar de ramas, restaurar archivos y crear nuevas ramas. Es uno de los comandos más versátiles en Git,
+                        aunque algunas de sus funciones han sido reemplazadas por git switch y git restore en versiones más recientes de Git.
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)"></button>
                             <pre><code class="language-git">git checkout {nombre-rama}          # Cambio a una rama existente
@@ -330,10 +416,10 @@ git checkout -- {archivo}           # Restaura el archivo a su ultimo commit
 git checkout {commit}               # Me muevo al commit en modo 'Detached HEAD'</code></pre>
                         </div>
 
+                        <br /><br />
 
-                        <br><br>
-
-                        El comando <span class="text-bold">git branch</span>  se usa principalmente para crear, listar, eliminar y gestionar ramas en Git. No cambia el estado del área de trabajo, solo afecta a la configuración de las ramas.
+                        El comando <span class="text-bold">git branch</span> se usa principalmente para crear, listar, eliminar y gestionar ramas en Git. No cambia el estado del área de trabajo, solo
+                        afecta a la configuración de las ramas.
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)"></button>
                             <pre><code class="language-git">git branch             # Solo las locales
@@ -351,7 +437,12 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
                         <br /><br /><br />
                     </section>
 
-                    <hr />
+                    <section id="coming-soon">
+                        <div class="modern-container">
+                            <h2 class="modern-title">🌱 Ideas en crecimiento...</h2>
+                            <p class="modern-subtitle">Como una planta que crece con el tiempo, esta entrada se va completando a medida que florecen nuevas ideas y descubrimientos.</p>
+                        </div>
+                    </section>
                 </div>
             </div>
 

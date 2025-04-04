@@ -77,3 +77,46 @@ p.min-margin {
         width: 100%;
     }
 }
+
+
+
+
+
+
+/* =============> Para la sección: Mas notas dentro de poco... */
+#coming-soon {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ff3859, #cbb25acc);
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modern-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.modern-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.modern-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .modern-title {
+        font-size: 1.5rem;
+    }
+
+    .modern-subtitle {
+        font-size: 1rem;
+    }
+}
