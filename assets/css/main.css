@@ -3289,7 +3289,8 @@ body.is-touch .spotlight {
 }
 
 .wrapper.style2 {
-    background: #e44c65;
+    /* background: #e44c65; */
+    background: rgb(23, 24, 32);
 }
 
 .wrapper.style2 input[type="text"]:focus,
@@ -4211,6 +4212,7 @@ body.is-touch #banner {
     }
 }
 
+/* <------------------------------------------------------------> */
 /* Caja de Codigo: Estilos para el boton de Copy */
 .code-box {
     position: relative;
@@ -4250,6 +4252,7 @@ body.is-touch #banner {
     content: "\e5ca";
 }
 
+/* <------------------------------------------------------------> */
 /* Para los botones que permiten copiar o descargar codigos */
 .icon-content {
     height: 2.1em !important;
@@ -4283,6 +4286,7 @@ body.is-touch #banner {
     }
 }
 
+/* <------------------------------------------------------------> */
 /* Para las tablas */
 .table-css td {
     text-align: center;
@@ -4293,4 +4297,123 @@ body.is-touch #banner {
     font-weight: bold;
     font-style: italic;
     color: #bebebe;
+}
+
+/* <------------------------------------------------------------> */
+/* Para el Carrusel de proyectos */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 33.33%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+}
+
+.carousel-item h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.carousel-item .tags {
+    color: #912b2b;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    background-color: #def7ec;
+    border-radius: 2em;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.carousel-item .progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item .progress .progress-bar {
+    width: 50%;
+    background-color: #cccccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: auto 1rem auto 0;
+}
+
+.carousel-item .progress .progress-bar .progress-val {
+    height: 6px;
+    background-color: #e44c65;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+.carousel-item .progress .progress-val-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.carousel-item .description {
+    font-size: 1em;
+    height: 12rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1rem;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del ancho */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .carousel-item .button {
+        width: 100%;
+    }
 }

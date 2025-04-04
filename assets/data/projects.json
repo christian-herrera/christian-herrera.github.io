@@ -1,0 +1,58 @@
+[
+    {
+        "image": "/assets/data/projects-images/electronic1.jpg",
+        "title": "SyncWaveTrigger",
+        "tags": ["#UNLP", "#STM32"],
+        "progress": 100,
+        "description": "Proyecto diseñado en la asignatura <i>Taller de Sistemas Digitales</i>. El objetivo es sincronizar el disparo de un contactor con la señal sinusoidal de 220Vrms.",
+        "link": "https://christianherrera.com.ar/SyncWaveTrigger/"
+    },
+    {
+        "image": "/assets/data/projects-images/arduino1.jpg",
+        "title": "Carga Electrónica",
+        "tags": ["#UNLP", "#AVR"],
+        "progress": 50,
+        "description": "Proyecto diseñado en la asignatura <i>Arquitectura de Microcontroladores</i>. Se trata de una carga electronica capaz de simular una carga resistiva. Se diseñó el softare, con lo cual resta implementar el hardware.",
+        "link": "https://github.com/christian-herrera/Arq-Computadores/tree/main/Practica%20Nro%203"
+    },
+    {
+        "image": "/assets/data/projects-images/electronic2.jpg",
+        "title": "Módulos de Adquisición",
+        "tags": ["#UNLP", "#LEME", "#ESP12"],
+        "progress": 5,
+        "description": "Proyecto (<i>candidato a ser el trabajo final</i>) con la finalidad de realizar el monitoreo de temperatura con varios ESP12. Cada uno de ellos deberá enviar los datos por UDP a un servidor NAS. Tendrá una web del tipo Dashboard para visualizar los datos.",
+        "link": "https://github.com/christian-herrera/esp12-leme"
+    },
+    {
+        "image": "/assets/data/projects-images/coding1.jpg",
+        "title": "App de Adquisición",
+        "tags": ["#UNLP", "#LEME", "#MatLab"],
+        "progress": 100,
+        "description": "Aplicación diseñada en MatLab para la descarga de los datos de un osciloscopio. Se utiliza el protocolo VISA para la comunicación entre la PC y el osciloscopio Tektronix.",
+        "link": "https://github.com/christian-herrera/osc01-leme"
+    },
+    {
+        "image": "/assets/data/projects-images/coding2.jpg",
+        "title": "Web de Certificados",
+        "tags": ["#UNLP", "#LEME", "#HTML", "#CSS"],
+        "progress": 70,
+        "description": "Web diseñada en HTML y CSS para la descarga de los certificados de las calibraciones del laboratorio de calibraciones en la Universidad Nacional de La Plata. El proyecto esta en desarrollo y se encuentra en la etapa de pruebas.",
+        "link": ""
+    },
+    {
+        "image": "/assets/data/projects-images/coding3.jpg",
+        "title": "Web de Cursos (Obstétricas)",
+        "tags": ["#HTML", "#CSS", "#PHP", "#JS"],
+        "progress": 25,
+        "description": "Actualmente en desarrollo. Se trata de una web para el dictado de cursos online. Se utilizará HTML, CSS, JavaScript y PHP. Adicionalmente se utilizará un framework de PHP para la gestión de usuarios y cursos usando MySQL.",
+        "link": ""
+    },
+    {
+        "image": "/assets/data/projects-images/coding1.jpg",
+        "title": "Web Personal",
+        "tags": ["#HTML", "#CSS", "#JS"],
+        "progress": 25,
+        "description": "En constante mantenimiento. Se trata de esta misma web personal alojada en GitHub. Ademas de la ventana de tener mi propia web, es un proyecto para estar en constante practica con los lenguajes de programación web.",
+        "link": "https://github.com/christian-herrera/christian-herrera.github.io"
+    }
+]
