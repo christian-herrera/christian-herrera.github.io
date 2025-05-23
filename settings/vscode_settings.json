@@ -1,0 +1,175 @@
+{
+    // Fuentes a instalar:
+    // > JetBrains Mono (https://www.jetbrains.com/es-es/lp/mono/)
+    // > Meslo
+    
+    
+    // Ventana
+    "window.title": "${dirty}${rootName}",
+    
+    
+    // Sistema
+    "local-history.enabled": 0,
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
+    "workbench.commandPalette.history": 0,
+    "workbench.colorCustomizations": {
+        "tab.activeBackground": "#282c34",          // Fondo de la pestaña activa
+        "activityBar.background": "#282c34",        // Fondo de la barra de actividades
+        "sideBar.background": "#282c34",            // Fondo de la barra lateral
+        "tab.activeBorder": "#d19a66"               // Borde de la pestaña activa
+    },
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.svg": "default"
+    },
+
+
+    // Extensiones
+    "extensions.ignoreRecommendations": true,
+    
+
+    
+    // Editor
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "editor.fontFamily": "JetBrains Mono, Meslo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 12,
+    "editor.lineHeight": 1.4,
+    "editor.rulers": [
+        200
+    ],
+    //"editor.wordWrap": "bounded",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 200,
+    "editor.renderLineHighlight": "all",            // Resalta la línea actual
+    "editor.multiCursorModifier": "ctrlCmd",        // Habilita la selección de múltiples cursores con Ctrl
+    "editor.snippetSuggestions": "top",
+    "editor.mouseWheelZoom": false,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.linkedEditing": true,                   // Edita todas las instancias de una variable al mismo tiempo
+    "editor.guides.bracketPairs": "active",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontal": "hidden",    
+    "editor.find.history": "never",
+    "editor.minimap.size": "fit",
+    "editor.minimap.showSlider": "always",
+
+    // Terminal
+    "terminal.integrated.fontLigatures.enabled": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "block",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontSize": 12,    
+    
+
+    // Files
+    "files.autoSave": "onFocusChange",
+
+
+    // Git
+    "git.enableCommitSigning": true,
+    "git.openRepositoryInParentFolders": "never",
+
+
+    // Explorer
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    
+
+    // Hex Editor (https://marketplace.visualstudio.com/items?itemName=ms-vscode.hexeditor)
+    // "hexeditor.columnWidth": 30,
+    // "hexeditor.showDecodedText": true,
+    // "hexeditor.defaultEndianness": "little",
+    // "hexeditor.inspectorType": "aside",
+    
+    
+    // FiveServer
+    "fiveServer.php.executable": "/usr/bin/php8.3",
+    "fiveServer.php.ini": "/etc/php/8.3/fpm/php.ini",
+
+
+    // Git Graph
+    "git-graph.repository.sign.commits": true,
+
+
+    // Prettier
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 200,
+    "prettier.singleQuote": false,
+    "prettier.trailingComma": "es5",
+       
+    
+    
+    // Intelephense
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+        "editor.formatOnSave": true
+    },
+    "intelephense.format.braces": "k&r", // Llave de apertura en la misma linea
+
+
+    // Peacock
+    "peacock.favoriteColors": [
+        {
+            "name": "PHP",
+            "value": "#1857a4"
+        },
+        {
+            "name": "JavaScript",
+            "value": "#f9e64f"
+        },
+        {
+            "name": "HTML",
+            "value": "#215732"
+        },
+        {
+            "name": "PlatformIO",
+            "value": "#61dafb"
+        },
+        {
+            "name": "Rosa",
+            "value": "#832561"
+        },
+    ],
+    "peacock.affectActivityBar": false,
+    "peacock.affectStatusBar": false,
+
+
+
+    // Python
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.envFile": "${workspaceFolder}/.venv",
+
+
+    // Code Spell Checker
+    "cSpell.language": "en,es-ES",
+
+
+    // PlatformIO
+    "platformio-ide.autoOpenPlatformIOIniFile": false,
+    
+    
+    // C/C++
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, ColumnLimit: 200, BreakBeforeBraces: Attach, IndentWidth: 4, UseTab: Never }",
+    "terminal.integrated.commandsToSkipShell": [
+        "matlab.interrupt"
+    ],
+
+}
