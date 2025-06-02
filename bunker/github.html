@@ -47,6 +47,12 @@
                                         <li><a href="#trabajando-con-ramas">Trabajando con Ramas</a></li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="#casos-especiales">Casos Especiales</a>
+                                    <ul>
+                                        <li><a href="#caso-1">Traer rama intacta</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
@@ -436,6 +442,51 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
 
                         <br /><br /><br />
                     </section>
+
+
+                    <hr>
+
+
+                    <!-- Casos especiales -->
+                    <section>
+                        <h2 id="casos-especiales">Casos Especiales</h2>
+
+                        <h3 id="caso-1">📌 Realizar fusion reemplazando todo</h3>
+                        El objetivo es el siguiente caso: Se tiene una rama <code>feature</code> donde alli se encuentra la version operativa (la nueva versión). La idea es hacer un merge en <code>main</code>  descartando todo lo que alli se encuentra y colocando en esa rama, el contenido de <code>feature</code> 
+                        <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                gitGraph:
+                                    commit id: "A"
+                                    commit id: "B"
+                                    branch feature
+                                    commit id: "C"
+                                    commit id: "D"
+                                    checkout feature
+                                    commit id: "E"
+                                    checkout main
+                                    merge feature id: "E "
+                            -->
+                            <img src="images/caso-tipico-1.svg" alt="Caso Típico Nro. 1" srcset="" class="img-center w40 mw50" />
+                        </div>
+                        <p>El proceso es el siguiente:</p>
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git checkout develop            # Me muevo a `develop`
+git merge -s ours feature       # Trae todo pero descarta los cambios entrantes que llegan de `feature`. Se genera el commit "E".
+git rm -rf .                    # Elimina todo el contenido actual
+git checkout feature -- .       # Traigo todo lo que esta en `feature`
+git add .                       # Agrego todo
+git commit --amend              # Edito el commit "E" para agregar lo traido de `feature` y agregar comentarios.</code></pre>
+                        </div>
+
+                        <hr>
+                        <br />
+                    </section>
+
+
+
+
 
                     <section id="coming-soon">
                         <div class="modern-container">
