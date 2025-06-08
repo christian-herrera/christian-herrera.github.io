@@ -189,7 +189,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <code>~/.gitconfig</code>
+                                        <code>~/.gitconfig</code>, <code>C:/Users/{userX}/.gitconfig</code>
                                     </td>
                                     <td>
                                         <span class="icon alt major icon-content" onclick="downloadFile('gitconfig.txt', this)">
@@ -380,9 +380,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
                         <!-- Conexiones SSH -->
                         <h2 id="conexion-ssh">Conexiones SSH</h2>
-                        <p>Estas configuraciones son esenciales para el uso de la Yubikey.</p>
+                        <p>Estas configuraciones son esenciales para el uso de la Yubikey. Se puede averiguar el path del comando <code>ssh</code> en Windows con: <code>(Get-Command ssh).path</code> </p>
                         <ul>
-                            <li><span style="font-weight: bold">En Windows:</span><code>%APPDATA%/.ssh/*</code> (Se puede usar PIV u OpenPGP)</li>
+                            <li><span style="font-weight: bold">En Windows:</span><code>%APPDATA%/.ssh/*</code>, <code>C:/Users/{userX}/.ssh/*</code> (Se puede usar PIV u OpenPGP)</li>
                             <li><span style="font-weight: bold">En Ubuntu:</span>: <code>~/.ssh/*</code> (Se utiliza la funcion OpenPGP de la Yubikey)</li>
                         </ul>
 
@@ -971,15 +971,15 @@ sudo make install</code></pre>
                                         <code>Paquete de Conf. (Con Impresoras Fisicas).ini</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config', this)">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config.ini', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
-                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('prusaslicer_paquete_config', this, false)">
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('prusaslicer_paquete_config.ini', this, false)">
                                             <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config', this, false)">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('prusaslicer_paquete_config.ini', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
