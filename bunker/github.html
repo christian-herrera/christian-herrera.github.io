@@ -443,16 +443,95 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
                         <br /><br /><br />
                     </section>
 
+                    <hr />
 
-                    <hr>
+                    <!-- Flujo de trabajo -->
+                    <section>
+                        <h2 id="git-flow">Flujo de Trabajo (Típico)</h2>
 
+                        <p class="min-margin">
+                            Una forma típica de trabajar con las ramas es la de utilizar ramas especificas: <code>develop</code>, <code>feature/*</code> y <code>hotfix/*</code>. Esto se detalla en
+                            profundidad en el link
+                            <a href="https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423" target="_blank" rel="noopener noreferrer"
+                                >Medium.com</a
+                            >. Se puede entender fácilmente con la siguiente gráfica:
+                        </p>
+                        <br>
+                        <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                ---
+                                config:
+                                logLevel: 'debug'
+                                theme: 'dark'
+                                gitGraph:
+                                    mainBranchOrder: 2
+                                ---
+                                gitGraph
+                                    checkout main
+                                    commit id:"🔵 v0.9"
+                                    commit id:"🔵 v1.0"
+                                    branch develop order:3
+                                    checkout develop
+                                    commit id:"🟡 Dev 1"
+                                    branch feature/login order:4
+                                    checkout feature/login
+                                    commit
+                                    commit
+                                    checkout develop
+                                    merge feature/login
+                                    commit id:"🟡 Dev 2"
+                                    commit id:"🟡 Dev 3"
+                                    checkout main
+                                    merge develop id:"⚡️ v1.1" tag:"v1.1"
+                                    branch hotfix/dashboard order:1
+                                    checkout hotfix/dashboard
+                                    commit
+                                    commit
+                                    commit
+                                    checkout main
+                                    merge hotfix/dashboard id:"🔥 Hotfix aplicado"
+                                    checkout develop
+                                    merge main id:"⬅️fix → develop"
+                                    commit
+                                    commit
+                                    checkout main
+                                    merge develop id:"⚡️ v1.2" tag:"v1.2"
+                            -->
+                            <img src="images/git-flow.svg" alt="Git Flow - Image" srcset="" class="img-center w100 mw100" />
+                        </div>
+                        <p>Las ramas nombradas anteriormente tienen las siguientes características:</p>
+                        <ul>
+                            <li>
+                                <span class="text-bold"><code>develop</code></span
+                                >: Rama principal de desarrollo. Se crea una sola vez a partir de <code>main</code> y se usa para integrar nuevas funcionalidades antes de lanzar versiones estables.
+                                Esta rama nunca se elimina y convive en paralelo con la rama <code>main</code>.
+                            </li>
+                            <br>
+                            <li>
+                                <span class="text-bold"><code>hotfix/*</code></span
+                                >: Ramas temporales que se crean a partir de <code>main</code> cuando es necesario corregir errores críticos detectados en producción. Luego, se integran tanto en
+                                <code>main</code> como en <code>develop</code>. Al finalizar la corrección y hacer el merge sobre <code>main</code> se procede a eliminar la rama. Manteniendo
+                                únicamente la bifurcación pero no el nombre usado para la rama.
+                            </li>
+                            <br>
+                            <li>
+                                <span class="text-bold"><code>feature/*</code></span
+                                >: Ramas utilizadas para desarrollar nuevas funcionalidades. Se crean a partir de <code>develop</code> y, una vez completas, se integran nuevamente en esa rama. Al
+                                finalizar el desarrollo se procede a eliminar la rama. De igual forma que las ramas <code>hotfix/*</code> se mantienen las bifurcaciones pero se eliminan las ranas.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <hr />
 
                     <!-- Casos especiales -->
                     <section>
                         <h2 id="casos-especiales">Casos Especiales</h2>
 
-                        <h3 id="caso-1">📌 Realizar fusion reemplazando todo</h3>
-                        El objetivo es el siguiente caso: Se tiene una rama <code>feature</code> donde alli se encuentra la version operativa (la nueva versión). La idea es hacer un merge en <code>main</code>  descartando todo lo que alli se encuentra y colocando en esa rama, el contenido de <code>feature</code> 
+                        <h3 id="caso-1">📌 Realizar fusión reemplazando todo</h3>
+                        El objetivo es el siguiente caso: Se tiene una rama <code>feature</code> donde allí se encuentra la version operativa (la nueva versión). La idea es hacer un merge en
+                        <code>main</code> descartando todo lo que allí se encuentra y colocando en esa rama, el contenido de <code>feature</code>
                         <div class="img-center-container">
                             <!--
                                 https://mermaid.live/
@@ -480,13 +559,9 @@ git add .                       # Agrego todo
 git commit --amend              # Edito el commit "E" para agregar lo traido de `feature` y agregar comentarios.</code></pre>
                         </div>
 
-                        <hr>
+                        <hr />
                         <br />
                     </section>
-
-
-
-
 
                     <section id="coming-soon">
                         <div class="modern-container">

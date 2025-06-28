@@ -19,9 +19,9 @@
         "image": "/assets/data/projects-images/electronic2.jpg",
         "title": "Módulos de Adquisición",
         "tags": ["#UNLP", "#LEME", "#ESP12"],
-        "progress": 5,
-        "description": "Proyecto (<i>candidato a ser el trabajo final</i>) con la finalidad de realizar el monitoreo de temperatura con varios ESP12. Cada uno de ellos deberá enviar los datos por UDP a un servidor NAS. Tendrá una web del tipo Dashboard para visualizar los datos.",
-        "link": "https://github.com/christian-herrera/esp12-leme"
+        "progress": 65,
+        "description": "Proyecto (<i>candidato a ser el trabajo final</i>) con la finalidad de realizar el monitoreo de temperatura con varios ESP12. Cada uno de ellos envía los datos por TCP a un servidor web. Se implementa un dashboard para visualizar los valores.",
+        "link": ""
     },
     {
         "image": "/assets/data/projects-images/coding1.jpg",
@@ -51,7 +51,7 @@
         "image": "/assets/data/projects-images/coding1.jpg",
         "title": "Web Personal",
         "tags": ["#HTML", "#CSS", "#JS"],
-        "progress": 25,
+        "progress": 100,
         "description": "En constante mantenimiento. Se trata de esta misma web personal alojada en GitHub. Ademas de la ventana de tener mi propia web, es un proyecto para estar en constante practica con los lenguajes de programación web.",
         "link": "https://github.com/christian-herrera/christian-herrera.github.io"
     }
