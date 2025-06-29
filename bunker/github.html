@@ -392,7 +392,82 @@ git reset --hard {commit}</code></pre>
 
                         <br />
                         <hr />
+
+                        <h3>🏷️ Versionado</h3>
+                        El sistema de versiones se detalla en la web <a href="https://semver.org/lang/es/" target="_blank" rel="noopener noreferrer">Versionado Semántico 2.0.0</a>. La siguiente imagen
+                        es un resumen de la web mencionada: <br /><br />
+                        <div class="img-center-container">
+                            <img src="images/git-versiones.svg" alt="Versionado - Imagen" srcset="" class="img-center w70 mw100" />
+                        </div>
+
+                        <h4>
+                            🚨 Version Mayor <code>v<span style="color: rgb(6, 189, 0); font-weight: bold">X</span>.Y.Z</code>
+                        </h4>
+                        <p>
+                            Se debe incrementar cuando se hacen cambios que rompen la compatibilidad con versiones anteriores. Esto provoca que el usuario deba adaptar su código, configuración o forma
+                            de interacción con el sistema.
+                        </p>
+                        <ul>
+                            <li>Se eliminan funciones, comandos, parámetros o comportamientos existentes.</li>
+                            <li>Se modifica la firma de funciones (cambio en parámetros o tipo de retorno).</li>
+                            <li>Se altera el formato de entrada/salida o la estructura de datos.</li>
+                            <li>Se cambia el comportamiento de forma tal que se requiere adaptación por parte del usuario o sistema consumidor.</li>
+                            <li>Se modifica el entorno necesario para ejecutar el software (por ejemplo, cambios en dependencias críticas o plataforma).</li>
+                        </ul>
                         <br />
+
+                        <h4>
+                            👌 Version Menor <code>vX.<span style="color: rgb(6, 189, 0); font-weight: bold">Y</span>.Z</code>
+                        </h4>
+                        <p>
+                            Se debe incrementar cuando se añaden nuevas funcionalidades o mejoras, siempre que se mantenga la compatibilidad con versiones anteriores. Los usuarios pueden continuar
+                            utilizando la versión previa sin interrupciones, pero también pueden beneficiarse de las novedades.
+                        </p>
+                        <ul>
+                            <li>Se introducen nuevas funciones, comandos, clases o parámetros opcionales.</li>
+                            <li>Se amplían comportamientos ya existentes sin afectar su funcionamiento previo.</li>
+                            <li>Se realizan mejoras de rendimiento o eficiencia que no alteran los resultados.</li>
+                            <li>Se incorporan nuevos mensajes, advertencias o configuraciones adicionales sin eliminar las previas.</li>
+                            <li>Se añade soporte para nuevas plataformas, entornos, hardware o protocolos, sin afectar los actuales.</li>
+                        </ul>
+                        <br />
+
+                        <h4>
+                            👌 Version Parche <code>vX.Y.<span style="color: rgb(6, 189, 0); font-weight: bold">Z</span></code>
+                        </h4>
+                        <p>
+                            Se debe incrementar cuando se realizan correcciones de errores o ajustes menores que no afectan la compatibilidad ni modifican el comportamiento general del sistema. Estos
+                            cambios están destinados a mejorar la estabilidad y confiabilidad sin introducir nuevas funcionalidades.
+                        </p>
+                        <ul>
+                            <li>Se arreglan errores de lógica, errores de ejecución o fallos menores que no modifican la interfaz pública.</li>
+                            <li>Se corrige comportamiento inesperado manteniendo la compatibilidad con versiones anteriores.</li>
+                            <li>Se ajustan mensajes, validaciones u otros elementos internos sin cambiar el funcionamiento general.</li>
+                            <li>Se mejora la estabilidad del sistema o se eliminan condiciones de error.</li>
+                        </ul>
+                        La implementación de estas etiquetas es usando los <span class="text-bold">tags</span> en GitHub. Esto es simplemente una etiqueta a un commit en especifico. El uso de
+                        <code>git tag</code> es el siguiente:
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git"># Versiones simples
+git tag                                             # Lista todos los tags del repositorio actual
+git tag v1.0.0                                      # Crea un tag (ligero) del commit actual
+
+# Versiones mas completas
+git tag -a v1.0.0 -m "primera versión estáble"              # Crea un tag con metadata (annotated) del commit actual
+git tag -a v1.0.0 {commit} -m "versión estable del 2025"    # Crea un tag (annotated) pero de un commit especifico.
+
+# Sincronizar con el repositorio remoto
+git push origin v1.0.0                  # Envía el tag especifico
+git push origin --tags                  # Envía todos los tags
+git tag -d v1.0.0                       # Elimina un tag local
+git push origin --delete tag v1.0.0     # Elimina un tag del remoto</code></pre>
+                        </div>
+
+                        <br />
+                        <br />
+                        <hr />
 
                         <h2 id="trabajando-con-ramas">Trabajando con Ramas</h2>
                         El comando <span class="text-bold">git switch</span> permite cambiar entre ramas de manera más sencilla que git checkout.
@@ -456,7 +531,7 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
                                 >Medium.com</a
                             >. Se puede entender fácilmente con la siguiente gráfica:
                         </p>
-                        <br>
+                        <br />
                         <div class="img-center-container">
                             <!--
                                 https://mermaid.live/
@@ -507,14 +582,14 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
                                 >: Rama principal de desarrollo. Se crea una sola vez a partir de <code>main</code> y se usa para integrar nuevas funcionalidades antes de lanzar versiones estables.
                                 Esta rama nunca se elimina y convive en paralelo con la rama <code>main</code>.
                             </li>
-                            <br>
+                            <br />
                             <li>
                                 <span class="text-bold"><code>hotfix/*</code></span
                                 >: Ramas temporales que se crean a partir de <code>main</code> cuando es necesario corregir errores críticos detectados en producción. Luego, se integran tanto en
                                 <code>main</code> como en <code>develop</code>. Al finalizar la corrección y hacer el merge sobre <code>main</code> se procede a eliminar la rama. Manteniendo
                                 únicamente la bifurcación pero no el nombre usado para la rama.
                             </li>
-                            <br>
+                            <br />
                             <li>
                                 <span class="text-bold"><code>feature/*</code></span
                                 >: Ramas utilizadas para desarrollar nuevas funcionalidades. Se crean a partir de <code>develop</code> y, una vez completas, se integran nuevamente en esa rama. Al
