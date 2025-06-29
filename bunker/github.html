@@ -51,6 +51,7 @@
                                     <a href="#casos-especiales">Casos Especiales</a>
                                     <ul>
                                         <li><a href="#caso-1">Traer rama intacta</a></li>
+                                        <li><a href="#caso-2">Fusionar commits</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -621,7 +622,7 @@ git branch -m {nombre} {nuevo-nombre}   # Cambia el nombre de una rama</code></p
                                     checkout main
                                     merge feature id: "E "
                             -->
-                            <img src="images/caso-tipico-1.svg" alt="Caso Típico Nro. 1" srcset="" class="img-center w40 mw50" />
+                            <img src="images/caso-tipico-1.svg" alt="Caso Típico Nro. 1" srcset="" class="img-center w40 mw100" />
                         </div>
                         <p>El proceso es el siguiente:</p>
                         <div class="code-box">
@@ -635,7 +636,85 @@ git commit --amend              # Edito el commit "E" para agregar lo traido de 
                         </div>
 
                         <hr />
+
+                        <h3 id="caso-2">📌 Fusionar commits de una rama</h3>
+                        El objetivo es lograr que 4 commits (consecutivos) de una rama se fusionen en uno solo. Suponiendo que se tiene el caso de la imagen, para el cual se requieren fusionar los
+                        commits: <code>f868fb5</code>, <code>b63036d</code>, <code>5feb155</code> y <code>6dceaca</code>. Es decir, <code>3</code>, <code>4</code>, <code>5</code> y <code>6</code>.
                         <br />
+                        <br />
+                        <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                ---
+                                config:
+                                logLevel: 'debug'
+                                theme: 'dark'
+                                gitGraph:
+                                    mainBranchOrder: 2
+                                ---
+                                gitGraph
+                                    commit
+                                    commit
+                                    branch feat/login
+                                    checkout feat/login
+                                    commit id:"3f72afe" tag:"1"
+                                    commit id:"76c6b73" tag:"2"
+                                    commit id:"f868fb5" tag:"3"
+                                    commit id:"b63036d" tag:"4"
+                                    commit id:"5feb155" tag:"5"
+                                    commit id:"6dceaca" tag:"6"
+                                    commit id:"a85d29b" tag:"7"
+                            -->
+                            <img src="images/caso-tipico-2A.svg" alt="Caso Típico Nro. 2" srcset="" class="img-center w60 mw100" />
+                        </div>
+                        <p>
+                            Se utiliza el comando <code>git rebase -i {commit}</code> donde el commit que se requiere pasar es el commit previo al primero que quiero fusionar, es decir,
+                            <code>76c6b73</code> que es el del commit <code>2</code>. Entonces:
+                        </p>
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git rebase -i 76c6b73</code></pre>
+                        </div>
+                        <p>
+                            Haciendo esto, se abrira el editor solicitando que hacer con los commits siguientes al <code>2</code>. Se debe identificar el commit <code>3</code> y marcarlo como
+                            <code>pick</code>. Y al resto de los commits que se quieren fusionar, se marcan con <code>squash</code>. Esto queda de la forma:
+                        </p>
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">pick f868fb5 Edición 3
+squash b63036d Edición 4
+squash 5feb155 Edición 5
+squash 6dceaca Edición 6
+pick a85d29b Edición 7</code></pre>
+                        </div>
+                        Finalmente, se nos pide la confirmación del commit y se abre nuevamente el editor para colocar la descripcion del mismo. Finalizado esto se obtiene el resultado:
+                        <br />
+                        <br />
+                        <div class="img-center-container">
+                            <!--
+                                https://mermaid.live/
+                                ---
+                                config:
+                                logLevel: 'debug'
+                                theme: 'dark'
+                                gitGraph:
+                                    mainBranchOrder: 2
+                                ---
+                                gitGraph
+                                    commit
+                                    commit
+                                    branch feat/login
+                                    checkout feat/login
+                                    commit id:"3f72afe" tag:"1"
+                                    commit id:"76c6b73" tag:"2"
+                                    commit id:"b519fea" tag:"3,4,5,6" type: HIGHLIGHT
+                                    commit id:"a85d29b" tag:"7"
+                            -->
+                            <img src="images/caso-tipico-2B.svg" alt="Caso Típico Nro. 2" srcset="" class="img-center w50 mw100" />
+                        </div>
+
+                        <br />
+                        <hr />
                     </section>
 
                     <section id="coming-soon">
