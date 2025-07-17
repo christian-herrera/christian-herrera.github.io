@@ -1,0 +1,53 @@
+
+╔═════════════════════════════════════════════════════════════════════════════════════════════════╗
+                               _____  _  _    _    _         _     
+                              / ____|(_)| |  | |  | |       | |    
+                             | |  __  _ | |_ | |__| | _   _ | |__  
+                             | | |_ || || __||  __  || | | || '_ \ 
+                             | |__| || || |_ | |  | || |_| || |_) |
+                              \_____||_| \__||_|  |_| \__,_||_.__/ 
+                                    ⪼ 𝘽𝙮 𝘾𝙝𝙧𝙞𝙨𝙩𝙞𝙖𝙣 𝙃𝙚𝙧𝙧𝙚𝙧𝙖 ⪻
+
+   ┬ 🔨 Resets
+   │  ├ git reset --soft {commit}               ⮞ Los cambios se mantienen en el Staging Area
+   │  ├ git reset --mixed {commit}              ⮞ Los cambios se quitan del Staging Area
+   │  └ git reset --hard {commit}               ⮞ Los cambios se quitan del Staging Area y se
+   │                                              restablece el directorio
+   │
+   ├ 📝 Tags
+   │  ├ git tag                                 ⮞ Lista los tags
+   │  ├ git tag vx.y.z                          ⮞ Crea un tag (light)
+   │  └ git tag -d vx.y.z                       ⮞ Elimina un tag local
+   │
+   ├ 👆 Subir al Remoto
+   │  ├ git push origin --tags                  ⮞ Sube todos los tags
+   │  ├ git push origin --delete tag vx.y.z     ⮞ Elimina un tag del remoto
+   │  ├ git push origin --delete {rama}         ⮞ Elimina una rama del remoto
+   │  └ git push origin --all origin            ⮞ Envía todas las ramas
+   │
+   ├ 👇 Traer del Remoto
+   │  ├ git fetch {origin|--all}                ⮞ Descarga cambios (no los fusiona)
+   │  ├ git pull {origin}                       ⮞ Descarga y fusiona en el local la rama actual
+   │  └ git pull origin {rama}                  ⮞ Descarga la {rama} al
+   │
+   ├ 🔀 Ramas
+   │  ├ Git Switch
+   │  │  ├ git switch {rama}                    ⮞ Cambia de rama
+   │  │  ├ git switch -c {rama}                 ⮞ Crea una rama y cambia a ella
+   │  │  ├ git switch --detach {commit}         ⮞ Me muevo en el modo 'Detached HEAD'
+   │  │  ├ git switch --discart-changes {rama}  ⮞ Cambia descartando los cambios hechos
+   │  │  └ git switch --merge {rama}            ⮞ Cambia arrastrando todos los cambios
+   │  │
+   │  ├ Git Checkout
+   │  │  ├ git checkout {rama}                  ⮞ Cambia de rama
+   │  │  └ gpg checkout -b {rama}               ⮞ Crea una rama y cambia a ella
+   │  │
+   │  └ Git Branch
+   │     ├ git branch                           ⮞ Lista las ramas (locales)
+   │     ├ git branch -r                        ⮞ Lista las ramas (remotas)
+   │     ├ git branch -a                        ⮞ Lista todas las ramas
+   ·     ├ git branch -d {rama}                 ⮞ Elimina una rama local (si ya está fusionada)
+   ·     ├ git branch -D {rama}                 ⮞ Elimina una rama local (de manera forzada)
+   ·     └ git branch -m {old} {new}            ⮞ Cambia de nombre a una rama
+
+╚═════════════════════════════════════════════════════════════════════════════════════════════════╝
