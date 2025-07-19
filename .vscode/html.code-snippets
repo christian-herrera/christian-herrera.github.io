@@ -16,9 +16,65 @@
 	// 	"description": "Log output to console"
 	// }
 
+
+	"Callout Básico": {
+		"scope": "html",
+		"prefix": ".callout",
+		"body": [
+			"<details class=\"callout\">",
+			"	<summary>${1:Titulo}</summary>",
+			"	<div class=\"content\">",
+			"		${2:Contenido}",
+			"	</div>",
+			"</details>"
+		],
+		"description": "Inserta un Callout básico"
+	},
+
+
+	"Sección Básica": {
+		"scope": "html",
+		"prefix": ".sectionBasic",
+		"body": [
+			"<br />",
+			"<hr />",
+			"<section id=\"${1:id}\">",
+			"	<h2>${2:Titulo}</h2>",
+			"	<p>",
+			"		${3:Desarrollo...}",
+			"	</p>",
+			"</section>"
+		],
+		"description": "Plantilla básica para un sección"
+	},
+
+
+	"Lista": {
+		"scope": "html",
+		"prefix": ".list",
+		"body": [
+			"<ul>",
+			"	<li><span class=\"text-fontall\">${1:Item 1}</span><span class=\"text-italic\"> (${2:Nota})</span>: ${3:Desc. Item 1}</li>",
+			"</ul>"
+		],
+		"description": "Inserta el formato de una lista (sin numeración)"
+	},
+
+
+	
+	"Agregar ítem": {
+		"scope": "html",
+		"prefix": ".addli",
+		"body": [
+			"<li><span class=\"text-fontall\">${1:Item 1}</span><span class=\"text-italic\"> (${2:Nota})</span>: ${3:Desc. Item 1}</li>",
+		],
+		"description": "Agrega un ítem a una lista <ul>"
+	},
+
+
 	"Imagen": {
 		"scope": "html",
-		"prefix": "img",
+		"prefix": ".img",
 		"body": [
 			"<div class=\"img-center-container\">",
 			"	<img src=\"images/${1:path}\" alt=\"Imagen no disponible!\" srcset=\"\" class=\"img-center w${2:width} mw${3:width mobile}\" />",
@@ -30,7 +86,7 @@
 
 	"Codigo Inline": {
 		"scope": "html",
-		"prefix": "code",
+		"prefix": ".code",
 		"body": [
 			"<code>${1:Código}</code> $0"
 		],
@@ -39,7 +95,7 @@
 
 	"Bloque de Código": {
 		"scope": "html",
-		"prefix": "bcode",
+		"prefix": ".bcode",
 		"body": [
 			"<div class=\"code-box\">",
 			"	<button class=\"copy-btn\" onclick=\"copyCode(this)\"></button>",

@@ -20,8 +20,9 @@
                         <li>
                             <a href="/bunker/index">Temario</a>
                             <ul>
-                                <li><a href="/bunker/gnupg.html">OpenPGP</a></li>
-                                <li><a href="/bunker/github.html">GitHub</a></li>
+                                <li><a href="/bunker/gnupg">OpenPGP</a></li>
+                                <li><a href="/bunker/github">GitHub</a></li>
+                                <li><a href="/bunker/openssl">GitHub</a></li>
                             </ul>
                         </li>
                         <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
@@ -39,17 +40,50 @@
                     </header>
 
                     <!-- Text -->
-                    <section>
-                        <h2>Temario Completo</h2>
-                        <div class="row">
-                            <div class="col-3 col-6-medium col-12-xsmall" style="margin-bottom: 10px;">
-                                <a href="/bunker/gnupg.html" class="button small fit">GnuPG</a>
-                            </div>
-                            <div class="col-3 col-6-medium col-12-xsmall" style="margin-bottom: 10px;">
-                                <a href="/bunker/github.html" class="button small fit">GitHub</a>
+                    <section id="temario" class="wrapper">
+                        <div class="container">
+                            <!-- <header>
+                                <h2></h2>
+                                <p>Entre cables, funciones y tardes largas, van saliendo estas cosas que me gusta ir creando.</p>
+                            </header> -->
+                            <div class="card">
+                                <div class="card-container" id="carousel-container">
+                                    <div class="card-item">
+                                        <img src="/assets/data/cards-images/coding1.jpg" alt="- Portada -" />
+                                        <h3>GnuPG</h3>
+                                        <p class="tags">Seguridad Informática</p>
+                                        <p class="description">Apuntes sobre el uso del software GnuPG para realizar cifrados (simétrico y asimétrico), firmas digitales o autenticaciones utilizando claves públicas/privadas.</p>
+                                        <button onclick="window.open('/bunker/gnupg')" class="button small">Abrir Nota</button>
+                                    </div>
+                                    <div class="card-item">
+                                        <img src="/assets/data/cards-images/branch1.jpg" alt="- Portada -" />
+                                        <h3>GitHub</h3>
+                                        <p class="tags">Control de Versiones</p>
+                                        <p class="description">Apuntes sobre el manejo de repositorios con GitHub. Usos de los comandos más básicos y flujos de trabajos típicos.</p>
+                                        <button onclick="window.open('/bunker/github')" class="button small">Abrir Nota</button>
+                                    </div>
+                                    <div class="card-item">
+                                        <img src="/assets/data/cards-images/coding2.jpg" alt="- Portada -" />
+                                        <h3>OpenSSL</h3>
+                                        <p class="tags">Criptografía</p>
+                                        <p class="description">Notas y apuntes sobre la <span class="text-italic">Infraestructura PKI</span>, la cual permite establecer una Autoridad Certificante.</p>
+                                        <button onclick="window.open('/bunker/openssl')" class="button small">Abrir Nota</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
+                    <!-- <div class="row text-center">
+                            <div class="col-md-4">
+                                <a href="/bunker/gnupg.html" class="button small fit">GnuPG</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/bunker/github.html" class="button small fit">GitHub</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/bunker/openssl.html" class="button small fit">OpenSSL</a>
+                            </div>
+                        </div> -->
                 </div>
             </div>
 
@@ -64,8 +98,6 @@
                     document.getElementById("footer").innerHTML = data;
                 });
             });
-
-           
         </script>
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/jquery.scrolly.min.js"></script>

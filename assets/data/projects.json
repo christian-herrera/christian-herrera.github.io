@@ -1,6 +1,6 @@
 [
     {
-        "image": "/assets/data/projects-images/electronic1.jpg",
+        "image": "/assets/data/cards-images/electronic1.jpg",
         "title": "SyncWaveTrigger",
         "tags": ["#UNLP", "#STM32"],
         "progress": 100,
@@ -8,7 +8,7 @@
         "link": "https://christianherrera.com.ar/SyncWaveTrigger/"
     },
     {
-        "image": "/assets/data/projects-images/arduino1.jpg",
+        "image": "/assets/data/cards-images/arduino1.jpg",
         "title": "Carga Electrónica",
         "tags": ["#UNLP", "#AVR"],
         "progress": 50,
@@ -16,7 +16,7 @@
         "link": "https://github.com/christian-herrera/Arq-Computadores/tree/main/Practica%20Nro%203"
     },
     {
-        "image": "/assets/data/projects-images/electronic2.jpg",
+        "image": "/assets/data/cards-images/electronic2.jpg",
         "title": "Módulos de Adquisición",
         "tags": ["#UNLP", "#LEME", "#ESP12"],
         "progress": 65,
@@ -24,7 +24,7 @@
         "link": ""
     },
     {
-        "image": "/assets/data/projects-images/coding1.jpg",
+        "image": "/assets/data/cards-images/coding1.jpg",
         "title": "App de Adquisición",
         "tags": ["#UNLP", "#LEME", "#MatLab"],
         "progress": 100,
@@ -32,7 +32,7 @@
         "link": "https://github.com/christian-herrera/osc01-leme"
     },
     {
-        "image": "/assets/data/projects-images/coding2.jpg",
+        "image": "/assets/data/cards-images/coding2.jpg",
         "title": "Web de Certificados",
         "tags": ["#UNLP", "#LEME", "#HTML", "#CSS"],
         "progress": 70,
@@ -40,7 +40,7 @@
         "link": ""
     },
     {
-        "image": "/assets/data/projects-images/coding3.jpg",
+        "image": "/assets/data/cards-images/coding3.jpg",
         "title": "Web de Cursos (Obstétricas)",
         "tags": ["#HTML", "#CSS", "#PHP", "#JS"],
         "progress": 25,
@@ -48,7 +48,7 @@
         "link": ""
     },
     {
-        "image": "/assets/data/projects-images/coding1.jpg",
+        "image": "/assets/data/cards-images/coding1.jpg",
         "title": "Web Personal",
         "tags": ["#HTML", "#CSS", "#JS"],
         "progress": 100,

@@ -213,8 +213,8 @@ input,
 select,
 textarea {
     color: rgba(255, 255, 255, 0.75);
-    font-family: "Roboto", Helvetica, sans-serif;
-    font-size: 15pt;
+    font-family: "Roboto", Helvetica, sans-serif !important;
+    font-size: 13pt;
     font-weight: 100;
     line-height: 1.75em;
 }
@@ -3611,10 +3611,10 @@ body.landing #header {
     border: 5px solid #ffffff7a;
     border-radius: 100%;
     display: inline-block;
-    height: 18em;
+    height: 22em;
+    width: 22em;
     margin-left: 3em;
     vertical-align: middle;
-    width: 18em;
 }
 
 #banner .content .image img {
@@ -4300,6 +4300,81 @@ body.is-touch #banner {
 }
 
 /* <------------------------------------------------------------> */
+/* Para los Span personalizados */
+span.text-italic {
+    font-style: italic;
+}
+
+span.text-bold {
+    font-weight: bold;
+}
+
+span.text-underline {
+    text-decoration: underline;
+}
+
+span.text-fontall {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* <------------------------------------------------------------> */
+/* Callout oscuro */
+.callout {
+    border: 1px solid #333;
+    border-left: 4px solid #4ea8de;
+    border-radius: 8px;
+    margin: 0.3rem 0;
+    background: #2a2b3a;
+    overflow: hidden;
+}
+
+/* Título del callout */
+.callout summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    background: #2f3140;
+    color: #ffffff;
+    transition: background 0.3s;
+}
+
+.callout summary:hover {
+    background: #3a3d4e;
+}
+
+/* Ocultar el marcador por defecto */
+.callout summary::marker {
+    display: none;
+}
+
+.callout summary::before {
+    padding-left: 0.5rem;
+    font-family: "Material Symbols Outlined";
+    font-size: 2rem;
+    content: "\e5df";
+    display: inline-block;
+    transition: transform 0.3s ease;
+    color: #4ea8de;
+}
+
+/* Flecha rotada al abrir */
+.callout[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* Contenido interno */
+.callout .content {
+    padding: 1em;
+    border-top: 1px solid #333;
+    color: #cfcfcf;
+}
+
+/* <------------------------------------------------------------> */
 /* Para el Carrusel de proyectos */
 .carousel {
     position: relative;
@@ -4411,9 +4486,86 @@ body.is-touch #banner {
     }
 }
 
-
 @media (max-width: 480px) {
     .carousel-item .button {
         width: 100%;
+    }
+}
+
+/* <------------------------------------------------------------> */
+/* Para el Carrusel de proyectos */
+.card {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card-item {
+    flex: 0 0 31%;
+    box-sizing: border-box;
+    padding: 0 0 1rem 0;
+    text-align: center;
+    color: #aaaaaa;
+    background-color: #181920;
+    border-radius: 10px;
+}
+
+.card-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+}
+
+.card-item h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.card-item .tags {
+    color: #912b2b;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    background-color: #def7ec;
+    border-radius: 2em;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.card-item .description {
+    font-size: 1em;
+    height: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0.5rem 1rem 0.5rem;
+}
+
+.card-item .buttom {
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .card-item {
+        flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del ancho */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-item .button {
+        width: 90%;
     }
 }

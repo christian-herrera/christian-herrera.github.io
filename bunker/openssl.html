@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Christian Herrera</title>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/assets/icons/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bunker.css" />
+        <link rel="stylesheet" href="/assets/css/prism.css" />
+        <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload landing">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1 id="logo"><a href="/index.html" style="font-style: italic">Christian Herrera</a></h1>
+                <nav id="nav">
+                    <!-- ======== TEMARIO ======== -->
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li>
+                            <a href="/bunker/index">Bunker</a>
+                            <ul>
+                                <li><a href="/bunker/gnupg">OpenPGP</a></li>
+                                <li><a href="/bunker/github">GitHub</a></li>
+                                <li><a href="/bunker/openssl">OpenSSL</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Indice</a>
+                            <ul>
+                                <li>
+                                    <a href="#def-generales">Def. Generales</a>
+                                </li>
+                                <li>
+                                    <a href="#inf-1">Única CA</a>
+                                    <ul>
+                                        <li><a href="#inf-1-directorio">Directorio de Trabajo</a></li>
+                                        <li><a href="#inf-1-config">Configuraciones</a></li>
+                                        <li><a href="#inf-1-proceso">Proceso</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#inf-2">CA y Sub-CAs</a>
+                                    <ul>
+                                        <li><a href="#inf-2-directorio">Directorio de Trabajo</a></li>
+                                        <li><a href="#inf-2-config">Configuraciones</a></li>
+                                        <li><a href="#inf-2-proceso">Proceso</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="mailto:christian.herrera@ing.unlp.edu.ar" class="button primary">Escríbeme!</a></li>
+                    </ul>
+                    <!-- ========================= -->
+                </nav>
+            </header>
+
+            <!-- Main -->.
+            <div id="main" class="wrapper style1">
+                <div class="container">
+                    <header class="major">
+                        <h2>OpenSSL</h2>
+                        <p>Notas sobre la infraestructura PKI</p>
+                    </header>
+
+                    <!-- Definiciones generales -->
+                    <section id="def-generales">
+                        <h2>Definiciones Generales</h2>
+                        <ul>
+                            <li><span class="text-fontall">CA</span> <span class="text-italic">(Autoridad de Certificación)</span> : Es la entidad emisora de certificados y CRL</li>
+                            <li>
+                                <span class="text-fontall">PKI</span> <span class="text-italic">(infraestructura de Clave Pública)</span> : Es la arquitectura de seguridad donde la confianza se
+                                transmite a través de la firma de un CA confiable.
+                            </li>
+                            <li><span class="text-fontall">RA</span> <span class="text-italic">(Autoridad de Registro)</span>: Entidad que maneja la inscripción a PKO. Puede ser idéntico al CA.</li>
+                            <li><span class="text-fontall">certificados</span>: Clave pública e identificación vinculadas por una firma CA</li>
+                            <li>
+                                <span class="text-fontall">CSR</span><span class="text-italic"> (Solicitud de firma de certificados)</span>: Solicitud de certificado. Contiene clave pública e
+                                identificación para ser certificado.
+                            </li>
+                            <li><span class="text-fontall">CRL</span><span class="text-italic"> (Lista de revocación de certificados)</span>: Es emitido por una CA a intervalos regulares.</li>
+                            <li>
+                                <span class="text-fontall">CPS</span><span class="text-italic"> (Declaración de práctica de Certificación)</span>: Documento que describe la estructura y los procesos
+                                de una CA.
+                            </li>
+                        </ul>
+
+                        <h3>Tipos de CA:</h3>
+                        <ul>
+                            <li><span class="text-fontall">Raiz CA</span>: Ca en la raiz de una jerarquía PKI. Emite únicamente certificados CA.</li>
+                            <li><span class="text-fontall">CA Intermedio</span>: CA debajo de la CA Raiz pero no una CA de firma. Emite únicamente certificados CA.</li>
+                            <li><span class="text-fontall">Firmando CA</span>: CA en la parte inferior de una jerarquía PKI. Emite únicamente certificados de usuario.</li>
+                        </ul>
+
+                        <h3>Tipos de Certificados:</h3>
+                        <ul>
+                            <li><span class="text-fontall">Certificados CA</span>: Certificado de una CA. Se utiliza para firmar certificados y CRL.</li>
+                            <li><span class="text-fontall">Certificado Raiz</span>: Certificado autofirmado en la raíz de una jerarquía PKI. Sirve como ancla de confianza de la PKI.</li>
+                            <li>
+                                <span class="text-fontall">Certificado Cruzado</span>: Certificado CA emitido por una CA externa en la jerarquía principal de PJI. Se utiliza pra conectar dos PKI y,
+                                por lo tanto, generalmente viene en pares.
+                            </li>
+                            <li>
+                                <span class="text-fontall">Certificado de Usuario</span>: Certificado de entidad final para uno o más fines: protección de correo electrónico, autenticación de
+                                servidor, firma de código, etc. Un certificado de usuario no puede firmar otros certificados.
+                            </li>
+                        </ul>
+
+                        <h3>Formato de Archivos:</h3>
+                        <ul>
+                            <li>
+                                <span class="text-fontall">PEM</span><span class="text-italic"> (Correo con privacidad mejorada)</span>: Formato de texto. Datos codificados en <code>base64</code> con
+                                lineas de encabezado y pie de página. Formato preferido en OpenSSL y la mayoría de software basado en él.
+                            </li>
+                            <li>
+                                <span class="text-fontall">DER</span><span class="text-italic"> (Reglas de codificación distinguidas)</span>: Formato binario. Formato preferido en entornos Windows.
+                                También el formato oficial para descarga por internet de certificados y CRL.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <br />
+                    <hr />
+                    <section id="inf-1">
+                        <h2>Estructura Básica (Única CA)</h2>
+                        Se puede resumir en el siguiente esquema:<br />
+                        <div class="img-center-container">
+                            <img src="images/infraestructura_basica.svg" alt="areas de github" srcset="" class="img-center w80 mw100" />
+                        </div>
+
+                        <br />
+                        <h3 id="inf-1-directorio">Directorio de Trabajo</h3>
+                        En algun directorio conocido, se deberá crear la siguiente estructura de directorios y archivos:
+                        <div class="code-box">
+                            <pre><code class="">📂 CA_v1
+   ├ 📂certs           -> Acá aparecerán los certificados a compartir
+   ├ 📂config          -> Configuraciones `.cnf`
+   ├ 📂crl             -> Acá se mantiene la lista de revocación
+   ├ 📂csrs            -> Acá se ubican las solicitudes de certificados
+   ├ 📂db_certs        -> OpenSSL mantiene acá los certificados firmados (no se deben quitar, es para uso interno)
+   ├ 📂identities      -> Contiene las claves privadas de cada identidad
+   ├ 📂private         -> Contiene la clave privada de la CA (y demás datos que se consideren importantes)
+   ├ 📝crlnumber       -> Lleva la cuenta de los certificados revocados
+   ├ 📝serial          -> Lleva la cuenta de los certificados emitidos
+   └ 📝index.txt       -> Base de datos con el listado de los certificados (válidos y revocados)</code></pre>
+                        </div>
+
+                        <span class="text-fontall">Notas</span>: Los archivos de texto no deben tener ningún salto de línea. Cargar en <code>crlnumber</code> y en <code>serial</code> el valor 1000).
+
+                        <details class="callout">
+                            <summary>Forma simple de crear los directorios y archivos...</summary>
+                            <div class="content">
+                                <span class="text-fontall">Para Windows:</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-powershell">mkdir certs,config,crl,csrs,db_certs,identities,private            # Carpetas de la CA
+New-Item -ItemType File -Path "serial","crlnumber","index.txt"     # Archivos
+"1000" | Out-File -Encoding ascii -NoNewline crlnumber             # Valores iniciales para crlnumber
+"1000" | Out-File -Encoding ascii -NoNewline serial                # Valores iniciales para serial
+cd ..</code></pre>
+                                </div>
+                                <span class="text-fontall">Para Linux:</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash">mkdir certs config crl csrs db_certs identities private            # Carpetas de la CA
+touch index.txt
+echo 1000 > serial
+echo 1000 > crlnumber
+cd ..</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <br /><br /><br />
+                        <h3 id="inf-1-config">Archivos de Configuraciones</h3>
+
+                        <details class="callout">
+                            <summary>config/CA_create.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># CA_create.cnf
+#
+# Valores a editar:
+# - `req_distinguished_name`: Colocar los datos de la Autoridad Certificante (CA)
+
+# ---------------------------------------------------------------------
+# Parámetros por defecto para generar solicitudes de certificados (CSR)
+# Se usa cuando se genera un CSR con `openssl req -new...`.
+# ---------------------------------------------------------------------
+[ req ]
+default_bits        = 4096                        # Tamaño por defecto de la clave generada
+default_md          = sha256                      # Algoritmo hash para firmar el CRLs
+prompt              = no                          # No pedir datos por consola
+distinguished_name  = req_distinguished_name      # Seccion con los datos del sujeto (DN)
+x509_extensions     = v3_ca                       # Si se usa `-x509`, aplicar estas extensiones
+
+# ------------------------------------------------------------
+# Valores que se usarán para el Distinguished Name del CA
+# Se usa cuando se 
+# ------------------------------------------------------------
+[ req_distinguished_name ]
+C  = AR                                           # País (Argentina)
+ST = Buenos Aires                                 # Provincia
+L  = La Plata                                     # Localidad
+O  = LEME                                         # Nombre de la organización
+OU = Facultad de Ingeniería, UNLP                 # Unidad organizacional
+CN = LEME CA v1                                   # Common Name (identificador de la CA)
+
+# ------------------------------------------
+# Extensiones: para certificados de tipo CA
+# ------------------------------------------
+[ v3_ca ]
+subjectKeyIdentifier = hash                                   # Identificador único de clave del sujeto
+authorityKeyIdentifier = keyid:always,issuer                  # Identificador del emisor (CA)
+basicConstraints = critical, CA:true                          # Este certificado es una CA
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar, CRL, etc.</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>config/CA_sign.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># CA_sign.cnf
+#
+# Valores a editar:
+# - `dir`:                    Path de la Sub-CA -> ./root_CA
+# - `crlDistributionPoints`:  URL del CRL que tendrá la CA (root_ca/crl)
+
+
+# ------------------------------------------------------------
+# Indica el motor general de CA
+# Se usa cuando se ejecuta `openssl ca -cofig openssl.cnf ...`
+# ------------------------------------------------------------
+[ ca ]
+default_ca = CA_default
+
+
+
+# ---------------------------------------------
+# Configuración principal de la subCA
+# Llama a estos valores el bloque anterior.
+# ---------------------------------------------
+[ CA_default ]
+dir             = .                                 # Directorio base
+certs           = $dir/certs                        # Certificados emitidos
+crl_dir         = $dir/crl                          # CRLs
+new_certs_dir   = $dir/db_certs                     # Nuevos certificados (por serial)
+database        = $dir/index.txt                    # Base de datos de certificados
+serial          = $dir/serial                       # Último serial usado
+crlnumber       = $dir/crlnumber                    # Para emitir CRLs
+RANDFILE        = $dir/private/.rand                # Random seed
+
+certificate     = $dir/certs/ca.cert.pem            # Certificado del CA
+private_key     = $dir/private/ca.key.pem           # Clave privada del CA
+default_days    = 365                               # Duración por defecto (puede ajustarse)
+default_md      = sha256                            # Algoritmo hash
+preserve        = no                                # No mantener atributos extra del CSR
+policy          = policy_match                      # Política usada al firmar
+email_in_dn     = no
+prompt          = no                                # No pedir campos interactivos (como país, etc.)
+
+crl_extensions  = crl_ext                           # Extensiones que se incluirán en las cRLSign
+default_crl_days= 30                                # Validez de la CRL (en días)
+x509_extensions = v3_ca                             # Extensiones aplicadas a certificados normales (no CA)
+
+
+
+# ----------------------------------------------------------
+# Política de validación de campos del CSR
+# Se usa cuando se genera un CSR con `openssl req -new...`.
+# ----------------------------------------------------------
+[ policy_match ]
+countryName             = optional      # País
+stateOrProvinceName     = optional      # Provincia o estado
+organizationName        = optional      # Nombre de la empresa
+organizationalUnitName  = supplied      # Obligatorio: Departamento o sector
+commonName              = supplied      # Obligatorio: El nombre común, por ejemplo sector de la empresa
+emailAddress            = optional      # Email
+
+
+
+[ v3_ca ]
+basicConstraints = critical, CA:true, pathlen:0                                # pathlen:0 limita a la sub-CA a no emitir más sub-sub-CA
+subjectKeyIdentifier = hash                                                    # Identificador del sujeto
+authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
+keyUsage = critical, cRLSign, keyCertSign                                      # Sólo permite firmar CRL y certificados
+crlDistributionPoints = URI:https://URL/leme.crl                               # URL del archivo CRL de la CA
+
+
+# ------------------------------------------------
+# Extensiones: que se agregan al generar una CRL
+# ------------------------------------------------
+[ crl_ext ]
+authorityKeyIdentifier=keyid:always    # Identificador del emisor de la CRL</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>config/identity.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># identity.cnf
+
+[ req ]
+default_bits       = 2048
+default_md         = sha256
+prompt             = no
+distinguished_name = identity_data
+
+[ identity_data ]
+C  = AR                                           # País (Argentina)
+ST = Buenos Aires                                 # Provincia
+L  = La Plata                                     # Localidad
+O  = LEME                                         # Nombre de la organización
+OU = Facultad de Ingeniería, UNLP                 # Unidad organizacional
+
+# => Nombre y Apellido de la persona, luego su email
+CN = Empleado 1
+emailAddress = empleado1@dominio.com</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <br /><br /><br />
+                        <h3 id="inf-1-proceso">Proceso de Creación de Firmas y Certificados</h3>
+                        Se resume en la siguiente imagen pero luego de la misma se detallan los comandos usados:
+                        <div class="img-center-container">
+                            <img src="images/proceso_infraestructura_basica.svg" alt="areas de github" srcset="" class="img-center w100 mw100" />
+                        </div>
+
+                        <details class="callout">
+                            <summary>Creación de la CA</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Crea la clave privada del CA
+openssl genrsa -aes256 -out private/ca.key.pem 4096
+
+# Crea el certificado autofirmado
+openssl req -config root_CA/config/CA_create.cnf  -key root_CA/private/ca.key.pem  -new -x509 -days 365 -out root_CA/certs/ca.cert.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>Creación de las Identidades (Personas)</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Creo la clave privada para el empleado `Matias`
+openssl genrsa -aes256 -out identities/matias.key.pem 2048
+
+# Creo la solicitud del certificado para el empleado `Matias`
+openssl req -config config/identity.cnf -key identities/matias.key.pem -new -sha256 -out csrs/matias.csr.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>La CA firma la Solicitud de Firma del Certificado CSR</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># La CA firma la solicitud de certificado
+openssl ca -config config/CA_sign.cnf -in csrs\matias.csr.pem -out certs\matias.cert.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>Revocación de la identidad (Persona)</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Revocar el certificado del usuario Matias (Aquel que figura en el archivo `index.txt`)
+openssl ca -config config/CA_sign.cnf -revoke db_certs/1000.pem
+
+# Regenerar el archivo CRL
+openssl ca -config config/CA_sign.cnf -gencrl -out crl/ca.crl.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+                    </section>
+
+                    <section id="inf-2">
+                        <br /><br />
+                        <hr />
+                        <h2>Estructura Completa (CA con Sub-CAs)</h2>
+                        De igual forma se resume con la siguiente imagen:
+                        <div class="img-center-container">
+                            <img src="images/infraestructura_completa.svg" alt="areas de github" srcset="" class="img-center w100 mw100" />
+                        </div>
+
+                        <br />
+                        <h3 id="inf-2-directorio">Directorio de Trabajo</h3>
+                        El directorio ahora se agranda dado que se tiene que crear la estructura vista anteriormente para cada Sub-CA y una para la CA (a la que llamaremos Root-CA):
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code>📂 CA_v2
+ ├ 📂root_CA
+ │ ├ 📂certs
+ │ ├ 📂config
+ │ │ ├ 📝CA_create.cnf       -> Contiene los datos y los parámetros para la creación de la CA
+ │ │ └ 📝CA_sign.cnf         -> Contiene los parámetros para la firma de las sub-autoridades
+ │ ├ 📂crl
+ │ ├ 📂csrs
+ │ ├ 📂db_certs
+ │ ├ 📂private
+ │ ├ 📝crlnumber
+ │ ├ 📝serial
+ │ └ 📝index.txt  
+ │  
+ ├ 📂subCA_1
+ │ ├ 📂certs
+ │ ├ 📂config
+ │ │ ├ 📝subCA_create.cnf    -> Contiene los datos y los parámetros para la creacion de las sub-autoridades
+ │ │ ├ 📝subCA_sign.cnf      -> Contiene los parámetros para cuando la sub-autoridad firma y certifica una identidad (persona)
+ │ │ └ 📝identity.cnf        -> Contiene los datos de la identidad (persona)
+ │ ├ 📂crl
+ │ ├ 📂csrs
+ │ ├ 📂db_certs
+ │ ├ 📂identities
+ │ ├ 📂private
+ │ ├ 📝crlnumber
+ │ ├ 📝serial
+ │ └ 📝index.txt 
+ ·
+ ·
+ ·</code></pre>
+                        </div>
+
+                        <span class="text-fontall">Notas</span>: Los archivos de texto no deben tener ningún salto de línea. Cargar en <code>crlnumber</code> y en <code>serial</code> el valor 1000).
+
+                        <details class="callout">
+                            <summary>Forma simple de crear los directorios y archivos...</summary>
+                            <div class="content">
+                                <span class="text-fontall">Para Windows:</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-powershell">mkdir root_CA,subCA_1                                              # Directorios principales (CA + 1 subCA)
+cd root_CA
+mkdir certs,config,crl,csrs,db_certs,private                       # Carpetas de la CA
+New-Item -ItemType File -Path "serial","crlnumber","index.txt"     # Archivos
+"1000" | Out-File -Encoding ascii -NoNewline crlnumber             # Valores iniciales para crlnumber
+"1000" | Out-File -Encoding ascii -NoNewline serial                # Valores iniciales para serial
+cd ../subCA_1
+mkdir certs,config,crl,csrs,db_certs,identities,private            # Carpetas de la subCA
+New-Item -ItemType File -Path "serial","crlnumber","index.txt"     # Archivos
+"1000" | Out-File -Encoding ascii -NoNewline crlnumber             # Valores iniciales para crlnumbe
+"1000" | Out-File -Encoding ascii -NoNewline serial                # Valores iniciales para serial
+cd ..</code></pre>
+                                </div>
+                                <span class="text-fontall">Para Linux:</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash">mkdir root_CA subCA_1                                              # Directorios principales (CA + 1 subCA)
+cd root_CA
+mkdir certs config crl csrs db_certs private                       # Carpetas de la CA
+touch index.txt
+echo 1000 > serial
+echo 1000 > crlnumber
+cd ../subCA_1
+mkdir certs config crl csrs db_certs identities private            # Carpetas de la subCA
+touch index.txt
+echo 1000 > serial
+echo 1000 > crlnumber
+cd ..</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <br /><br /><br />
+                        <h3 id="inf-2-config">Archivos de Configuraciones</h3>
+
+                        <h4>Autoridad Certificadora (CA)</h4>
+                        <details class="callout">
+                            <summary>root_CA/config/CA_create.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># CA_create.cnf
+#
+# Valores a editar:
+# - `req_distinguished_name`: Colocar los datos de la Autoridad Certificante (CA)
+
+# ---------------------------------------------------------------------
+# Parámetros por defecto para generar solicitudes de certificados (CSR)
+# Se usa cuando se genera un CSR con `openssl req -new...`.
+# ---------------------------------------------------------------------
+[ req ]
+default_bits        = 4096                        # Tamaño por defecto de la clave generada
+default_md          = sha256                      # Algoritmo hash para firmar el CRLs
+prompt              = no                          # No pedir datos por consola
+distinguished_name  = req_distinguished_name      # Seccion con los datos del sujeto (DN)
+x509_extensions     = v3_ca                       # Si se usa `-x509`, aplicar estas extensiones
+
+# ------------------------------------------------------------
+# Valores que se usarán para el Distinguished Name del CA
+# Se usa cuando se 
+# ------------------------------------------------------------
+[ req_distinguished_name ]
+C  = AR                                           # País (Argentina)
+ST = Buenos Aires                                 # Provincia
+L  = La Plata                                     # Localidad
+O  = LEME                                         # Nombre de la organización
+OU = Facultad de Ingeniería, UNLP                 # Unidad organizacional
+CN = LEME CA v2                                   # Common Name (identificador de la CA)
+
+# ------------------------------------------
+# Extensiones: para certificados de tipo CA
+# ------------------------------------------
+[ v3_ca ]
+subjectKeyIdentifier = hash                                   # Identificador único de clave del sujeto
+authorityKeyIdentifier = keyid:always,issuer                  # Identificador del emisor (CA)
+basicConstraints = critical, CA:true                          # Este certificado es una CA
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar, CRL, etc.</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>root_CA/config/CA_sign.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># CA_sign.cnf
+#
+# Valores a editar:
+# - `dir`:                    Path de la Sub-CA -> ./root_CA
+# - `crlDistributionPoints`:  URL del CRL que tendrá la CA (root_ca/crl)
+
+
+# ------------------------------------------------------------
+# Indica el motor general de CA
+# Se usa cuando se ejecuta `openssl ca -cofig openssl.cnf ...`
+# ------------------------------------------------------------
+[ ca ]
+default_ca = CA_default
+
+
+
+# ---------------------------------------------
+# Configuración principal de la subCA
+# Llama a estos valores el bloque anterior.
+# ---------------------------------------------
+[ CA_default ]
+dir             = ./root_CA                         # Directorio base
+certs           = $dir/certs                        # Certificados emitidos
+crl_dir         = $dir/crl                          # CRLs
+new_certs_dir   = $dir/db_certs                     # Nuevos certificados (por serial)
+database        = $dir/index.txt                    # Base de datos de certificados
+serial          = $dir/serial                       # Último serial usado
+crlnumber       = $dir/crlnumber                    # Para emitir CRLs
+RANDFILE        = $dir/private/.rand                # Random seed
+
+certificate     = $dir/certs/ca.cert.pem            # Certificado del CA
+private_key     = $dir/private/ca.key.pem           # Clave privada del CA
+default_days    = 365                               # Duración por defecto (puede ajustarse)
+default_md      = sha256                            # Algoritmo hash
+preserve        = no                                # No mantener atributos extra del CSR
+policy          = policy_match                      # Política usada al firmar
+email_in_dn     = no
+prompt          = no                                # No pedir campos interactivos (como país, etc.)
+
+crl_extensions  = crl_ext                           # Extensiones que se incluirán en las cRLSign
+default_crl_days= 30                                # Validez de la CRL (en días)
+x509_extensions = v3_ca                             # Extensiones aplicadas a certificados normales (no CA)
+
+
+
+# ----------------------------------------------------------
+# Política de validación de campos del CSR
+# Se usa cuando se genera un CSR con `openssl req -new...`.
+# ----------------------------------------------------------
+[ policy_match ]
+countryName             = optional      # País
+stateOrProvinceName     = optional      # Provincia o estado
+organizationName        = optional      # Nombre de la empresa
+organizationalUnitName  = supplied      # Obligatorio: Departamento o sector
+commonName              = supplied      # Obligatorio: El nombre común, por ejemplo sector de la empresa
+emailAddress            = optional      # Email
+
+
+
+[ v3_ca ]
+basicConstraints = critical, CA:true, pathlen:0                                # pathlen:0 limita a la sub-CA a no emitir más sub-sub-CA
+subjectKeyIdentifier = hash                                                    # Identificador del sujeto
+authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
+keyUsage = critical, cRLSign, keyCertSign                                      # Sólo permite firmar CRL y certificados
+crlDistributionPoints = URI:https://URL/leme.crl                               # URL del archivo CRL de la CA
+
+
+# ------------------------------------------------
+# Extensiones: que se agregan al generar una CRL
+# ------------------------------------------------
+[ crl_ext ]
+authorityKeyIdentifier=keyid:always    # Identificador del emisor de la CRL</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <h4>Sub-Autoridad Certificadora (subCA)</h4>
+                        <details class="callout">
+                            <summary>subCA_1/config/subCA_create.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># subCA_create.cnf
+
+[ req ]
+default_bits       = 4096
+default_md         = sha256
+prompt             = no
+distinguished_name = identity_data
+
+[ identity_data ]
+C  = AR
+ST = Buenos Aires
+L  = La Plata
+O  = LEME
+OU = Facultad de Ingenieria, UNLP
+
+# => Nombre de la Sub-CA
+CN = LEC (Laboratorio de Calibraciones)
+emailAddress = lab-1@dominio.com</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>subCA_1/config/subCA_sign.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># subCA_sign.cnf
+
+# Valores a editar:
+# - `dir`:                    Path de la sub-autoridad -> ./subCA_2
+# - `crlDistributionPoints`:  URL del archivo CRL de la SubCA (subCA_x/crl)
+
+# ------------------------------------------------------------
+# Indica el motor general de CA
+# Se usa cuando se ejecuta `openssl ca -cofig openssl.cnf ...`
+# ------------------------------------------------------------
+[ ca ]
+default_ca = subCA_default
+
+
+
+# ---------------------------------------------
+# Configuración principal de la sub-CA
+# Llama a estos valores el bloque anterior.
+# ---------------------------------------------
+[ subCA_default ]
+dir             = ./subCA_3                         # Directorio base
+certs           = $dir/certs                        # Certificados emitidos
+crl_dir         = $dir/crl                          # CRLs
+new_certs_dir   = $dir/db_certs                     # Nuevos certificados (por serial)
+database        = $dir/index.txt                    # Base de datos de certificados
+serial          = $dir/serial                       # Último serial usado
+crlnumber       = $dir/crlnumber                    # Para emitir CRLs
+RANDFILE        = $dir/private/.rand                # Random seed
+
+certificate     = $dir/certs/subca.cert.pem         # Certificado del CA
+private_key     = $dir/private/subca.key.pem        # Clave privada del CA
+default_days    = 365                               # Duración por defecto (puede ajustarse)
+default_md      = sha256                            # Algoritmo hash
+preserve        = no                                # No mantener atributos extra del CSR
+policy          = policy_match                      # Política usada al firmar
+email_in_dn     = no
+prompt          = no                                # No pedir campos interactivos (como país, etc.)
+
+crl_extensions  = crl_ext                           # Extensiones que se incluirán en las cRLSign
+default_crl_days= 30                                # Validez de la CRL (en días)
+x509_extensions = usr_cert                          # Extensiones aplicadas a certificados normales (no CA)
+
+
+
+# ----------------------------------------------------------
+# Política de validación de campos del CSR
+# Se usa cuando se genera un CSR con `openssl req -new...`.
+# ----------------------------------------------------------
+[ policy_match ]
+countryName             = optional      # País
+stateOrProvinceName     = optional      # Provincia o estado
+organizationName        = optional      # Nombre de la empresa
+organizationalUnitName  = supplied      # Obligatorio: Departamento o sector
+commonName              = supplied      # Obligatorio: El nombre común, por ejemplo nombre del empleado
+emailAddress            = optional      # Email
+
+
+# ------------------------------------------------------------
+# Extensiones: para certificados de usuarios finales (no CA)
+# ------------------------------------------------------------
+[ usr_cert ]
+basicConstraints = CA:FALSE                                                    # No es una CA
+nsComment = "Certificado emitido por SubCA: LEC"                               # Comentario opcional
+subjectKeyIdentifier = hash                                                    # Identificador del sujeto
+authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
+keyUsage = critical, digitalSignature                                          # Sólo permite firmar (no cifrar)
+extendedKeyUsage = clientAuth, emailProtection                                 # Uso extendido: autenticación y firma de correo
+crlDistributionPoints = URI:https://URL/lec.crl               # URL del archivo CRL de la SubCA
+
+
+
+# ------------------------------------------------
+# Extensiones: que se agregan al generar una CRL
+# ------------------------------------------------
+[ crl_ext ]
+authorityKeyIdentifier=keyid:always    # Identificador del emisor de la CRL
+```</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>subCA_1/config/identity.cnf</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code># identity.cnf
+
+[ req ]
+default_bits       = 2048
+default_md         = sha256
+prompt             = no
+distinguished_name = identity_data
+
+[ identity_data ]
+C  = AR                                           # País (Argentina)
+ST = Buenos Aires                                 # Provincia
+L  = La Plata                                     # Localidad
+O  = LEME                                         # Nombre de la organización
+OU = Facultad de Ingenieria, UNLP                 # Unidad organizacional
+
+# => Nombre y Apellido de la persona, luego su email
+CN = Empleado 1
+emailAddress = empleado1@dominio.com</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <br /><br /><br />
+                        <h3 id="inf-2-proceso">Proceso de Creación de Firmas y Certificados</h3>
+                        Se resume en la siguiente imagen pero luego de la misma se detallan los comandos usados:
+                        <div class="img-center-container">
+                            <img src="images/proceso_infraestructura_completa.svg" alt="areas de github" srcset="" class="img-center w100 mw100" />
+                        </div>
+
+                        <details class="callout">
+                            <summary>Creación de la CA</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Crea la clave privada del CA
+openssl genrsa -aes256 -out root_CA/private/ca.key.pem 4096
+
+# Crea el certificado autofirmado
+openssl req -config root_CA/config/CA_create.cnf -key root_CA/private/ca.key.pem -new -x509 -days 3650 -out root_CA/certs/ca.cert.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>Creación de la Sub-CA</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Crea la clave privada del CA
+openssl genrsa -aes256 -out subCA_1/private/subca.key.pem 4096
+
+# Crea la solicitud del certificado
+openssl req -config subCA_1/config/subCA_create.cnf -key subCA_1/private/subca.key.pem -new -out subCA_1/csrs/subca.csr.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>La CA firma el CSR de la Sub-CA</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash">openssl ca -config root_CA/config/CA_sign.cnf -in subCA_1/csrs/subca.csr.pem -out subCA_1/certs/subca.cert.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>Se crean las identidades (Personas dentro de la Sub-CA)</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Genero una clave privada para la persona `matias`.
+openssl genrsa -aes256 -out subCA_1/identities/matias.key.pem 2048
+
+# Genero una solicitud de certificado para la persona
+openssl req -config subCA_1/config/identity.cnf -key subCA_1/identities/matias.key.pem-new -sha256-out subCA_1/csrs/matias.csr.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>La Sub-CA firma los CSR de las identidades (Personas)</summary>
+                            <div class="content">
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash">openssl ca -config subCA_1/config/subCA_sign.cnf -in subCA_1/csrs/matias.csr.pem -out subCA_1/certs/matias.cert.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="callout">
+                            <summary>Revocaciones</summary>
+                            <div class="content">
+                                <span class="text-fontall">Para revocar una Sub-Autoridad</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Revoca un certificado
+openssl ca -config .\root_CA\config\CA_sign.cnf -revoke .\root_CA\db_certs\1000.pem
+
+# Regenera el CRL de la CA
+openssl ca -config .\root_CA\config\CA_sign.cnf -gencrl -out .\root_CA\crl\leme.crl.pem</code></pre>
+                                </div>
+                                <span class="text-fontall">Para revocar una Identidad</span>
+                                <div class="code-box">
+                                    <button class="copy-btn" onclick="copyCode(this)"></button>
+                                    <pre><code class="language-bash"># Revoca un certificado (Dentro de la Sub-CA)
+openssl ca -config .\subCA_2\config\subCA_sign.cnf -revoke .\subCA_2\db_certs\1000.pem
+
+# Regenera el CRL de la Sub-CA
+openssl ca -config .\subCA_2\config\subCA_sign.cnf -gencrl -out .\subCA_2\crl\subca.crl.pem</code></pre>
+                                </div>
+                            </div>
+                        </details>
+                    </section>
+
+                    <br />
+
+                    <section id="coming-soon">
+                        <div class="modern-container">
+                            <h2 class="modern-title">🌱 Ideas en crecimiento...</h2>
+                            <p class="modern-subtitle">Como una planta que crece con el tiempo, esta entrada se va completando a medida que florecen nuevas ideas y descubrimientos.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer"></footer>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            /**
+             * Insercion del footer
+             */
+            fetch("/bunker/footer.html").then((response) => {
+                response.text().then((data) => {
+                    document.getElementById("footer").innerHTML = data;
+                });
+            });
+
+            /**
+             * Delay utilizando promesas
+             *
+             * @param {int} ms - Tiempo en milisegundos
+             */
+            const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+            /**
+             *  Permite copiar el contenido del padre del button que
+             *  llama a la funcion (un <code>)
+             *
+             * @param {HTMLButtonElement} button - El elemento "boton" que llama a la función
+             */
+            async function copyCode(button) {
+                const code = button.closest(".code-box").querySelector("code").textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+                    button.classList.add("pressed");
+                    await delay(2000);
+                    button.classList.remove("pressed");
+                } catch (err) {
+                    console.error("Error al copiar: ", err);
+                }
+            }
+        </script>
+        <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/jquery.scrolly.min.js"></script>
+        <script src="/assets/js/jquery.dropotron.min.js"></script>
+        <script src="/assets/js/jquery.scrollex.min.js"></script>
+        <script src="/assets/js/browser.min.js"></script>
+        <script src="/assets/js/breakpoints.min.js"></script>
+        <script src="/assets/js/util.js"></script>
+        <script src="/assets/js/main-complete.js"></script>
+    </body>
+</html>
