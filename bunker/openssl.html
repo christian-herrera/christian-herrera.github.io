@@ -216,7 +216,7 @@ CN = LEME CA v1                                   # Common Name (identificador d
 subjectKeyIdentifier = hash                                   # Identificador único de clave del sujeto
 authorityKeyIdentifier = keyid:always,issuer                  # Identificador del emisor (CA)
 basicConstraints = critical, CA:true                          # Este certificado es una CA
-keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar, CRL, etc.</code></pre>
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # [Unicamente ->] [Firma Digital] [Firma CRL] [Firma Certificados]</code></pre>
                                 </div>
                             </div>
                         </details>
@@ -224,14 +224,29 @@ keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar
                         <details class="callout">
                             <summary>config/CA_sign.cnf</summary>
                             <div class="content">
+                                En este archivo, es importante tener en cuenta los siguientes parámetros antes de generar la firma del certificado:
+                                <ul>
+                                    <li>
+                                        <span class="text-fontall"><code>crlDistributionPoints</code></span
+                                        >: Deberá ir la URL del archivo CRL de la <span class="text-fontall">CA</span>.
+                                    </li>
+                                    <li>
+                                        <span class="text-fontall"><code>days</code></span
+                                        >: Será la cantidad de días con la que queda el certificado firmado por esta autoridad.
+                                    </li>
+                                    <li>
+                                        <span class="text-fontall"><code>keyUsage</code> y <code>extendedKeyUsage</code> </span>: Estos valores se deben elegir en función de los lineamientos de la
+                                        Sub-Autoridad. Los valores se pueden obtener en la documentación oficial (<a
+                                            href="https://docs.openssl.org/master/man5/x509v3_config/#key-usage"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            >Link</a
+                                        >).
+                                    </li>
+                                </ul>
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
                                     <pre><code># CA_sign.cnf
-#
-# Valores a editar:
-# - `dir`:                    Path de la Sub-CA -> ./root_CA
-# - `crlDistributionPoints`:  URL del CRL que tendrá la CA (root_ca/crl)
-
 
 # ------------------------------------------------------------
 # Indica el motor general de CA
@@ -286,11 +301,11 @@ emailAddress            = optional      # Email
 
 
 [ v3_ca ]
-basicConstraints = critical, CA:true, pathlen:0                                # pathlen:0 limita a la sub-CA a no emitir más sub-sub-CA
-subjectKeyIdentifier = hash                                                    # Identificador del sujeto
-authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
-keyUsage = critical, cRLSign, keyCertSign                                      # Sólo permite firmar CRL y certificados
-crlDistributionPoints = URI:https://URL/leme.crl                               # URL del archivo CRL de la CA
+basicConstraints = critical, CA:true, pathlen:0          # pathlen:0 limita a la sub-CA a no emitir más sub-sub-CA
+subjectKeyIdentifier = hash                              # Identificador del sujeto
+authorityKeyIdentifier = keyid,issuer                    # Referencia a la CA
+keyUsage = critical, cRLSign, keyCertSign                # [Unicamente ->] [Generar CRL] [Firmar Certificados]
+crlDistributionPoints = URI:https://URL/leme.crl         # URL del archivo CRL de la CA
 
 
 # ------------------------------------------------
@@ -421,7 +436,7 @@ openssl ca -config config/CA_sign.cnf -gencrl -out crl/ca.crl.pem</code></pre>
  ├ 📂subCA_1
  │ ├ 📂certs
  │ ├ 📂config
- │ │ ├ 📝subCA_create.cnf    -> Contiene los datos y los parámetros para la creacion de las sub-autoridades
+ │ │ ├ 📝subCA_create.cnf    -> Contiene los datos y los parámetros para la creación de las sub-autoridades
  │ │ ├ 📝subCA_sign.cnf      -> Contiene los parámetros para cuando la sub-autoridad firma y certifica una identidad (persona)
  │ │ └ 📝identity.cnf        -> Contiene los datos de la identidad (persona)
  │ ├ 📂crl
@@ -521,7 +536,7 @@ CN = LEME CA v2                                   # Common Name (identificador d
 subjectKeyIdentifier = hash                                   # Identificador único de clave del sujeto
 authorityKeyIdentifier = keyid:always,issuer                  # Identificador del emisor (CA)
 basicConstraints = critical, CA:true                          # Este certificado es una CA
-keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar, CRL, etc.</code></pre>
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # [Unicamente ->] [Firma Digital] [Firma CRL] [Firma Certificados]</code></pre>
                                 </div>
                             </div>
                         </details>
@@ -529,6 +544,17 @@ keyUsage = critical, digitalSignature, cRLSign, keyCertSign   # Permisos: firmar
                         <details class="callout">
                             <summary>root_CA/config/CA_sign.cnf</summary>
                             <div class="content">
+                                En este archivo, es importante tener en cuenta los siguientes parámetros antes de generar la firma del certificado:
+                                <ul>
+                                    <li>
+                                        <span class="text-fontall"><code>crlDistributionPoints</code></span
+                                        >: Deberá ir la URL del archivo CRL de la <span class="text-fontall">CA</span> .
+                                    </li>
+                                    <li>
+                                        <span class="text-fontall"><code>days</code></span
+                                        >: Será la cantidad de días con la que queda el certificado firmado por esta autoridad.
+                                    </li>
+                                </ul>
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
                                     <pre><code># CA_sign.cnf
@@ -594,7 +620,7 @@ emailAddress            = optional      # Email
 basicConstraints = critical, CA:true, pathlen:0                                # pathlen:0 limita a la sub-CA a no emitir más sub-sub-CA
 subjectKeyIdentifier = hash                                                    # Identificador del sujeto
 authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
-keyUsage = critical, cRLSign, keyCertSign                                      # Sólo permite firmar CRL y certificados
+keyUsage = critical, cRLSign, keyCertSign                                      # [Hace respetar ->] [Firmar CRL] [Firmar CSR]
 crlDistributionPoints = URI:https://URL/leme.crl                               # URL del archivo CRL de la CA
 
 
@@ -638,13 +664,29 @@ emailAddress = lab-1@dominio.com</code></pre>
                         <details class="callout">
                             <summary>subCA_1/config/subCA_sign.cnf</summary>
                             <div class="content">
+                                En este archivo, es importante tener en cuenta los siguientes parámetros antes de generar la firma del certificado:
+                                <ul>
+                                    <li>
+                                        <span class="text-fontall"><code>crlDistributionPoints</code></span
+                                        >: Deberá ir la URL del archivo CRL de la <span class="text-fontall">Sub-CA</span> .
+                                    </li>
+                                    <li>
+                                        <span class="text-fontall"><code>days</code></span
+                                        >: Será la cantidad de días con la que queda el certificado firmado por esta autoridad.
+                                    </li>
+                                    <li>
+                                        <span class="text-fontall"><code>keyUsage</code> y <code>extendedKeyUsage</code> </span>: Estos valores se deben elegir en función de los lineamientos de la
+                                        Sub-Autoridad. Los valores se pueden obtener en la documentación oficial (<a
+                                            href="https://docs.openssl.org/master/man5/x509v3_config/#key-usage"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            >Link</a
+                                        >).
+                                    </li>
+                                </ul>
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
                                     <pre><code># subCA_sign.cnf
-
-# Valores a editar:
-# - `dir`:                    Path de la sub-autoridad -> ./subCA_2
-# - `crlDistributionPoints`:  URL del archivo CRL de la SubCA (subCA_x/crl)
 
 # ------------------------------------------------------------
 # Indica el motor general de CA
@@ -705,9 +747,16 @@ basicConstraints = CA:FALSE                                                    #
 nsComment = "Certificado emitido por SubCA: LEC"                               # Comentario opcional
 subjectKeyIdentifier = hash                                                    # Identificador del sujeto
 authorityKeyIdentifier = keyid,issuer                                          # Referencia a la CA
-keyUsage = critical, digitalSignature                                          # Sólo permite firmar (no cifrar)
-extendedKeyUsage = clientAuth, emailProtection                                 # Uso extendido: autenticación y firma de correo
-crlDistributionPoints = URI:https://URL/lec.crl               # URL del archivo CRL de la SubCA
+crlDistributionPoints = URI:https://URL/lec.crl                                # URL del archivo CRL de la SubCA
+
+# -> Elegir los parámetros en función del uso de la Sub-Autoridad
+# Firmas Digitales
+keyUsage = critical, digitalSignature, nonRepudiation                          # [Unicamente ->] [Firma digital] [Firma con validez legal]
+extendedKeyUsage = clientAuth, emailProtection, codeSigning                    # [Autenticación] [Firma de correos] [Firma de códigos]
+
+# IoT
+keyUsage = critical, digitalSignature, keyEncipherment                         # [Unicamente ->] [Firma digital] [Cifrar clave de sesión]
+extendedKeyUsage = clientAuth                                                  # [Autenticación]
 
 
 
@@ -716,7 +765,7 @@ crlDistributionPoints = URI:https://URL/lec.crl               # URL del archivo 
 # ------------------------------------------------
 [ crl_ext ]
 authorityKeyIdentifier=keyid:always    # Identificador del emisor de la CRL
-```</code></pre>
+</code></pre>
                                 </div>
                             </div>
                         </details>
