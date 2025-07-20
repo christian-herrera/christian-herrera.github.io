@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Infraestructura PKI - Christian Herrera</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/assets/css/pki.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Infraestructura PKI Personal</h1>
+
+            <div class="tree">
+                <!-- CA raíz -->
+                <div class="node">
+                    <div class="badge container">
+                        <span class="badge expiry">Vence: 15/07/2045</span>
+                        <span class="badge success">ACTIVE</span>
+                    </div>
+                    <h2>Christian Herrera CA</h2>
+                    <p class="description">Autoridad Certificadora Raíz de confianza. Emite certificados para Sub-CAs y es la base de toda la infraestructura PKI.</p>
+                    <div class="links">
+                        <a href="/ca.crt">Certificado (.crt)</a>
+                        <a href="/ca.pem">PEM (.pem)</a>
+                        <a href="/ca.crl">Lista de revocación (.crl)</a>
+                    </div>
+
+                    <!-- SubCAs -->
+                    <div class="subtree">
+                        <!-- SubCA Sign -->
+                        <div class="node">
+                            <div class="badge container">
+                                <span class="badge expiry">Vence: 15/07/2045</span>
+                                <span class="badge success">ACTIVE</span>
+                            </div>
+                            <h2>Autoridad de Firma Digital</h2>
+                            <p class="description">
+                                Administra los certificados personales para firmas digitales. Estos certificados pueden utilizarse para firmar PDFs, códigos, correos electrónicos, documentos y otras
+                                aplicaciones que requieran autenticación de identidad.
+                            </p>
+                            <div class="links">
+                                <a href="/sign-ca.crt">Certificado (.crt)</a>
+                                <a href="/sign-ca.pem">PEM (.pem)</a>
+                                <a href="/sign-ca.crl">Lista de revocación (.crl)</a>
+                            </div>
+                        </div>
+
+                        <!-- SubCA IoT -->
+                        <div class="node">
+                            <div class="badge container">
+                                <span class="badge expiry">Vence: 15/07/2045</span>
+                                <span class="badge success">ACTIVE</span>
+                            </div>
+                            <h2>Autoridad de IoT</h2>
+                            <p class="description">
+                                Gestiona certificados para dispositivos físicos desarrollados, incluyendo placas ESP12, sensores IoT, dispositivos embebidos y otros equipos que requieran autenticación
+                                segura y comunicación cifrada.
+                            </p>
+                            <div class="links">
+                                <a href="/iot-ca.crt">Certificado (.crt)</a>
+                                <a href="/iot-ca.pem">PEM (.pem)</a>
+                                <a href="/iot-ca.crl">Lista de revocación (.crl)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Infraestructura PKI • Christian Herrera • Última actualización: 20/07/2025</p>
+            </div>
+        </div>
+    </body>
+</html>
