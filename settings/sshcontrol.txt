@@ -1,0 +1,6 @@
+# Recordar finalizar con un salto de linea
+# y utilizar UTF-8 como encoding.
+# Obtener con -> ssh-add -L
+# ----------------------------------------
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
