@@ -1,17 +1,61 @@
+// RESUMEN:
+// - F1:        para formatear el documento (en lugar de mostrar todos los comandos).
+// - Ctrl + Q:  para alternar comentarios de línea (en lugar de Ctrl + /).
+// - F5:        para alternar el terminal integrado (en lugar de iniciar depuración).
+// - F13:       para alternar la visibilidad de la barra lateral.
+
 [
     {
-        "key": "f1",
+        "key": "f1",  // Formatear documento
         "command": "editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
     {
-        "key": "ctrl+q",
+        "key": "f17", // Formatear documento
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "f1", // Quita el comando por defecto de F1 (Show All Commands)
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+q",  // Alterna comentario de linea
         "command": "editor.action.commentLine",
         "when": "editorTextFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+oem_2",
+        "key": "ctrl+oem_2", // Quita el comando por defecto de Ctrl+/
         "command": "-editor.action.commentLine",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "f5", // Alterna terminal integrado
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+oem_3", // Quita el comando por defecto de Ctrl+`
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "f5", // Quita el comando por defecto de F5 (Iniciar depuración)
+        "command": "-workbench.action.debug.continue",
+        "when": "debugState == 'stopped'"
+    },
+    {
+        "key": "f5", // Quita el comando por defecto de F5 (Iniciar depuración)
+        "command": "-workbench.action.debug.start",
+        "when": "debuggersAvailable && debugState == 'inactive'"
+    },
+    {
+        "key": "f5", // Quita el comando por defecto de F5 (Iniciar depuración)
+        "command": "-debug.openView",
+        "when": "!debuggersAvailable"
+    },
+    {
+        "key": "f13", // Alterna visibilidad de la barra lateral
+        "command": "workbench.action.toggleSidebarVisibility"
     }
 ]
