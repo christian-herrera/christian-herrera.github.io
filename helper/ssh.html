@@ -10,15 +10,15 @@
                                           ⪼  𝘽𝙮 𝘾𝙝𝙧𝙞𝙨𝙩𝙞𝙖𝙣 𝙃𝙚𝙧𝙧𝙚𝙧𝙖   ⪻
 
    ┬ 👉 Conexión básica
-   │  └ ssh -pXXXX usuario@dominio                      ⮞ Conecta usando el puerto XXXX
+   │  ├ ssh -pXXXX usuario@dominio                      ⮞ Conecta usando el puerto XXXX
    │  └ ssh -pXXXX usuario@dominio 'ls'                 ⮞ Conecta y ejecuta un comando
    │
    ├ 🐛 Crear túnel V1 (-R ⮞ abre el puerto en el remoto y redirige al local)
    │  ├ ssh -R [  IP  ]:[ Puerto ]:[  IP  ]:[ Puerto ] user@dominio
    │  │        └───────┬─────────┘ └─────────┬───────┘
-   │  │                └> Punto donde        └> Destino al que
-   │  │                   se abre en            se conecta el servidor
-   │  │                   el remoto             (visto desde el remoto)
+   │  │                ╰─> Punto donde       ╰─> Destino al que
+   │  │                    se abre en            se conecta el servidor
+   │  │                    el remoto             (visto desde el remoto)
    │  │
    │  └ Ejemplo: ssh -R 0.0.0.0:9000:localhost:80 user@dominio
    │     └> Abre el puerto 9000 en el servidor y envía tráfico a tu localhost:80
@@ -27,9 +27,9 @@
    ├ 🐛 Crear túnel V2 (-L ⮞ abre el puerto en el local y redirige al remoto)   
    │  ├ ssh -L [  IP  ]:[ Puerto ]:[  IP  ]:[ Puerto ] user@dominio
    │  │        └───────┬─────────┘ └─────────┬───────┘
-   │  │                └> Punto donde        └> Destino al que
-   │  │                   se abre en            se conecta tu máquina
-   │  │                   la PC local           (visto desde el local)
+   │  │                ╰─> Punto donde       ╰─> Destino al que
+   │  │                    se abre en            se conecta tu máquina
+   │  │                    la PC local           (visto desde el local)
    │  │
    │  └ Ejemplo: ssh -L 127.0.0.1:8080:localhost:80 user@dominio
    │     └> Abre el puerto 8080 en tu PC y redirige al localhost:80 a través del servidor
