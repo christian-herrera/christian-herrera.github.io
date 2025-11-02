@@ -3,10 +3,9 @@
 // - Ctrl + Q:  para alternar comentarios de línea (en lugar de Ctrl + /).
 // - F5:        para alternar el terminal integrado (en lugar de iniciar depuración).
 // - F13:       para alternar la visibilidad de la barra lateral.
-
 [
     {
-        "key": "f1",  // Formatear documento
+        "key": "f1", // Formatear documento
         "command": "editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
@@ -20,7 +19,7 @@
         "command": "-workbench.action.showCommands"
     },
     {
-        "key": "ctrl+q",  // Alterna comentario de linea
+        "key": "ctrl+q", // Alterna comentario de linea
         "command": "editor.action.commentLine",
         "when": "editorTextFocus && !editorReadonly"
     },

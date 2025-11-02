@@ -8,6 +8,7 @@ Import-Module Terminal-Icons
 # KeyID de las subclaves de la llave cargada en la YubiKey
 $ringID = "AD175429B6768C5C"
 $encID = "98BC4D49828D431F"
+$enc2ID = "483DA8BCE0ACBCD2"
 $signID = "56AE45D7836C1B10"
 $authID = "B457CB6274048A24"
 

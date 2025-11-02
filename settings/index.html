@@ -234,6 +234,9 @@ Cifrado de archivos con GnuPG y Yubikey
                             Por último, se debe exportar la clave pública de cada llave que se vaya a utilizar con: <code>gpg --export-ssh-key XXXXXXXXXXXXXX!</code>. El resultado se debe guardar en
                             un archivo dentro de <code>%APPDATA%/.ssh/</code> y referenciar ese archivo en el <code>config</code> usando la opción <code>IdentityFile</code>.
                         </p>
+                        <p>
+                            En caso de querer usar la clave instalada en la PC, se debe tomar el <span class="text-fontall">KeyGrip</span> de la clave con <code>gpg -k --with-keygrip</code> y agregarla al archivo <code>sshcontrol</code> en GnuPG. Recordar que este archivo debe terminar siempre con una línea en blanco.
+                        </p>
 
                         <br /><br />
                         <hr />

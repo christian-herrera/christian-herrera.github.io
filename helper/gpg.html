@@ -1,5 +1,5 @@
 
-╔═════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 
                                          ██████╗ ██████╗  ██████╗ 
                                         ██╔════╝ ██╔══██╗██╔════╝ 
@@ -10,24 +10,24 @@
                                          ⪼ 𝘽𝙮 𝘾𝙝𝙧𝙞𝙨𝙩𝙞𝙖𝙣 𝙃𝙚𝙧𝙧𝙚𝙧𝙖 ⪻
 
    ┬ 🔑 Firma Digital
-   │  ├ gpg -u $signID --sign {file}                   ⮞ OUT: [Firma + contenido] en binario
-   │  ├ gpg -u $signID --clearsign {file}              ⮞ OUT: [Firma + contenido] en texto plano legible
-   │  └ gpg -u $signID --detach-sign {file}            ⮞ OUT: [Solo firma] en binario
+   │  ├ gpg -u $signID --sign {file}                     ⮞ OUT: [Firma + contenido] en binario
+   │  ├ gpg -u $signID --clearsign {file}                ⮞ OUT: [Firma + contenido] en texto plano legible
+   │  └ gpg -u $signID --detach-sign {file}              ⮞ OUT: [Solo firma] en binario
    │
    ├ 🔏 Cifrado Simétrico
-   │  └ gpg --symmetric {file|msg}                     ⮞ Cifra con una contraseña
-   │  └ gpg -u $signID --sign --symmetric {file|msg}   ⮞ Cifra con una contraseña y firma
+   │  └ gpg --symmetric {file|msg}                       ⮞ Cifra con una contraseña
+   │  └ gpg -u $signID --sign --symmetric {file|msg}     ⮞ Cifra con una contraseña y firma
    │
    ├ 🔐 Cifrado Asimétrico
-   │  ├ gpg -r $encID --encrypt {file}                 ⮞ Cifra para que solo $encID pueda descifrar
-   │  └ gpg -u $signID -r $encID --encrypt {file}      ⮞ Firma y luego cifra
+   │  ├ gpg -r $encID -r $enc2ID --encrypt {file}        ⮞ Cifra, solo $encID y $enc2ID puedan descifrar
+   │  └ gpg -u $signID -r $encID --sign --encrypt {file} ⮞ Firma y luego cifra
    │
    ├ 🔓 Desencriptar / Verificar
-   │  ├ gpg {file.gpg|file.asc}                        ⮞ Descifra o verifica automáticamente según el tipo
-   │  ├ gpg --decrypt {file.gpg}                       ⮞ Descifra archivo (simétrico o asimétrico)
-   ·  ├ gpg --verify {file.asc}                        ⮞ Verifica firma (signed o clearsign)
-   ·  └ gpg --verify sig.asc file.txt                  ⮞ Verifica firma separada (detached)
+   │  ├ gpg {file.gpg|file.asc}                          ⮞ Descifra o verifica automáticamente según el tipo
+   │  ├ gpg --decrypt {file.gpg}                         ⮞ Descifra archivo (simétrico o asimétrico)
+   ·  ├ gpg --verify {file.asc}                          ⮞ Verifica firma (signed o clearsign)
+   ·  └ gpg --verify sig.asc file.txt                    ⮞ Verifica firma separada (detached)
    ·
 
-   Notas: Agregar `-a` permite generar archivos pero con ASCII (con extensión .asc)
-╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+   Notas: Agregar `-a` hace que la salida sea en ASCII (con extensión .asc)
+╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝

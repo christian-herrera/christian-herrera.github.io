@@ -20,7 +20,7 @@
         "tab.activeBorder": "#d19a66"               // Borde de la pestaña activa
     },
     "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.md": "vscode.markdown.preview.editor",
         "*.svg": "default"
     },
 
@@ -31,7 +31,7 @@
 
     
     // Editor
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "mizu",
     "workbench.colorTheme": "Ayu Mirage Bordered",
     "editor.fontFamily": "JetBrains Mono, Meslo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
@@ -89,6 +89,7 @@
     // FiveServer
     "fiveServer.php.executable": "/usr/bin/php8.3",
     "fiveServer.php.ini": "/etc/php/8.3/fpm/php.ini",
+    "fiveServer.port": 80,
 
 
     // Git Graph
@@ -121,6 +122,7 @@
         "editor.formatOnSave": true
     },
     "intelephense.format.braces": "k&r", // Llave de apertura en la misma linea
+    "php.validate.executablePath": "C:/Program Files/Xampp/php/php.exe",
 
 
     // Peacock
@@ -170,6 +172,56 @@
     "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, ColumnLimit: 200, BreakBeforeBraces: Attach, IndentWidth: 4, UseTab: Never }",
     "terminal.integrated.commandsToSkipShell": [
         "matlab.interrupt"
+    ],
+
+
+    // Better Comments
+    "better-comments.tags": [
+        {
+            "tag": "TODO",
+            "color": "#73fc03",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "FIXME",
+            "color": "#0384fc",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "STATE",
+            "color": "#E0F0F9",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#0077B2",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "NOTE",
+            "color": "#FDD835",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "DELETE",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#ee0290",
+            "bold": true,
+            "italic": true
+        }
     ],
 
 }
