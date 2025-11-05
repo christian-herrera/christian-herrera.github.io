@@ -25,8 +25,16 @@
    ├ 🔓 Desencriptar / Verificar
    │  ├ gpg {file.gpg|file.asc}                          ⮞ Descifra o verifica automáticamente según el tipo
    │  ├ gpg --decrypt {file.gpg}                         ⮞ Descifra archivo (simétrico o asimétrico)
-   ·  ├ gpg --verify {file.asc}                          ⮞ Verifica firma (signed o clearsign)
-   ·  └ gpg --verify sig.asc file.txt                    ⮞ Verifica firma separada (detached)
+   │  ├ gpg --verify {file.asc}                          ⮞ Verifica firma (signed o clearsign)
+   │  └ gpg --verify sig.asc file.txt                    ⮞ Verifica firma separada (detached)
+   │
+   ├ 🗝️ Exportar Llaves
+   │  ├ gpg --export-secret-keys {RING_ID} > file.asc    ⮞ Exporta toda la estructura completa
+   │  ├ gpg --export-secret-subkey {SUB_ID}! > file.asc  ⮞ Exporta solo subclaves (sin la llave maestra)
+   │  ├ gpg --export {RING_ID} > file.asc                ⮞ Exporta toda la estructura pública
+   │  └ gpg --export {SUB_ID}! > file.asc                ⮞ Exporta la estructura con una subclave especifica
+   ·  
+   ·  
    ·
 
    Notas: Agregar `-a` hace que la salida sea en ASCII (con extensión .asc)
