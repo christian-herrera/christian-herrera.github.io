@@ -716,6 +716,23 @@ pick a85d29b Edición 7</code></pre>
 
                         <br />
                         <hr />
+
+                        <h3 id="caso-3">📌 Forzar repositorio local igual al remoto</h3>
+                        El objetivo es forzar que el repositorio local sea exactamente igual al remoto, eliminando cualquier cambio local que se haya realizado. Esto es útil cuando se desea sincronizar completamente el estado del repositorio local con el remoto, descartando cualquier modificación local no deseada.
+
+                        <p>El proceso es el siguiente:</p>
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-git">git fetch --all                         # Trae todos los cambios del remoto
+git reset --hard origin/{branch}        # Restablece la rama {branch} al estado del remoto
+git clean -fdx                          # Elimina archivos sin seguimiento</code></pre>
+                        </div>
+
+
+                        <br>
+                        <hr>
+
+
                     </section>
 
                     <section id="coming-soon">
