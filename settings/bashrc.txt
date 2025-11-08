@@ -5,8 +5,16 @@
 # Funciones para el Cifrado y Des-cifrado
 export ringID="AD175429B6768C5C"
 export encID="98BC4D49828D431F"
+export enc2ID="483DA8BCE0ACBCD2"
 export signID="56AE45D7836C1B10"
 export authID="B457CB6274048A24"
+
+
+export ringLEME="A05E76636B1083AE"
+export encLEME="E46732C0363EFDE3"
+export signLEME="F55115D50BD0EC40"
+export authLEME="F55115D50BD0EC40"
+
 
 
 gpg-asym() {

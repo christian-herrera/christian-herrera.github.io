@@ -79,7 +79,7 @@ Cifrado de archivos con GnuPG y Yubikey
                     <section id="content">
                         <!-- GnuPG -->
                         <h2 id="gnupg">GnuPG</h2>
-                        <p>Configuraciones para Windows:</p>
+                        <p>Configuraciones:</p>
                         <ul>
                             <li><span style="font-weight: bold">En Windows</span>: <code>%APPDATA%/gnupg/*</code></li>
                             <ul>
@@ -90,6 +90,15 @@ Cifrado de archivos con GnuPG y Yubikey
                                 <li>Usar <code>gpg -k --with-keygrip</code> para obtener el Keygrip de las llaves a utilizar</li>
                                 <li>Configurar los archivos (cargando el keygrip correspondiente en <span class="text-italic">sshcontrol</span>)</li>
                                 <li>Eliminar la variable <code>SSH_AUTH_SOCK</code> utilizando: <code>Remove-Item Env:/SSH_AUTH_SOCK</code></li>
+                                <li>Verificar las claves con <code>ssh-add -L</code> o <code>ssh-add -l</code></li>
+                            </ul>
+                            <li><span style="font-weight: bold">En Ubuntu</span>: <code>~/.gnupg/*</code></li>
+                            <ul>
+                                <li>Instalar los paquetes: <code>gnupg pcscd pcsc-tools scdaemon</code></li>
+                                <li>Configurar los archivos.</li>
+                                <li>Reiniciar los servicios con: <code>systemctl --user restart gpg-agent</code> y <code>sudo systemctl restart pcscd</code></li>
+                                <li>Obtener el path con <code>gpgconf --list-dirs agent-ssh-socket</code></li>
+                                <li>Configurar la variable <code>export SSH_AUTH_SOCK="xxxxxxx"</code> con el path obtenido</li>
                                 <li>Verificar las claves con <code>ssh-add -L</code> o <code>ssh-add -l</code></li>
                             </ul>
                         </ul>
@@ -185,8 +194,11 @@ Cifrado de archivos con GnuPG y Yubikey
                             <li><code>gpg --export-ssh-key XXXXXXXXXXXXXX!</code>: Exporta la clave pública en formato SSH.</li>
                         </ul>
 
-                        <br>
-                        <p><span class="text-bold text-italic" style="color: darkgreen">Nota</span>: En la yubikey, si se carga una clave y certificado RSA2048 en la funcionalidad <span class="text-bold">PIV (Slot 9A)</span>, el <code>gpg-agent</code> puede leerlo y usarlo en la conexión SSH.</p>
+                        <br />
+                        <p>
+                            <span class="text-bold text-italic" style="color: darkgreen">Nota</span>: En la yubikey, si se carga una clave y certificado RSA2048 en la funcionalidad
+                            <span class="text-bold">PIV (Slot 9A)</span>, el <code>gpg-agent</code> puede leerlo y usarlo en la conexión SSH.
+                        </p>
 
                         <br /><br />
                         <hr />
@@ -235,7 +247,8 @@ Cifrado de archivos con GnuPG y Yubikey
                             un archivo dentro de <code>%APPDATA%/.ssh/</code> y referenciar ese archivo en el <code>config</code> usando la opción <code>IdentityFile</code>.
                         </p>
                         <p>
-                            En caso de querer usar la clave instalada en la PC, se debe tomar el <span class="text-fontall">KeyGrip</span> de la clave con <code>gpg -k --with-keygrip</code> y agregarla al archivo <code>sshcontrol</code> en GnuPG. Recordar que este archivo debe terminar siempre con una línea en blanco.
+                            En caso de querer usar la clave instalada en la PC, se debe tomar el <span class="text-fontall">KeyGrip</span> de la clave con <code>gpg -k --with-keygrip</code> y
+                            agregarla al archivo <code>sshcontrol</code> en GnuPG. Recordar que este archivo debe terminar siempre con una línea en blanco.
                         </p>
 
                         <br /><br />
