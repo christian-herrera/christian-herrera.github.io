@@ -10,8 +10,9 @@ code[class*="language-"],
 pre[class*="language-"] {
     color: #ccc;
     background: none;
+    padding: 0.5em;
+    font-size: 0.9em;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 1em;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -28,31 +29,40 @@ pre[class*="language-"] {
     -ms-hyphens: none;
     hyphens: none;
 
-    /* ADD */
-    padding: 0.5em !important;
-    font-size: 0.9em;
-
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-    padding: 1em;
+    border-radius: 0.2em;
     margin: .5em 0;
     overflow: auto;
-
-    /* ADD */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba(120, 120, 120, 0.35) transparent;
 }
 
+/* Oculta en WebKit */
+pre[class*=language-]::-webkit-scrollbar {
+    height: 8px;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+pre[class*=language-]::-webkit-scrollbar-thumb {
+    background: rgba(120, 120, 120, 0.35);
+    border-radius: 999px;
+}
+
+/* Al hoverar el contenedor, la barra aparece */
+pre[class*=language-]:hover::-webkit-scrollbar {
+    opacity: 1;
+}
+
+
 :not(pre)>code[class*="language-"],
 pre[class*="language-"] {
-    /* background: #2d2d2d; */
-
-    /* ADD */
-    border-radius: 0.4em;
-    background-color: rgba(255, 255, 255, 0.075);
+    background: rgba(255, 255, 255, 0.075);
+    padding: 0.2em 0.65em !important;
 }
 
 /* Inline code */
@@ -95,7 +105,7 @@ pre[class*="language-"] {
 .token.class-name,
 .token.constant,
 .token.symbol {
-	color: #f8c555;
+    color: #f8c555;
 }
 
 .token.selector,
@@ -103,7 +113,7 @@ pre[class*="language-"] {
 .token.atrule,
 .token.keyword,
 .token.builtin {
-	color: #cc99cd;
+    color: #cc99cd;
 }
 
 .token.string,
@@ -111,27 +121,28 @@ pre[class*="language-"] {
 .token.attr-value,
 .token.regex,
 .token.variable {
-	color: #7ec699;
+    color: #7ec699;
 }
 
 .token.operator,
 .token.entity,
 .token.url {
-	color: #67cdcc;
+    color: #67cdcc;
 }
 
 .token.important,
 .token.bold {
-	font-weight: bold;
+    font-weight: bold;
 }
+
 .token.italic {
-	font-style: italic;
+    font-style: italic;
 }
 
 .token.entity {
-	cursor: help;
+    cursor: help;
 }
 
 .token.inserted {
-	color: green;
+    color: green;
 }

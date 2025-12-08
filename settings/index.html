@@ -11,6 +11,7 @@ Cifrado de archivos con GnuPG y Yubikey
         <link rel="icon" href="/assets/icons/icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/prism.css" />
         <noscript>
             <link rel="stylesheet" href="/assets/css/noscript.css" />
         </noscript>
@@ -43,6 +44,7 @@ Cifrado de archivos con GnuPG y Yubikey
                                     </ul>
                                 </li>
                                 <li><a href="#ssh-server">SSH-Server</a></li>
+                                <li><a href="#syncthing">Syncthing</a></li>
                                 <li>
                                     <a href="#firmas-thunderbird">Firmas Thunderbird</a>
                                 </li>
@@ -379,7 +381,7 @@ Cifrado de archivos con GnuPG y Yubikey
 
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
-                                    <pre style="margin-bottom: 0"><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
+                                    <pre><code class="language-bash">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
                                 </div>
                             </li>
                             <li>
@@ -389,7 +391,7 @@ Cifrado de archivos con GnuPG y Yubikey
                                 <a href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md" target="_blank" rel="noopener noreferrer">ZSH-Syntax-HighLighting</a>:
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
-                                    <pre style="margin-bottom: 0"><code>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+                                    <pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</code></pre>
                                 </div>
                             </li>
@@ -406,9 +408,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                 <a href="https://github.com/romkatv/powerlevel10k" target="_blank" rel="noopener noreferrer">PowerLevel10K</a>.
                                 <div class="code-box">
                                     <button class="copy-btn" onclick="copyCode(this)"></button>
-                                    <pre
-                                        style="margin-bottom: 0"
-                                    ><code>git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME}/.oh-my-zsh/custom/themes/powerlevel10k"</code></pre>
+                                    <pre><code class="language-bash">git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME}/.oh-my-zsh/custom/themes/powerlevel10k"</code></pre>
                                 </div>
                             </li>
                             <li>
@@ -452,7 +452,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
                         <!-- SSH-Server -->
                         <h2 id="ssh-server">SSH-Server</h2>
-                        <p>Las siguientes configuraciones se deberán cargar en <code>/etc/ssh/sshd_config.d/chris.conf</code> luego de instalar el paquete <code>ssh-server</code></p>
+                        <p>Las siguientes configuraciones se deberán cargar en <code>/etc/ssh/sshd_config.d/global.conf</code> luego de instalar el paquete <code>openssh-server</code></p>
 
                         <table class="table-css">
                             <thead>
@@ -465,18 +465,36 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                             <tbody>
                                 <tr>
                                     <td>
-                                        <code>chris.conf</code>
+                                        <code>global.conf</code>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.txt', this)">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server_global.txt', this)">
                                             <span class="material-symbols-outlined icon-element">download</span>
                                         </span>
-                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('ssh_server.txt', this, true)">
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('ssh_server_global.txt', this, true)">
                                             <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server.txt', this, false)">
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server_global.txt', this, false)">
+                                            <span class="material-symbols-outlined icon-element">content_copy</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <code>math-users.conf</code>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server_math.txt', this)">
+                                            <span class="material-symbols-outlined icon-element">download</span>
+                                        </span>
+                                        <span class="icon alt major icon-content" onclick="btnCurlCopy('ssh_server_math.txt', this, true)">
+                                            <span class="material-symbols-outlined icon-element">keyboard_command_key</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="icon alt major icon-content" onclick="downloadFile('ssh_server_math.txt', this, false)">
                                             <span class="material-symbols-outlined icon-element">content_copy</span>
                                         </span>
                                     </td>
@@ -546,10 +564,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                         <h4>
                             <span style="font-style: italic; color: darkolivegreen">Mensajes Post-Login</span>
                         </h4>
-                        <p>
-                            Estos scripts se alojan en
-                            <code>/etc/update-mot.d/*</code>.
-                        </p>
+                        <p>Estos scripts se alojan en <code>/etc/update-mot.d/*</code>. Requiere que se dejen con los permisos <code>744</code>.</p>
 
                         <table class="table-css">
                             <thead>
@@ -634,6 +649,84 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                                 </tr>
                             </tbody>
                         </table>
+
+                        <br /><br />
+                        <hr />
+
+                        <!-- Syncthing -->
+                        <h2 id="syncthing">Syncthing</h2>
+                        <span
+                            >Siguiedo las instrucciones de la web oficial <a href="https://apt.syncthing.net/">(Link)</a> se procede para instalar en <span class="text-bold">linux</span> de la
+                            siguiente forma:</span
+                        >
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-bash"># Add the release PGP keys:
+sudo mkdir -p /etc/apt/keyrings
+sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+
+# Add the "stable" channel to your APT sources:
+echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+
+# Update and install syncthing:
+sudo apt-get update
+sudo apt-get install syncthing</code></pre>
+                        </div>
+
+                        <span
+                            >Luego se debe crear un servicio para ejecutar de fondo el software. Para esto se siguen los pasos de la
+                            <a href="https://docs.syncthing.net/users/autostart.html">documentación oficial</a>. Se debe crear un archivo en <code>/etc/systemd/system/syncthing@USER.service</code>,
+                            completando el <span class="text-italic">USER</span> con el usuario que se desea usar para el servicio. Dentro del archivo se coloca el contenido:</span
+                        >
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-text">[Unit]
+Description=Syncthing - Open Source Continuous File Synchronization for %I
+Documentation=man:syncthing(1)
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=4
+
+[Service]
+User=%i
+ExecStart=/usr/bin/syncthing serve --no-browser --no-restart --logflags=0
+Restart=on-failure
+RestartSec=1
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+# Elevated permissions to sync ownership (disabled by default),
+# see https://docs.syncthing.net/advanced/folder-sync-ownership
+#AmbientCapabilities=CAP_CHOWN CAP_FOWNER
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+                        </div>
+
+                        <span>Finalmente, lanzar el servicio usando:</span>
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre><code class="language-bash">sudo systemctl daemon-reload
+
+# Servicio en ejecucion automatica
+sudo systemctl enable syncthing@christian.service
+
+# Inicio o reinicio del servicio
+sudo systemctl start syncthing@christian.service
+sudo systemctl restart syncthing@christian.service</code></pre>
+                        </div>
+
+                        <span></span>
 
                         <br /><br />
                         <hr />
@@ -924,6 +1017,12 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
                             Atajos del teclado, snippets y configuraciones para el editor de código
                             <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code</a>.
                         </p>
+                        Además, se requieren algunos paquetes extra para cuando se trabaja en Linux:
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)"></button>
+                            <pre style="margin-bottom: 0"><code>sudo apt install php-cli</code></pre>
+                        </div>
+                        <br /><br />
                         <table class="table-css">
                             <thead>
                                 <tr>
@@ -1212,5 +1311,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
         <script src="/assets/js/breakpoints.min.js"></script>
         <script src="/assets/js/util.js"></script>
         <script src="/assets/js/main-complete.js"></script>
+        <script src="/assets/js/prism.js"></script>
     </body>
 </html>
