@@ -1,5 +1,18 @@
-# Habilitar solo si se utilizará la funión OpenPGP de la Yubikey
-#SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"
+# GnuPG
+# Permite definir la variable SSH_AUTH_SOCK en funcion de si es una shell
+# o si es una shell de SSH, esto permite que se pueda usar el sistema de
+# reenvio de agente.
+if [ -z "$SSH_CONNECTION" ] && [ -z "$SSH_TTY" ]; then
+    sock="$(gpgconf --list-dirs agent-ssh-socket 2>/dev/null || true)"
+    if [ -n "$sock" ] && [ -S "$sock" ]; then
+        export SSH_AUTH_SOCK="$sock"
+    fi
+fi
+
+
+# Permite reiniciar cambiando el orden del boot
+alias reboot_in_windows="sudo efibootmgr -n 0003 && echo -e '\n✔️  BootNext configurado.\n💻  El próximo reinicio iniciará en Windows.\n'"
+
 
 
 # Funciones para el Cifrado y Des-cifrado
