@@ -32,13 +32,17 @@
    │  │                    la PC local           (visto desde el local)
    │  │
    │  └ Ejemplo: ssh -L 127.0.0.1:8080:localhost:80 user@dominio
-   │     └> Abre el puerto 8080 en tu PC y redirige al localhost:80 a través del servidor
+   │     └> Abre el puerto 8080 en la PC y redirige al localhost:80 a través del servidor
    │
    ├ 🚪 Saltar por un host intermedio (-J  ⮞ Permite conectarse al Server B a través del Server A)
    │  └ ssh -J [userA@dominioA:puertoA] [userB@dominioB] -p puertoB
    │
    ├ 🔑 Reenvío de agente (-A ⮞ Permite que se usen las llaves privadas en el remoto sin copiarlas)
    │  └ ssh -A user@dominio -p puerto
+   │
+   ├ Montar sistema de archivos remoto (apt install sshfs)
+   │  ├ sshfs user@dominio:/ruta/remota /ruta/local   ⮞ Para montar
+   │  └ fusermount -u /ruta/local                     ⮞ Para desmontar
    ·
    · 
    · 
