@@ -19,7 +19,7 @@
         "image": "/assets/data/cards-images/electronic2.jpg",
         "title": "Módulos de Adquisición",
         "tags": ["#UNLP", "#LEME", "#ESP12"],
-        "progress": 65,
+        "progress": 85,
         "description": "Proyecto (<i>candidato a ser el trabajo final</i>) con la finalidad de realizar el monitoreo de temperatura con varios ESP12. Cada uno de ellos envía los datos por TCP a un servidor web. Se implementa un dashboard para visualizar los valores.",
         "link": ""
     },
@@ -49,6 +49,14 @@
     },
     {
         "image": "/assets/data/cards-images/coding1.jpg",
+        "title": "Portfolio de Licenciatura",
+        "tags": ["#HTML", "#CSS", "#React"],
+        "progress": 35,
+        "description": "Actualmente en desarrollo. Se trata de una web de presentación desarrollada en React.Js. Proximamente se añadirá un blog y servicios de cursos online para la especialidad de Licenciatura en Obstetricia.",
+        "link": "https://github.com/christian-herrera/aylen-portfolio"
+    },
+    {
+        "image": "/assets/data/cards-images/coding2.jpg",
         "title": "Web Personal",
         "tags": ["#HTML", "#CSS", "#JS"],
         "progress": 100,
