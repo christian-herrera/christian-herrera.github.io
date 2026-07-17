@@ -1,0 +1,211 @@
+/* Reutiliza los mismos estilos del hero para consistencia */
+.not-found {
+  padding: var(--spacing-2xl) var(--spacing-md);
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .not-found {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  }
+}
+
+.not-found-container {
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: center;
+  width: 100%;
+}
+
+.not-found-visual {
+  position: relative;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Blob animado */
+.error-blob {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 430px;
+  height: 430px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e72 50%, #ff6b6b 100%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  filter: blur(40px);
+  opacity: 0.4;
+  animation: error-blob-animation 8s ease-in-out infinite;
+}
+
+@keyframes error-blob-animation {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+    border-radius: 70% 30% 66% 34% / 30% 30% 70% 70%;
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 30% 70%;
+  }
+  75% {
+    transform: translate(-30px, -20px) scale(0.95);
+    border-radius: 30% 30% 30% 30% / 58% 28% 72% 42%;
+  }
+}
+
+/* Efecto flotante del visual */
+@media (prefers-reduced-motion: no-preference) {
+  .not-found-visual {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* Error Code - 404 */
+.error-code {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  z-index: 3;
+  font-family: 'Courier New', monospace;
+}
+
+.error-digit {
+  display: inline-block;
+  animation: bounce-digit 2s ease-in-out infinite;
+  text-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.error-digit:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.error-digit:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.error-digit:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce-digit {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Títulos y contenido */
+.not-found-title {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.not-found-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Botones */
+.not-found-cta {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-md);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .not-found-container {
+    grid-template-columns: 1fr;
+  }
+
+  .not-found-visual {
+    height: 360px;
+    order: -1;
+  }
+
+  .error-blob {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .not-found {
+    padding: var(--spacing-md) var(--spacing-md);
+    min-height: 100svh;
+  }
+
+  .not-found-container {
+    gap: var(--spacing-lg);
+  }
+
+  .not-found-visual {
+    height: 300px;
+  }
+
+  .error-blob {
+    width: 250px;
+    height: 250px;
+  }
+
+  .error-code {
+    font-size: clamp(4rem, 15vw, 6rem);
+  }
+
+  .not-found-title {
+    font-size: 2rem;
+  }
+
+  .not-found-subtitle {
+    font-size: 1rem;
+  }
+
+  .not-found-cta {
+    flex-direction: column;
+  }
+}
