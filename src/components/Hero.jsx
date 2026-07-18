@@ -1,20 +1,45 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+// Estilos
 import '../styles/Hero.css'
 
-
-// Contenido
+// Datos
 import profileImage from '../assets/avatar.webp'
 
-export default function Hero({btn1_url, btn1_text, text}) {
-  const navigate = useNavigate();
+// Componentes
+import BackgroundParticles from './BackgroundParticles'
 
-  const btn1Url = btn1_url || "/projects";
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   Hero.jsx -> Componente que representa la sección de presentación del portafolio
+ * -------------------------------------------------------------------------------------------------------
+ */
+export default function Hero({ btn1_url, btn1_text, text }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // --> Utilidad: Al montar, desplaza al # si existe
+  useEffect(() => {
+    if (location.hash) {
+      const targetElement = document.querySelector(location.hash);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: "start" });
+      }
+    }
+  }, [location]);
+
+
+  const btn1Url = btn1_url || "/projects#timeline";
   const btn1Text = btn1_text || "Ver mis proyectos";
   const heroText = text || "Apasionado por la tecnología, el aprendizaje continuo y la creación de soluciones eficientes para desafíos del mundo real.";
 
 
+  // --> RENDERIZADO
   return (
     <section id="hero" className="hero">
+      <BackgroundParticles />
       <div className="hero-container">
         <div className="hero-content">
           <h1 className="hero-title">Hola, soy Chris</h1>
@@ -28,10 +53,6 @@ export default function Hero({btn1_url, btn1_text, text}) {
             <a href="#contact" className="btn btn-secondary">
               Contáctame
             </a>
-            {/* <a href={btn1Url} className="btn btn-primary">
-              {btn1Text}
-            </a> */}
-            
           </div>
         </div>
         <div className="hero-visual">

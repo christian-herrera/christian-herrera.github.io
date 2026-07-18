@@ -1,7 +1,14 @@
+// Componentes
 import Hero from '../components/Hero'
 import Timeline from '../components/Timeline'
 import Contact from '../components/Contact'
 
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   ProjectsPage.jsx -> Componente de la página de proyectos
+ * -------------------------------------------------------------------------------------------------------
+ */
 function ProjectsPage() {
   return (
     <>

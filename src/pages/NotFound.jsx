@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+
+// Estilos
 import '../styles/NotFound.css'
 
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   NotFound.jsx -> Componente para la página de error 404
+ * -------------------------------------------------------------------------------------------------------
+ */
 export default function NotFound() {
   return (
     <section className="not-found">
@@ -17,7 +24,7 @@ export default function NotFound() {
         <div className="not-found-content">
           <h1 className="not-found-title">Página no encontrada</h1>
           <p className="not-found-subtitle">
-            Parece que esta página desapareció en el ciberespacio. 
+            Parece que esta página desapareció en el ciberespacio.
             No te preocupes, aquí hay algunos enlaces útiles:
           </p>
 

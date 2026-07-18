@@ -1,3 +1,7 @@
+#timeline {
+  margin-top: 80px;
+}
+
 .timeline {
   padding: var(--spacing-2xl) var(--spacing-md);
   background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);

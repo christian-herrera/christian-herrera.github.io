@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
-// Styles
+// Estilos
 import '../styles/HomeSkills.css'
 
+// Datos
 const skills = [
   {
     id: 1,
@@ -42,9 +43,18 @@ const skills = [
   }
 ]
 
+
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   HomeSkills.jsx -> Componente que representa la sección de habilidades en la página principal
+ * -------------------------------------------------------------------------------------------------------
+ */
 export default function HomeSkills() {
   const navigate = useNavigate()
 
+
+  // --> RENDERIZADO
   return (
     <section id="skills" className="home-skills">
       <div className="skills-container">

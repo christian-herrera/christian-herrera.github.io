@@ -1,6 +1,12 @@
-import '../styles/PkiPage.css'
 import { useState, useEffect } from 'react'
 
+// Estilos
+import '../styles/PkiPage.css'
+
+// Datos
+import pkiData from '../assets/pki.json'
+
+// --> Utilidad: Componente para representar un nodo de la infraestructura PKI
 const CANode = ({ title, description, expiryDate, status, links, children, isRoot = false }) => {
   const statusColor = status === 'ACTIVO' ? 'success' : 'warning'
   const statusLabel = status === 'ACTIVO' ? 'ACTIVO' : 'ADVERTENCIA'
@@ -25,36 +31,13 @@ const CANode = ({ title, description, expiryDate, status, links, children, isRoo
   )
 }
 
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   PkiPage.jsx -> Página que representa la infraestructura PKI personal
+ * -------------------------------------------------------------------------------------------------------
+ */
 export default function PkiPage() {
-  const [pkiData, setPkiData] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const loadPkiData = async () => {
-      try {
-        const response = await fetch('/pki.json')
-        const data = await response.json()
-        setPkiData(data)
-      } catch (error) {
-        console.error('Error loading PKI data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadPkiData()
-  }, [])
-
-  if (loading) {
-    return (
-      <main className="pki-page">
-        <div className="pki-container">
-          <p style={{ textAlign: 'center', color: 'var(--color-text-light)' }}>Cargando...</p>
-        </div>
-      </main>
-    )
-  }
-
   if (!pkiData) {
     return (
       <main className="pki-page">
@@ -67,6 +50,7 @@ export default function PkiPage() {
 
   const { caRoot, subCas, lastUpdate } = pkiData
 
+  // --> RENDERIZADO
   return (
     <main className="pki-page">
       <div className="pki-container">

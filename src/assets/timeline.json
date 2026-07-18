@@ -101,15 +101,5 @@
       { "label": "GitHub", "url": "https://github.com/christian-herrera/aylen-portfolio" },
       { "label": "Demo", "url": "https://aylenherrera.com.ar/" }
     ]
-  },
-  {
-    "fecha": "02/2026",
-    "titulo": "Portfolio para Obstetrica",
-    "descripcion": "Web de presentación para licenciada en Obstetricia. El sitio incluye información sobre los servicios ofrecidos y enlaces a redes sociales. Desarrollado en React.js y alojado en GitHub Pages.",
-    "categoria": ["react"],
-    "botones": [
-      { "label": "GitHub", "url": "https://github.com/christian-herrera/aylen-portfolio" },
-      { "label": "Demo", "url": "https://aylenherrera.com.ar/" }
-    ]
   }
 ]

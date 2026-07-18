@@ -1,5 +1,12 @@
+// Estilos
 import '../styles/Contact.css'
 
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   Contact.jsx -> Componente que representa la sección de contacto y redes sociales
+ * -------------------------------------------------------------------------------------------------------
+ */
 export default function Contact() {
   const socialLinks = [
     {
@@ -52,6 +59,7 @@ export default function Contact() {
     },
   ]
 
+  // --> RENDERIZADO
   return (
     <section id="contact" className="contact">
       <div className="contact-container">

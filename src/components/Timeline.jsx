@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
+// Estilos
 import '../styles/Timeline.css'
 
+// Datos
+import projects_json from '../assets/timeline.json'
+
+// Constantes
 const getCategoryColor = (category) => {
   const colors = {
     'académico': 'category-academico',
@@ -17,11 +24,19 @@ const getCategoryColor = (category) => {
   return colors[category] || 'category-default'
 }
 
+
+/**
+ * -------------------------------------------------------------------------------------------------------
+ *   Timeline.jsx -> Componente que representa la línea de tiempo de proyectos
+ * -------------------------------------------------------------------------------------------------------
+ */
 export default function Timeline() {
   const timelineRef = useRef(null)
   const itemsRef = useRef([])
   const [projects, setProjects] = useState([])
+  const location = useLocation()
 
+  // --> Utilidad: Normaliza los botones en cada proyecto
   const normalizeButtons = (buttons) => {
     if (!Array.isArray(buttons)) return []
 
@@ -34,38 +49,38 @@ export default function Timeline() {
       .filter((button) => button.label)
   }
 
+  // --> Utilidad: Al montar, desplaza al # si existe
   useEffect(() => {
-    let isMounted = true
-
-    fetch('/timeline.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('No se pudo cargar timeline.json')
-        return res.json()
-      })
-      .then((data) => {
-        if (!isMounted) return
-        const normalized = data.map((item, idx) => ({
-          id: item.id ?? idx + 1,
-          year: item.fecha || '',
-          title: item.titulo || '',
-          shortDescription: item.descripcion || '',
-          titulos: item.titulos === true,
-          category: Array.isArray(item.categoria)
-            ? item.categoria
-            : typeof item.categoria === 'string'
-            ? item.categoria.split(',').map((s) => s.trim())
-            : item.category || [],
-          botones: normalizeButtons(item.botones),
-        }))
-        setProjects(normalized)
-      })
-      .catch((err) => console.error(err))
-
-    return () => {
-      isMounted = false
+    // Si hay un hash en la URL, desplazamos suavemente hasta el elemento correspondiente
+    if (location.hash) {
+      const targetElement = document.querySelector(location.hash)
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: "start" })
+      }
     }
+  }, [location])
+
+  // --> Utilidad: Al montar
+  useEffect(() => {
+    // Normaliza los datos del JSON
+    const normalized = projects_json.map((item, idx) => ({
+      id: item.id ?? idx + 1,
+      year: item.fecha || '',
+      title: item.titulo || '',
+      shortDescription: item.descripcion || '',
+      titulos: item.titulos === true,
+      category: Array.isArray(item.categoria)
+        ? item.categoria
+        : typeof item.categoria === 'string'
+          ? item.categoria.split(',').map((s) => s.trim())
+          : [],
+      botones: normalizeButtons(item.botones),
+    }))
+    setProjects(normalized)
   }, [])
 
+
+  // --> Utilidad: Observador de intersección para animar los elementos de la línea de tiempo
   useEffect(() => {
     if (!projects.length) return
 
@@ -84,8 +99,10 @@ export default function Timeline() {
     return () => observer.disconnect()
   }, [projects])
 
+
+  // --> RENDERIZADO
   return (
-    <section id="projects" className="timeline">
+    <section id="timeline" className="timeline">
       <div className="timeline-container">
         <div className="section-header">
           <h2>Mi Línea de Tiempo</h2>
