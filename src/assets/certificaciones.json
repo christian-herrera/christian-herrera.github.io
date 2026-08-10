@@ -1,0 +1,77 @@
+[
+    {
+        "fecha": "12/2016",
+        "titulo": "🎓 Técnico Electromecánico",
+        "descripcion": "Título obtenido en la Escuela Técnica N° 1 \"Dr. René Favaloro\" de la localidad de Roque Pérez. Formación orientada a la instalación, mantenimiento y reparación de sistemas electromecánicos.",
+        "categoria": [
+            "académico"
+        ],
+        "titulos": true
+    },
+    {
+        "fecha": "09/2019",
+        "titulo": "🎓 Curso de PLC, CNC, SolidWorks",
+        "descripcion": "Certificaciones obtenidas de los cursos brindados por el Instituto Tecnológico Beltrán. Estos cursos fueron fundamentales para estudiar en mas detalle los conceptos de automatización industrial.",
+        "categoria": [
+            "instituto",
+            "curso"
+        ],
+        "botones": [
+            {
+                "label": "Certificados",
+                "url": "./certificaciones/inst-tecnologico-beltran.pdf"
+            }
+        ],
+        "titulos": true
+    },
+    {
+        "fecha": "05/2024",
+        "titulo": "Curso: Incertidumbre de Medición",
+        "descripcion": "Curso brindado por el Organismo Argentino de Acreditación (OAA) sobre el concepto de incertidumbre de medición en la práctica (Estimación, utilización y aplicaciones).",
+        "categoria": [
+            "oaa",
+            "curso"
+        ],
+        "botones": [
+            {
+                "label": "Certificado",
+                "url": "./certificaciones/capacitacion-incertidumbre.pdf"
+            }
+        ],
+        "titulos": true
+    },
+    {
+        "fecha": "12/2025",
+        "titulo": "🎓 Curso de React.js",
+        "descripcion": "Curso de React.Js que brinda Talento Tech a través de la Agencia de Habilidades para el Futuro del Ministerio de Educación de la ciudad. El proyecto final del curso es un sistema de ventas de productos.",
+        "categoria": [
+            "académico",
+            "talento-tech"
+        ],
+        "botones": [
+            {
+                "label": "GitHub",
+                "url": "https://github.com/christian-herrera/curso-react"
+            },
+            {
+                "label": "Demo",
+                "url": "https://curso-react.christianherrera.com.ar/"
+            },
+            {
+                "label": "Certificado",
+                "url": "./certificaciones/react-talento-tech.pdf"
+            }
+        ],
+        "titulos": true
+    },
+    {
+        "fecha": "09/2025",
+        "titulo": "🎓 Tramo de Formación Pedagógica",
+        "descripcion": "Capactación docente brindada por la Universidad FASTA. El titulo obtenido es el de \"Tramo de formación pedagógica del nivel medio para Técnicos\", con una duracion de 800 horas.",
+        "categoria": [
+            "académico"
+        ],
+        "botones": [],
+        "titulos": true
+    }
+]

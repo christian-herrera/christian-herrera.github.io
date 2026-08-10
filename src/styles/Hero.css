@@ -18,14 +18,14 @@
 
 @media (prefers-color-scheme: dark) {
   .hero {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    background: linear-gradient(135deg, #121216 0%, #09090b 100%);
   }
 }
 
 .hero-container {
   max-width: var(--max-width);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: var(--spacing-2xl);
   align-items: center;
   width: 100%;
@@ -35,32 +35,192 @@
 
 .hero-content {
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.hero-title {
-  font-size: clamp(2.5rem, 8vw, 3.5rem);
-  margin-bottom: var(--spacing-md);
-  color: var(--color-primary);
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
+/* Greeting Pre-title */
+.hero-greeting {
+  font-size: clamp(1.35rem, 2.8vw, 1.7rem);
+  font-weight: 600;
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.6;
+  margin-bottom: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  letter-spacing: -0.015em;
 }
 
+.hero-wave-icon {
+  font-size: 1.6rem;
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-hand 2.4s ease-in-out infinite;
+}
+
+@keyframes wave-hand {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(14deg);
+  }
+
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Large Prominent Name */
+.hero-name {
+  font-size: clamp(2.85rem, 6.5vw, 4.25rem);
+  color: var(--color-primary);
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.45rem;
+}
+
+.hero-name-highlight {
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Technical Role */
+.hero-role {
+  font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.hero-role-separator {
+  opacity: 0.4;
+  margin: 0 0.35rem;
+  font-weight: 300;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-role {
+    color: #60a5fa;
+  }
+}
+
+/* Hero Description */
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+  max-width: 580px;
+  font-weight: 400;
+}
+
+/* Futuristic Tech Strip */
+.hero-tech-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: var(--spacing-xl);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.88rem;
+  color: var(--color-text-light);
+}
+
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.tech-item:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.15);
+}
+
+.tech-prefix {
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+
+.tech-divider {
+  color: var(--color-border);
+  font-size: 0.75rem;
+}
+
+/* Futuristic CTA */
 .hero-cta {
   display: flex;
   gap: var(--spacing-md);
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.hero-visual {
+.btn-glow {
   position: relative;
-  height: 460px;
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 102, 255, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-glow:hover {
+  background: linear-gradient(135deg, #0066ff 0%, #0088ff 100%);
+  box-shadow: 0 6px 28px rgba(0, 102, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+/* Futuristic Visual Area */
+.hero-visual {
+  /* Contenedor cuadrado: todos los hijos se centran sobre el mismo punto */
+  position: relative;
+  width: 380px;
+  height: 380px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,25 +230,70 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 430px;
-  height: 430px;
+  width: 420px;
+  height: 420px;
   background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
   border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  filter: blur(40px);
-  opacity: 0.6;
-  animation: blob-animation 8s ease-in-out infinite;
+  filter: blur(50px);
+  opacity: 0.5;
+  animation: blob-animation 10s ease-in-out infinite;
+}
+
+.cyber-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 365px;
+  height: 365px;
+  border-radius: 50%;
+  color: rgba(0, 102, 255, 0.6);
+  animation: rotate-ring 32s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 6px rgba(0, 102, 255, 0.3));
+}
+
+.cyber-ring-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cyber-ring {
+    color: rgba(56, 189, 248, 0.75);
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.45));
+  }
 }
 
 .hero-photo-frame {
-  position: relative;
-  width: 340px;
-  height: 340px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 310px;
+  height: 310px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 35px rgba(0, 102, 255, 0.25), 0 20px 45px rgba(0, 0, 0, 0.2);
   z-index: 2;
   background-color: var(--color-bg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-photo-frame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 45px rgba(0, 212, 255, 0.4), 0 24px 50px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-photo-frame {
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 35px rgba(0, 102, 255, 0.35), 0 20px 45px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .hero-photo {
@@ -99,83 +304,187 @@
   display: block;
 }
 
+@keyframes rotate-ring {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes blob-animation {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   }
+
   25% {
     border-radius: 70% 30% 66% 34% / 30% 30% 70% 70%;
   }
+
   50% {
-    transform: translate(30px, -30px) scale(1.1);
+    transform: translate(25px, -25px) scale(1.08);
     border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
   }
+
   75% {
     border-radius: 50% 50% 34% 66% / 50% 50% 50% 50%;
   }
 }
 
+/* Tablet Responsive */
 @media (max-width: 1024px) {
+  .hero {
+    padding: var(--spacing-xl) var(--spacing-md);
+    min-height: auto;
+    padding-top: calc(var(--spacing-2xl) + 1rem);
+    padding-bottom: var(--spacing-2xl);
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-xl);
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-greeting {
+    justify-content: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-tech-strip {
+    justify-content: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
   }
 
   .hero-visual {
-    height: 360px;
+    width: 300px;
+    height: 300px;
     order: -1;
   }
 
+  .cyber-ring {
+    width: 270px;
+    height: 270px;
+  }
+
   .gradient-blob {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
 
   .hero-photo-frame {
-    width: 250px;
-    height: 250px;
+    width: 240px;
+    height: 240px;
   }
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
-    padding: var(--spacing-md) var(--spacing-md);
+    /* Ocupa el 100% de la pantalla en mobile */
+    min-height: 100vh;
     min-height: 100svh;
-    height: 100svh;
+    /* svh = viewport mínimo (barra visible), estable sin resize */
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-container {
-    gap: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    padding: var(--spacing-xl) 0;
   }
 
-  .hero-title {
-    font-size: 2rem;
+  .hero-greeting {
+    font-size: 1.25rem;
+    justify-content: center;
+    margin-bottom: 0.2rem;
   }
 
-  .hero-subtitle {
-    font-size: 1rem;
+  .hero-wave-icon {
+    font-size: 1.4rem;
+  }
+
+  .hero-name {
+    font-size: 2.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-role {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+  }
+
+  .hero-tech-strip {
+    font-size: 0.78rem;
+    gap: 0.4rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .tech-item {
+    padding: 0.15rem 0.4rem;
   }
 
   .hero-cta {
     flex-direction: column;
+    width: 100%;
+    gap: var(--spacing-xs);
   }
 
   .btn {
     width: 100%;
-    height: 48px;
+    height: 46px;
   }
 
+  /* -- Visual: contenedor cuadrado escalado a vw -- */
   .hero-visual {
-    height: min(38vh, 290px);
+    /* El tamaño del contenedor controla todo: ring y foto usan % del mismo cuadrado */
+    width: min(72vw, 220px);
+    height: min(72vw, 220px);
   }
 
-  .hero-photo-frame {
-    width: min(58vw, 240px);
-    height: min(58vw, 240px);
+  .cyber-ring {
+    /* Ligeramente más grande que la foto para el espacio del aro */
+    width: 100%;
+    height: 100%;
   }
 
   .gradient-blob {
-    width: min(72vw, 280px);
-    height: min(72vw, 280px);
+    width: 110%;
+    height: 110%;
+  }
+
+  .hero-photo-frame {
+    /* 85% del contenedor: deja margen para el aro */
+    width: 85%;
+    height: 85%;
   }
 }

@@ -1,0 +1,287 @@
+/* ============================================================
+   CertificationsCards.css
+   ============================================================ */
+
+.cert-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    background: var(--color-bg);
+    position: relative;
+}
+
+.cert-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ── Grid de tarjetas ─────────────────────────────────────── */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+/* ── Tarjeta base ─────────────────────────────────────────── */
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--border-radius) * 1.5);
+    padding: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--card-index, 0) * 80ms),
+        transform 0.55s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--card-index, 0) * 80ms),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.cert-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.cert-card:hover::before {
+    opacity: 1;
+}
+
+.cert-card--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cert-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+}
+
+/* ── Tarjeta con titulo oficial (gradiente dorado) ────────── */
+.cert-card--titulo {
+    border: 1px solid transparent;
+    background:
+        linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+        linear-gradient(135deg, #b45309, #f59e0b 45%, #fde68a 100%) border-box;
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.12), 0 8px 20px rgba(245, 158, 11, 0.06);
+}
+
+.cert-card--titulo:hover {
+    border-color: transparent;
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25), 0 14px 36px rgba(245, 158, 11, 0.12);
+    transform: translateY(-3px);
+}
+
+/* ── Cabecera de tarjeta ──────────────────────────────────── */
+.cert-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xs);
+}
+
+.cert-card__fecha {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(0, 102, 255, 0.08), rgba(0, 102, 255, 0.14));
+    color: var(--color-accent);
+    border: 1px solid rgba(0, 102, 255, 0.18);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.cert-card__titulo-badge {
+    font-size: 1.1rem;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.35));
+}
+
+/* ── Título ───────────────────────────────────────────────── */
+.cert-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* ── Descripcion ─────────────────────────────────────────── */
+.cert-card__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    line-height: 1.55;
+    flex: 1;
+    margin: 0;
+}
+
+/* ── Categorías ───────────────────────────────────────────── */
+.cert-card__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: var(--spacing-xs);
+}
+
+/* ── Badge base ───────────────────────────────────────────── */
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15px;
+    border: 1px solid;
+    transition: transform 0.2s ease;
+}
+
+.cert-card:hover .cert-badge {
+    transform: scale(1.04);
+}
+
+/* Colores de badges — mismos tokens que Timeline */
+.cert-badge-académico {
+    background-color: rgba(100, 200, 255, 0.1);
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.cert-badge-instituto {
+    background-color: rgba(97, 218, 251, 0.1);
+    color: #0ea5e9;
+    border-color: #0ea5e9;
+}
+
+.cert-badge-unlp {
+    background-color: rgba(100, 200, 255, 0.1);
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.cert-badge-oaa {
+    background-color: rgba(255, 155, 0, 0.1);
+    color: #ea580c;
+    border-color: #ea580c;
+}
+
+.cert-badge-curso {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    border-color: #7c3aed;
+}
+
+.cert-badge-talento-tech {
+    background-color: rgba(74, 222, 128, 0.1);
+    color: #22c55e;
+    border-color: #22c55e;
+}
+
+.cert-badge-default {
+    background-color: rgba(107, 114, 128, 0.1);
+    color: #4b5563;
+    border-color: #4b5563;
+}
+
+/* ── Acciones / botones ───────────────────────────────────── */
+.cert-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xs);
+}
+
+.cert-card__btn {
+    appearance: none;
+    border: 1px solid rgba(0, 102, 255, 0.18);
+    background: linear-gradient(180deg, rgba(0, 102, 255, 0.06), rgba(0, 102, 255, 0.12));
+    color: var(--color-accent);
+    padding: 0.48rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 102, 255, 0.07);
+}
+
+.cert-card__btn:hover {
+    background: linear-gradient(180deg, rgba(0, 102, 255, 0.12), rgba(0, 102, 255, 0.22));
+    border-color: rgba(0, 102, 255, 0.32);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 102, 255, 0.13);
+}
+
+.cert-card__btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+.cert-card__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: saturate(0.5);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+    .cert-section {
+        padding: var(--spacing-xl) var(--spacing-sm);
+    }
+
+    .cert-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .cert-card {
+        padding: var(--spacing-md);
+    }
+
+    .cert-card__title {
+        font-size: 0.95rem;
+    }
+
+    .cert-card__desc {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cert-card__btn {
+        font-size: 0.7rem;
+        padding: 0.42rem 0.75rem;
+    }
+}

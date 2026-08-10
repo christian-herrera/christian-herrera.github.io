@@ -1,7 +1,7 @@
-import Hero from '../components/Hero'
-import Contact from '../components/Contact'
-import HomeSkills from '../components/HomeSkills'
-
+import Hero from "../components/Hero";
+import AboutMe from "../components/AboutMe";
+import HomeSkills from "../components/HomeSkills";
+import Contact from "../components/Contact";
 
 /**
  * -------------------------------------------------------------------------------------------------------
@@ -9,13 +9,14 @@ import HomeSkills from '../components/HomeSkills'
  * -------------------------------------------------------------------------------------------------------
  */
 function HomePage() {
-  return (
-    <>
-      <Hero />
-      <HomeSkills />
-      <Contact />
-    </>
-  )
+    return (
+        <>
+            <Hero go_home={false} />
+            <AboutMe />
+            <HomeSkills />
+            <Contact />
+        </>
+    );
 }
 
-export default HomePage
+export default HomePage;

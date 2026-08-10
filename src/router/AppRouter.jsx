@@ -6,10 +6,9 @@ import PublicLayout from "../layouts/PublicLayout";
 
 // Pages
 const HomePage = lazy(() => import("../pages/HomePage"));
-const ProjectsPage = lazy(() => import("../pages/ProjectsPage"));
+const ExperiencePage = lazy(() => import("../pages/ExperiencePage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const PkiPage = lazy(() => import("../pages/PkiPage"));
-
 
 // --------------------------------------------------------------
 // --> AppRouter.jsx - Configuración de Rutas
@@ -21,7 +20,7 @@ function AppRouter() {
                 {/* Rutas públicas */}
                 <Route element={<PublicLayout />}>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/projects" element={<ProjectsPage />} />
+                    <Route path="/experience" element={<ExperiencePage />} />
                     <Route path="/pki" element={<PkiPage />} />
                 </Route>
 
@@ -31,6 +30,5 @@ function AppRouter() {
         </BrowserRouter>
     );
 }
-
 
 export default AppRouter;

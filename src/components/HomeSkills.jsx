@@ -59,8 +59,8 @@ export default function HomeSkills() {
     <section id="skills" className="home-skills">
       <div className="skills-container">
         <header className="skills-header">
-          <h2 className="skills-title">Bienvenido a mi humilde portfolio!</h2>
-          <p className="skills-subtitle">Te detallo algunas de mis cualidades...</p>
+          <h2 className="skills-title">Cualidades & Competencias</h2>
+          <p className="skills-subtitle">Pilares de trabajo y valores que aplico en cada desarrollo</p>
         </header>
 
         <div className="skills-grid">
