@@ -73,5 +73,20 @@
         ],
         "botones": [],
         "titulos": true
+    },
+    {
+        "fecha": "09/2026",
+        "titulo": "🎓 Capacitación de Riesgo Eléctrico",
+        "descripcion": "Capacitación brindada por el Ingeniero Gustavo Labianca, orientada a la adquisición de los conocimientos y criterios necesarios para realizar trabajos en instalaciones eléctricas de baja y alta tensión, con especial énfasis en la prevención y mitigación de riesgos eléctricos en el ámbito laboral.",
+        "categoria": [
+            "académico"
+        ],
+        "botones": [
+            {
+                "label": "Certificado",
+                "url": "./certificaciones/capacitacion-riesgo-electrico.pdf"
+            }
+        ],
+        "titulos": true
     }
 ]
