@@ -78,7 +78,7 @@ export default function Timeline() {
 
     // --> RENDERIZADO
     return (
-        <section id="timeline" className="timeline">
+        <section id="proyectos" className="timeline">
             <div className="timeline-container">
                 <div className="section-header">
                     <h2>Proyectos Destacados</h2>

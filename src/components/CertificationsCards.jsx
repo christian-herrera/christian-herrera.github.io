@@ -86,7 +86,7 @@ export default function CertificationsCards() {
 
                 <div className="cert-grid">
                     {certs.map((cert, index) => (
-                        <article key={cert.id} ref={(el) => (cardsRef.current[index] = el)} className={`cert-card ${cert.titulos ? "cert-card--titulo" : ""}`} style={{ "--card-index": index }}>
+                        <article key={cert.id} ref={(elem) => (cardsRef.current[index] = elem)} className={`cert-card ${cert.titulos ? "cert-card--titulo" : ""}`} style={{ "--card-index": index }}>
                             {/* Cabecera */}
                             <div className="cert-card__header">
                                 <span className="cert-card__fecha">{cert.fecha}</span>

@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 // Estilos
 import '../styles/PkiPage.css'
 
