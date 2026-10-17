@@ -12,6 +12,10 @@
       {
         "label": "Lista de revocación (.crl)",
         "href": "/ca.crl"
+      },
+      {
+        "label": "Instalador (.exe)",
+        "href": "/Christian-Herrera-CA.exe"
       }
     ]
   },

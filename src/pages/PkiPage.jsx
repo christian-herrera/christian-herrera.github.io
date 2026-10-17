@@ -46,7 +46,7 @@ export default function PkiPage() {
     )
   }
 
-  const { caRoot, subCas, lastUpdate } = pkiData
+  const { caRoot, subCas, lastUpdate, installer } = pkiData
 
   // --> RENDERIZADO
   return (
@@ -59,6 +59,7 @@ export default function PkiPage() {
         <div className="tree">
           <CANode
             title={caRoot.title}
+            installer={installer}
             description={caRoot.description}
             expiryDate={caRoot.expiryDate}
             status={caRoot.status}
