@@ -51,7 +51,23 @@
           "href": "/iot-ca.crl"
         }
       ]
+    },
+    {
+      "title": "Autoridad Emisora VPN",
+      "description": "Gestiona certificados para conexiones VPN, permitiendo a los usuarios establecer conexiones seguras y cifradas a través de redes públicas o privadas. Estos certificados son esenciales para garantizar la privacidad y la integridad de los datos transmitidos durante las sesiones VPN.",
+      "expiryDate": "29/10/2036",
+      "status": "ACTIVO",
+      "links": [
+        {
+          "label": "Certificado (.crt)",
+          "href": "/vpn-ca.crt"
+        },
+        {
+          "label": "Lista de revocación (.crl)",
+          "href": "/vpn-ca.crl"
+        }
+      ]
     }
   ],
-  "lastUpdate": "15/02/2026"
+  "lastUpdate": "30/10/2026"
 }
